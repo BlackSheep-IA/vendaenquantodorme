@@ -1,8 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import lizDesktop from "@/assets/liz-desktop.asset.json";
 import lizMobile from "@/assets/liz-mobile.asset.json";
-import envelope01 from "@/assets/envelope-01.asset.json";
-import envelope02 from "@/assets/envelope-02.asset.json";
 
 const CHECKOUT = "https://pay.kiwify.com.br/VxLqXfi";
 
@@ -59,167 +57,235 @@ function Diamond() {
   );
 }
 
+function CTA({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  return (
+    <a
+      href={CHECKOUT}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`btn-wine ${className}`}
+    >
+      {children}
+    </a>
+  );
+}
+
+const SIDE_CARD_ITEMS = [
+  {
+    label: "2 dias intensivos",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <rect x="3" y="5" width="18" height="16" rx="1.5" />
+        <path d="M3 9 H21" />
+        <path d="M8 3 V7 M16 3 V7" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    label: "Ao vivo",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <circle cx="12" cy="12" r="3" />
+        <path d="M5 12 a7 7 0 0 1 14 0" />
+        <path d="M2.5 12 a9.5 9.5 0 0 1 19 0" />
+      </svg>
+    ),
+  },
+  {
+    label: "Vagas limitadas",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4">
+        <rect x="5" y="10" width="14" height="10" rx="1.2" />
+        <path d="M8 10 V7 a4 4 0 0 1 8 0 V10" />
+      </svg>
+    ),
+  },
+];
+
+const METRICS = [
+  { t: "120–200k/mês", s: "de faturamento" },
+  { t: "100+ alunas", s: "transformadas" },
+  { t: "Sem sessão estratégica", s: "nem call de vendas" },
+  { t: "Funil perpétuo", s: "e escalável" },
+];
+
+function SideCard() {
+  return (
+    <div className="bg-[var(--card)] border border-[var(--border)] rounded-[12px] shadow-[0_20px_50px_-30px_rgba(60,30,15,0.35)] divide-y divide-[var(--border)] w-[220px]">
+      {SIDE_CARD_ITEMS.map((it) => (
+        <div key={it.label} className="flex items-center gap-3 px-4 py-3 text-[var(--foreground)]">
+          <span className="text-[var(--wine)] shrink-0">{it.icon}</span>
+          <span className="text-[10px] tracking-[0.28em] uppercase font-medium">{it.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MetricsBlock() {
+  return (
+    <div className="border-y border-[var(--border)] bg-[color-mix(in_oklab,var(--gold)_6%,transparent)]">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        {METRICS.map((it) => (
+          <div key={it.t}>
+            <div className="font-display text-lg md:text-xl text-[var(--foreground)] leading-tight">{it.t}</div>
+            <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--muted-foreground)] mt-1">
+              {it.s}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function Page() {
   return (
     <main className="min-h-screen overflow-hidden">
       {/* ===================== DOBRA 01 — HERO ===================== */}
       <section className="relative">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10">
-          {/* Top nav: logo + meta */}
-          <header className="grid md:grid-cols-[1fr_auto_1fr] items-start gap-6">
-            <div className="hidden md:block" />
-            <Logo className="mx-auto" />
-            <div className="hidden md:flex justify-end" />
+          <header className="flex flex-col items-center">
+            <Logo />
           </header>
 
           <div className="mt-4 text-center">
             <div className="text-[11px] tracking-[0.45em] uppercase text-[var(--foreground)]">
               Workshop Venda Enquanto Dorme<span className="align-super text-[7px]">™</span>
             </div>
-            <div className="mt-3 flex items-center justify-center gap-4 text-[11px] tracking-[0.3em] uppercase text-[var(--muted-foreground)]">
+            <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] tracking-[0.3em] uppercase text-[var(--muted-foreground)]">
               <span className="inline-flex items-center gap-2">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-[var(--wine)]" />
                 Ao vivo e online
               </span>
-              <span className="w-px h-3 bg-[var(--border)]" />
+              <span className="hidden sm:inline-block w-px h-3 bg-[var(--border)]" />
               <span>18 e 19 de julho</span>
             </div>
           </div>
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10 mt-10 md:mt-16 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* Copy column */}
-          <div className="relative">
-            <h1 className="font-display text-[2.6rem] leading-[1.05] sm:text-[3.2rem] md:text-[3.8rem] text-[var(--foreground)]">
-              Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.
-            </h1>
-            <p className="mt-6 font-display italic text-xl md:text-2xl text-[var(--foreground)]/80">
-              E transforma seguidoras em clientes da sua <em>oferta principal</em>.
-            </p>
+        {/* Headline — centralizada, dominante */}
+        <div className="mx-auto max-w-[1100px] px-6 md:px-10 mt-10 md:mt-14 text-center">
+          <h1 className="font-display text-[3.1rem] leading-[1.04] sm:text-[3.9rem] md:text-[4.6rem] lg:text-[5rem] text-[var(--foreground)]">
+            Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.
+          </h1>
+          <p className="mt-7 font-display italic text-[1.35rem] md:text-[1.7rem] font-semibold text-[var(--foreground)]">
+            E transforma seguidoras em clientes da sua <em>oferta principal</em>.
+          </p>
+        </div>
 
-            <div className="mt-8">
-              <div className="eyebrow mb-3">Você sai da imersão com</div>
-              <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--foreground)]">
-                {["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"].map(
-                  (b) => (
-                    <li key={b} className="inline-flex items-center gap-2">
-                      <svg width="14" height="14" viewBox="0 0 14 14" className="text-[var(--wine)]">
-                        <circle cx="7" cy="7" r="6.2" fill="none" stroke="currentColor" strokeWidth="1" />
-                        <path d="M4 7.2 L6.2 9.2 L10 5.4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                      {b}
-                    </li>
-                  ),
-                )}
-              </ul>
-            </div>
+        {/* Mobile: benefícios + CTA + última vaga ANTES da foto */}
+        <div className="md:hidden mx-auto max-w-[680px] px-6 mt-8 text-center">
+          <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[var(--foreground)]">
+            {["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"].map((b) => (
+              <li key={b} className="inline-flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14" className="text-[var(--wine)]">
+                  <circle cx="7" cy="7" r="6.2" fill="none" stroke="currentColor" strokeWidth="1" />
+                  <path d="M4 7.2 L6.2 9.2 L10 5.4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {b}
+              </li>
+            ))}
+          </ul>
 
-            <a href={CHECKOUT} className="btn-wine mt-8 w-full md:w-auto md:min-w-[420px]">
-              Quero minha vaga
-            </a>
-            <div className="mt-4 flex items-center gap-2 text-xs tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1">
-                <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
-                <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
-              </svg>
-              Últimas vagas disponíveis do Lote 0
-            </div>
+          <CTA className="mt-7 w-full">Quero minha vaga</CTA>
+
+          <div className="mt-4 flex items-center justify-center gap-2 text-[11px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1">
+              <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
+              <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
+            </svg>
+            Últimas vagas disponíveis do Lote 0
           </div>
 
-          {/* Image column */}
-          <div className="relative">
-            <picture>
-              <source media="(max-width: 767px)" srcSet={lizMobile.url} />
+          {/* Info chip-line substituindo o card lateral no mobile */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[10px] tracking-[0.3em] uppercase text-[var(--foreground)]">
+            <span>2 dias intensivos</span>
+            <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
+            <span>Ao vivo</span>
+            <span className="w-1 h-1 rounded-full bg-[var(--gold)]" />
+            <span>Vagas limitadas</span>
+          </div>
+        </div>
+
+        {/* Foto Liz — integrada ao fundo */}
+        <div className="mx-auto max-w-[1280px] px-4 md:px-10 mt-10 md:mt-14">
+          {/* Desktop layout: foto centralizada + card lateral */}
+          <div className="relative hidden md:flex justify-center items-center min-h-[560px]">
+            <div className="relative w-[min(640px,55vw)]">
+              <div className="photo-glow" />
               <img
                 src={lizDesktop.url}
                 alt="Liz Valz"
-                className="w-full h-auto object-cover rounded-sm shadow-[0_30px_80px_-40px_rgba(60,30,15,0.45)]"
+                className="relative z-10 w-full h-auto object-cover photo-mask-desktop"
               />
-            </picture>
-
-            {/* Envelope overlay */}
-            <img
-              src={envelope01.url}
-              alt="Carta de Liz Valz"
-              className="hidden md:block absolute -bottom-10 -left-16 w-[42%] max-w-[280px] drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]"
-            />
-
-            {/* Floating info cards */}
-            <div className="hidden md:flex absolute top-6 right-6 flex-col gap-3">
-              {[
-                { label: "2 dias", sub: "Intensivos" },
-                { label: "Ao vivo", sub: "" },
-                { label: "Vagas", sub: "Limitadas" },
-              ].map((c) => (
-                <div
-                  key={c.label}
-                  className="bg-[var(--card)]/90 backdrop-blur border border-[var(--border)] px-4 py-2 text-right"
-                >
-                  <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--muted-foreground)]">
-                    {c.label}
-                  </div>
-                  {c.sub && (
-                    <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--foreground)]">
-                      {c.sub}
-                    </div>
-                  )}
-                </div>
-              ))}
             </div>
+            <div className="absolute right-[6%] top-1/2 -translate-y-1/2 z-20">
+              <SideCard />
+            </div>
+          </div>
+
+          {/* Mobile: foto integrada */}
+          <div className="md:hidden relative mt-2">
+            <div className="photo-glow" />
+            <img
+              src={lizMobile.url}
+              alt="Liz Valz"
+              className="relative z-10 w-full h-auto object-cover photo-mask-mobile"
+            />
           </div>
         </div>
 
-        {/* Bottom strip */}
-        <div className="mt-16 md:mt-24 border-y border-[var(--border)] bg-[color-mix(in_oklab,var(--gold)_6%,transparent)]">
-          <div className="mx-auto max-w-[1400px] px-6 md:px-10 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {[
-              { t: "Mobile First", s: "Experiência editorial" },
-              { t: "Apenas 3 CTAs", s: "Sem ruído" },
-              { t: "Sem call de vendas", s: "Sem sessão estratégica" },
-              { t: "Produto pronto", s: "Em 2 dias" },
-            ].map((it) => (
-              <div key={it.t}>
-                <div className="font-display text-lg text-[var(--foreground)]">{it.t}</div>
-                <div className="text-[10px] tracking-[0.3em] uppercase text-[var(--muted-foreground)] mt-1">
-                  {it.s}
-                </div>
-              </div>
+        {/* Desktop: benefícios + CTA abaixo da foto */}
+        <div className="hidden md:block mx-auto max-w-[900px] px-6 md:px-10 mt-10 text-center">
+          <ul className="flex flex-wrap justify-center gap-x-7 gap-y-2 text-sm text-[var(--foreground)]">
+            {["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"].map((b) => (
+              <li key={b} className="inline-flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 14 14" className="text-[var(--wine)]">
+                  <circle cx="7" cy="7" r="6.2" fill="none" stroke="currentColor" strokeWidth="1" />
+                  <path d="M4 7.2 L6.2 9.2 L10 5.4" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {b}
+              </li>
             ))}
+          </ul>
+
+          <CTA className="mt-7 min-w-[420px]">Quero minha vaga</CTA>
+
+          <div className="mt-4 flex items-center justify-center gap-2 text-xs tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1">
+              <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
+              <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
+            </svg>
+            Últimas vagas disponíveis do Lote 0
           </div>
+        </div>
+
+        {/* Métricas */}
+        <div className="mt-14 md:mt-20">
+          <MetricsBlock />
         </div>
       </section>
 
-      {/* ===================== DOBRA 02 — QUEBRA DE OBJEÇÃO (envelope) ===================== */}
+      {/* ===================== DOBRA 02 — QUEBRA DE OBJEÇÃO ===================== */}
       <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10 grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-          <div className="order-2 md:order-1">
-            <img
-              src={envelope02.url}
-              alt="Envelope com mensagem para você"
-              className="w-full max-w-[520px] mx-auto drop-shadow-[0_30px_50px_rgba(60,30,15,0.25)]"
-            />
-          </div>
-          <div className="order-1 md:order-2">
-            <div className="ornament eyebrow mb-6">Quebra de Objeção</div>
-            <h2 className="font-display italic text-3xl md:text-[2.6rem] leading-[1.15] text-[var(--foreground)]">
-              “Eu já paguei caro em mentorias e continuei me virando sozinha. Por que com você seria diferente?”
-            </h2>
-            <div className="mt-8 space-y-5 text-[var(--foreground)]/85 text-lg leading-relaxed">
-              <p>A diferença é simples.</p>
-              <p>Nas outras formações você recebeu informação.</p>
-              <p className="font-display italic text-[var(--wine)] text-xl">Aqui você constrói o ativo.</p>
-              <p>Não é uma aula para assistir.</p>
-              <p>Não é um curso para consumir.</p>
-              <p>Não é mais uma estratégia para anotar.</p>
-              <p>
-                É uma oficina prática, ao vivo, onde você constrói seu produto junto comigo utilizando IA.
-              </p>
-              <p>Você não sai com tarefas. Você sai com algo funcionando.</p>
-              <p>Você não sai com a promessa de fazer depois. Sai com um produto pronto para vender.</p>
-              <p className="font-display italic text-xl">
-                Por isso, dessa vez, você finalmente sai do lugar.
-              </p>
-            </div>
+        <div className="mx-auto max-w-[880px] px-6 md:px-10 text-center">
+          <div className="eyebrow">Quebra de Objeção</div>
+          <h2 className="mt-4 font-display italic text-3xl md:text-[2.6rem] leading-[1.15] text-[var(--foreground)]">
+            “Eu já paguei caro em mentorias e continuei me virando sozinha. Por que com você seria diferente?”
+          </h2>
+          <Diamond />
+          <div className="mt-8 space-y-5 text-[var(--foreground)]/85 text-lg leading-relaxed">
+            <p>A diferença é simples.</p>
+            <p>Nas outras formações você recebeu informação.</p>
+            <p className="font-display italic text-[var(--wine)] text-xl">Aqui você constrói o ativo.</p>
+            <p>Não é uma aula para assistir.</p>
+            <p>Não é um curso para consumir.</p>
+            <p>Não é mais uma estratégia para anotar.</p>
+            <p>É uma oficina prática, ao vivo, onde você constrói seu produto junto comigo utilizando IA.</p>
+            <p>Você não sai com tarefas. Você sai com algo funcionando.</p>
+            <p>Você não sai com a promessa de fazer depois. Sai com um produto pronto para vender.</p>
+            <p className="font-display italic text-xl">Por isso, dessa vez, você finalmente sai do lugar.</p>
           </div>
         </div>
       </section>
@@ -381,9 +447,7 @@ function Page() {
             <div className="mt-10 pt-8 border-t border-[var(--border)] text-center">
               <div className="eyebrow">Investimento — Lote 0</div>
               <div className="mt-3 font-display text-6xl md:text-7xl text-[var(--wine)]">R$ 19,90</div>
-              <a href={CHECKOUT} className="btn-wine mt-8 w-full sm:w-auto sm:min-w-[480px]">
-                Garantir minha vaga no Lote 0
-              </a>
+              <CTA className="mt-8 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 0</CTA>
             </div>
           </div>
         </div>
@@ -391,39 +455,48 @@ function Page() {
 
       {/* ===================== DOBRA 07 — SOBRE A ESPECIALISTA ===================== */}
       <section className="py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10 grid md:grid-cols-[1fr_1.1fr] gap-12 md:gap-20 items-center">
-          <div className="relative">
-            <img src={lizDesktop.url} alt="Liz Valz" className="w-full h-auto rounded-sm" />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-[var(--background)] px-6 py-2 border border-[var(--border)] font-script text-2xl text-[var(--foreground)]">
-              Liz Valz
+        <div className="mx-auto max-w-[1200px] px-6 md:px-10 text-center">
+          <div className="eyebrow">Sobre a especialista</div>
+          <h2 className="mt-4 font-display text-3xl md:text-[2.4rem] leading-tight">
+            Quem vai conduzir você nesses 2 dias?
+          </h2>
+          <Diamond />
+
+          <div className="mt-12 grid md:grid-cols-[1fr_1.1fr] gap-12 md:gap-20 items-center text-left">
+            <div className="relative">
+              <div className="photo-glow" />
+              <img
+                src={lizDesktop.url}
+                alt="Liz Valz"
+                className="relative z-10 w-full h-auto photo-mask-desktop"
+              />
+              <div className="relative z-20 mt-4 text-center font-script text-3xl text-[var(--foreground)]">
+                Liz Valz
+              </div>
             </div>
-          </div>
-          <div>
-            <div className="eyebrow">Sobre a especialista</div>
-            <h2 className="mt-4 font-display text-3xl md:text-[2.4rem] leading-tight">
-              Quem vai conduzir você nesses 2 dias?
-            </h2>
-            <p className="mt-6 text-lg text-[var(--foreground)]/85 leading-relaxed">
-              Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e
-              manter uma rotina alinhada com a vida que escolhi viver.
-            </p>
-            <ul className="mt-8 space-y-3 text-[var(--foreground)]/90">
-              {[
-                "Mais de 25 milhões faturados",
-                "Criadora do Sistema de Vendas Invisíveis™",
-                "Criadora da Aceleradora High Ticket IA",
-                "Milhares de mulheres impactadas",
-                "Dezenas de alunas que atingiram faturamentos expressivos",
-              ].map((b) => (
-                <li key={b} className="flex gap-3">
-                  <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-[var(--wine)]" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 font-display italic text-xl text-[var(--foreground)]">
-              Eu ensino apenas aquilo que vivo diariamente.
-            </p>
+            <div>
+              <p className="text-lg text-[var(--foreground)]/85 leading-relaxed">
+                Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e
+                manter uma rotina alinhada com a vida que escolhi viver.
+              </p>
+              <ul className="mt-8 space-y-3 text-[var(--foreground)]/90">
+                {[
+                  "Mais de 25 milhões faturados",
+                  "Criadora do Sistema de Vendas Invisíveis™",
+                  "Criadora da Aceleradora High Ticket IA",
+                  "Milhares de mulheres impactadas",
+                  "Dezenas de alunas que atingiram faturamentos expressivos",
+                ].map((b) => (
+                  <li key={b} className="flex gap-3">
+                    <span className="mt-2 inline-block w-1.5 h-1.5 rounded-full bg-[var(--wine)]" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-8 font-display italic text-xl text-[var(--foreground)]">
+                Eu ensino apenas aquilo que vivo diariamente.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -496,9 +569,7 @@ function Page() {
           <p className="mt-6 text-[var(--muted-foreground)] tracking-[0.28em] uppercase text-xs">
             Últimas vagas disponíveis do Lote 0
           </p>
-          <a href={CHECKOUT} className="btn-wine mt-10 w-full sm:w-auto sm:min-w-[480px]">
-            Garantir minha vaga no Lote 0
-          </a>
+          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 0</CTA>
         </div>
         <footer className="mt-24 text-xs text-[var(--muted-foreground)]">
           © Liz Valz — Todos os direitos reservados.
