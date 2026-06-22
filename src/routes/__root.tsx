@@ -77,6 +77,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: "Lovable App" },
+      { property: "og:title", content: "Lovable App" },
+      { name: "twitter:title", content: "Lovable App" },
+      { name: "description", content: "Workshop | Venda enquanto Dorme" },
+      { property: "og:description", content: "Workshop | Venda enquanto Dorme" },
+      { name: "twitter:description", content: "Workshop | Venda enquanto Dorme" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/ZCIim6g1ylhCknQTtwneGvGAG9y2/social-images/social-1782140920769-liz.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/ZCIim6g1ylhCknQTtwneGvGAG9y2/social-images/social-1782140920769-liz.webp" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
