@@ -101,9 +101,11 @@
     color: var(--wine-foreground);
     font-family: var(--font-body);
     font-size: 0.82rem;
+    font-weight: 600;
     letter-spacing: 0.28em;
     text-transform: uppercase;
     padding: 1.15rem 2.5rem;
+    border-radius: 5px;
     border: 1px solid color-mix(in oklab, var(--wine) 70%, black);
     box-shadow: 0 1px 0 color-mix(in oklab, var(--wine) 50%, black) inset,
                 0 18px 40px -20px color-mix(in oklab, var(--wine) 60%, transparent);
@@ -120,5 +122,28 @@
   .divider-diamond::before, .divider-diamond::after {
     content: ""; height: 1px; width: 60px;
     background: currentColor; opacity: .5;
+  }
+  .photo-glow {
+    position: absolute;
+    inset: -10% -8% -4% -8%;
+    background: radial-gradient(ellipse at 50% 45%,
+      color-mix(in oklab, var(--gold) 24%, transparent) 0%,
+      color-mix(in oklab, var(--gold) 10%, transparent) 38%,
+      transparent 72%);
+    filter: blur(36px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .photo-mask-desktop {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%), linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%), linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+  .photo-mask-mobile {
+    -webkit-mask-image: radial-gradient(ellipse 78% 70% at 50% 42%, black 55%, transparent 95%), linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    mask-image: radial-gradient(ellipse 78% 70% at 50% 42%, black 55%, transparent 95%), linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
   }
 }
