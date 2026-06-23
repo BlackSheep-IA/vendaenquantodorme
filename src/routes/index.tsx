@@ -195,7 +195,7 @@ function Page() {
               <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
               <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
             </svg>
-            Últimas vagas disponíveis do Lote 0
+            Somente 40 vagas disponíveis no Lote 01
           </div>
 
           {/* Info chip-line substituindo o card lateral no mobile */}
@@ -257,7 +257,7 @@ function Page() {
               <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
               <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
             </svg>
-            Últimas vagas disponíveis do Lote 0
+            Somente 40 vagas disponíveis no Lote 01
           </div>
         </div>
 
@@ -445,9 +445,10 @@ function Page() {
             </ul>
 
             <div className="mt-10 pt-8 border-t border-[var(--border)] text-center">
-              <div className="eyebrow">Investimento — Lote 0</div>
-              <div className="mt-3 font-display text-6xl md:text-7xl text-[var(--wine)]">R$ 19,90</div>
-              <CTA className="mt-8 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 0</CTA>
+              <div className="eyebrow">Investimento — Lote 01</div>
+              <div className="mt-3 font-display text-6xl md:text-7xl text-[var(--wine)]">R$ 29,90</div>
+              <div className="mt-3 text-sm tracking-wider uppercase text-[var(--muted-foreground)]">Somente 40 vagas disponíveis</div>
+              <CTA className="mt-8 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,90</CTA>
             </div>
           </div>
         </div>
@@ -567,9 +568,9 @@ function Page() {
           </h2>
           <Diamond />
           <p className="mt-6 text-[var(--muted-foreground)] tracking-[0.28em] uppercase text-xs">
-            Últimas vagas disponíveis do Lote 0
+            Somente 40 vagas disponíveis no Lote 01
           </p>
-          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 0</CTA>
+          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,90</CTA>
         </div>
         <footer className="mt-24 text-xs text-[var(--muted-foreground)]">
           © Liz Valz — Todos os direitos reservados.
