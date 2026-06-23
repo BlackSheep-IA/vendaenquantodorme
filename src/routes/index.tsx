@@ -644,7 +644,10 @@ function Page() {
         </div>
       </section>
 
+      <MobileClosing />
+
       {/* ===================== ENCERRAMENTO ===================== */}
+
       <section className="hidden md:block py-24 md:py-32 text-center">
         <div className="mx-auto max-w-[860px] px-6 md:px-10">
           <Logo className="mx-auto" />
