@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import lizDesktop from "@/assets/liz-desktop.asset.json";
 import lizMobile from "@/assets/liz-mobile.asset.json";
+import ref01 from "@/assets/ref-dobra_01.asset.json";
+import ref02 from "@/assets/ref-dobra_02.asset.json";
+import ref03 from "@/assets/ref-dobra_03.asset.json";
+import ref04 from "@/assets/ref-dobra_04.asset.json";
+import ref05 from "@/assets/ref-dobra_05.asset.json";
+import ref07 from "@/assets/ref-dobra_07.asset.json";
+import ref08 from "@/assets/ref-dobra_08.asset.json";
+
 
 const CHECKOUT = "https://pay.kiwify.com.br/VxLqXfi";
 
@@ -139,11 +147,88 @@ function MetricsBlock() {
   );
 }
 
+function RefImg({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -top-10 h-16"
+        style={{
+          background:
+            "linear-gradient(to bottom, var(--background), transparent)",
+        }}
+      />
+      <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 -bottom-10 h-16"
+        style={{
+          background:
+            "linear-gradient(to top, var(--background), transparent)",
+        }}
+      />
+    </div>
+  );
+}
+
+function MobilePage() {
+  return (
+    <div className="md:hidden">
+      {/* DOBRA 01 — HERO */}
+      <RefImg src={ref01.url} alt="Workshop Venda Enquanto Dorme — Liz Valz" />
+      <div className="px-6 mt-6 text-center">
+        <CTA className="w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
+        <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
+          Somente 40 vagas disponíveis no Lote 01
+        </div>
+      </div>
+
+      {/* DOBRA 02 */}
+      <div className="mt-12"><RefImg src={ref02.url} alt="Quebra de objeção" /></div>
+
+      {/* DOBRA 03 */}
+      <div className="mt-12"><RefImg src={ref03.url} alt="O caminho" /></div>
+
+      {/* DOBRA 04 */}
+      <div className="mt-12"><RefImg src={ref04.url} alt="O que vamos construir" /></div>
+
+      {/* DOBRA 05 */}
+      <div className="mt-12"><RefImg src={ref05.url} alt="Cronograma — como vai funcionar" /></div>
+
+      {/* DOBRA 06 — OFERTA */}
+      <section className="mt-16 px-6 text-center">
+        <div className="eyebrow">A Oferta</div>
+        <Diamond />
+        <div className="mt-6 eyebrow">Investimento — Lote 01</div>
+        <div className="mt-3 font-display text-6xl text-[var(--wine)]">R$ 29,00</div>
+        <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
+          Somente 40 vagas disponíveis no Lote 01
+        </div>
+        <CTA className="mt-7 w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
+      </section>
+
+      {/* DOBRA 07 */}
+      <div className="mt-16"><RefImg src={ref07.url} alt="Sobre a especialista — Liz Valz" /></div>
+
+      {/* DOBRA 08 — GARANTIA */}
+      <div className="mt-12"><RefImg src={ref08.url} alt="Garantia — Risco Zero" /></div>
+
+      {/* Encerramento CTA */}
+      <section className="mt-16 px-6 text-center pb-10">
+        <CTA className="w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
+      </section>
+    </div>
+  );
+}
+
 function Page() {
+
   return (
     <main className="min-h-screen overflow-hidden">
+      <MobilePage />
       {/* ===================== DOBRA 01 — HERO ===================== */}
-      <section className="relative">
+
+      <section className="hidden md:block relative">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10">
           <header className="flex flex-col items-center">
             <Logo />
@@ -268,7 +353,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 02 — QUEBRA DE OBJEÇÃO ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[880px] px-6 md:px-10 text-center">
           <div className="eyebrow">Quebra de Objeção</div>
           <h2 className="mt-4 font-display italic text-3xl md:text-[2.6rem] leading-[1.15] text-[var(--foreground)]">
@@ -291,7 +376,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 03 — O CAMINHO ===================== */}
-      <section className="py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
         <div className="mx-auto max-w-[920px] px-6 md:px-10 text-center">
           <Diamond />
           <div className="eyebrow mt-6">O Caminho</div>
@@ -317,7 +402,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 04 — O QUE VAMOS CONSTRUIR ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[1100px] px-6 md:px-10 text-center">
           <div className="eyebrow">O que vamos construir</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.6rem] leading-tight">
@@ -373,7 +458,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 05 — CRONOGRAMA ===================== */}
-      <section className="py-24 md:py-32 bg-[var(--foreground)] text-[var(--background)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[var(--foreground)] text-[var(--background)]">
         <div className="mx-auto max-w-[1000px] px-6 md:px-10 text-center">
           <div className="eyebrow text-[var(--gold)]">Cronograma</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.6rem]">Como vai funcionar</h2>
@@ -411,7 +496,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 06 — OFERTA ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[860px] px-6 md:px-10 text-center">
           <div className="eyebrow">A Oferta</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.8rem] leading-[1.15]">
@@ -455,7 +540,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 07 — SOBRE A ESPECIALISTA ===================== */}
-      <section className="py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 text-center">
           <div className="eyebrow">Sobre a especialista</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.4rem] leading-tight">
@@ -503,7 +588,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 08 — GARANTIA ===================== */}
-      <section className="py-24 md:py-28">
+      <section className="hidden md:block py-24 md:py-28">
         <div className="mx-auto max-w-[760px] px-6 md:px-10 text-center">
           <Crown className="w-10 h-10 mx-auto text-[var(--gold)]" />
           <div className="eyebrow mt-4">Garantia</div>
@@ -555,7 +640,7 @@ function Page() {
       </section>
 
       {/* ===================== ENCERRAMENTO ===================== */}
-      <section className="py-24 md:py-32 text-center">
+      <section className="hidden md:block py-24 md:py-32 text-center">
         <div className="mx-auto max-w-[860px] px-6 md:px-10">
           <Logo className="mx-auto" />
           <div className="mt-6 eyebrow">
