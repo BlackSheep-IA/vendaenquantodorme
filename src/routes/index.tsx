@@ -148,35 +148,15 @@ function MetricsBlock() {
 }
 
 function RefImg({ src, alt }: { src: string; alt: string }) {
-  return (
-    <div className="relative">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-10 h-16"
-        style={{
-          background:
-            "linear-gradient(to bottom, var(--background), transparent)",
-        }}
-      />
-      <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-10 h-16"
-        style={{
-          background:
-            "linear-gradient(to top, var(--background), transparent)",
-        }}
-      />
-    </div>
-  );
+  return <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />;
 }
 
 function MobilePage() {
   return (
-    <div className="md:hidden">
+    <div className="md:hidden bg-[var(--background)]">
       {/* DOBRA 01 — HERO */}
       <RefImg src={ref01.url} alt="Workshop Venda Enquanto Dorme — Liz Valz" />
-      <div className="px-6 mt-6 text-center">
+      <div className="px-6 pt-4 pb-6 text-center">
         <CTA className="w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
         <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
           Somente 40 vagas disponíveis no Lote 01
@@ -184,19 +164,27 @@ function MobilePage() {
       </div>
 
       {/* DOBRA 02 */}
-      <div className="mt-12"><RefImg src={ref02.url} alt="Quebra de objeção" /></div>
+      <RefImg src={ref02.url} alt="Quebra de objeção" />
 
-      {/* DOBRA 03 */}
-      <div className="mt-12"><RefImg src={ref03.url} alt="O caminho" /></div>
+      {/* DOBRA 03 — ampliada ~25% para legibilidade */}
+      <div className="overflow-hidden">
+        <img
+          src={ref03.url}
+          alt="O caminho"
+          loading="lazy"
+          className="block h-auto"
+          style={{ width: "125%", marginLeft: "-12.5%", maxWidth: "none" }}
+        />
+      </div>
 
       {/* DOBRA 04 */}
-      <div className="mt-12"><RefImg src={ref04.url} alt="O que vamos construir" /></div>
+      <RefImg src={ref04.url} alt="O que vamos construir" />
 
       {/* DOBRA 05 */}
-      <div className="mt-12"><RefImg src={ref05.url} alt="Cronograma — como vai funcionar" /></div>
+      <RefImg src={ref05.url} alt="Cronograma — como vai funcionar" />
 
       {/* DOBRA 06 — OFERTA */}
-      <section className="mt-16 px-6 text-center">
+      <section className="px-6 pt-10 pb-12 text-center">
         <div className="eyebrow">A Oferta</div>
         <Diamond />
         <div className="mt-6 eyebrow">Investimento — Lote 01</div>
@@ -208,18 +196,35 @@ function MobilePage() {
       </section>
 
       {/* DOBRA 07 */}
-      <div className="mt-16"><RefImg src={ref07.url} alt="Sobre a especialista — Liz Valz" /></div>
+      <RefImg src={ref07.url} alt="Sobre a especialista — Liz Valz" />
 
       {/* DOBRA 08 — GARANTIA */}
-      <div className="mt-12"><RefImg src={ref08.url} alt="Garantia — Risco Zero" /></div>
-
-      {/* Encerramento CTA */}
-      <section className="mt-16 px-6 text-center pb-10">
-        <CTA className="w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
-      </section>
+      <RefImg src={ref08.url} alt="Garantia — Risco Zero" />
     </div>
   );
 }
+
+function MobileClosing() {
+  return (
+    <section className="md:hidden px-6 pt-12 pb-14 text-center bg-[var(--background)]">
+      <div className="eyebrow">
+        Workshop Venda Enquanto Dorme<span className="align-super text-[7px]">™</span>
+      </div>
+      <h2 className="mt-5 font-display text-[2.4rem] leading-[1.05] text-[var(--foreground)]">
+        18 e 19 de julho
+      </h2>
+      <p className="mt-2 font-display italic text-[1.6rem] text-[var(--foreground)]">
+        Ao vivo e online
+      </p>
+      <Diamond />
+      <p className="mt-4 text-[10px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
+        Somente 40 vagas disponíveis no Lote 01
+      </p>
+      <CTA className="mt-6 w-full">Garantir minha vaga no Lote 01 por R$ 29,00</CTA>
+    </section>
+  );
+}
+
 
 function Page() {
 
@@ -639,7 +644,10 @@ function Page() {
         </div>
       </section>
 
+      <MobileClosing />
+
       {/* ===================== ENCERRAMENTO ===================== */}
+
       <section className="hidden md:block py-24 md:py-32 text-center">
         <div className="mx-auto max-w-[860px] px-6 md:px-10">
           <Logo className="mx-auto" />
