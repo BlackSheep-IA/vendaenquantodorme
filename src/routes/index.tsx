@@ -568,9 +568,9 @@ function Page() {
           </h2>
           <Diamond />
           <p className="mt-6 text-[var(--muted-foreground)] tracking-[0.28em] uppercase text-xs">
-            Últimas vagas disponíveis do Lote 0
+            Somente 40 vagas disponíveis no Lote 01
           </p>
-          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 0</CTA>
+          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,90</CTA>
         </div>
         <footer className="mt-24 text-xs text-[var(--muted-foreground)]">
           © Liz Valz — Todos os direitos reservados.
