@@ -257,7 +257,7 @@ function Page() {
               <rect x="2.5" y="5.5" width="7" height="5" rx="0.6" />
               <path d="M4 5.5 V3.8 a2 2 0 0 1 4 0 V5.5" />
             </svg>
-            Últimas vagas disponíveis do Lote 0
+            Somente 40 vagas disponíveis no Lote 01
           </div>
         </div>
 
