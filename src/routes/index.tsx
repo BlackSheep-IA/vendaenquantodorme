@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import lizDesktop from "@/assets/liz-desktop.asset.json";
 import lizMobile from "@/assets/liz-mobile.asset.json";
+import ref01 from "@/assets/ref-dobra_01.asset.json";
+import ref02 from "@/assets/ref-dobra_02.asset.json";
+import ref03 from "@/assets/ref-dobra_03.asset.json";
+import ref04 from "@/assets/ref-dobra_04.asset.json";
+import ref05 from "@/assets/ref-dobra_05.asset.json";
+import ref07 from "@/assets/ref-dobra_07.asset.json";
+import ref08 from "@/assets/ref-dobra_08.asset.json";
+
 
 const CHECKOUT = "https://pay.kiwify.com.br/VxLqXfi";
 
