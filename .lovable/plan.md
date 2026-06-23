@@ -1,43 +1,50 @@
-## Confirmação sobre a abordagem atual
+# Ajustes mobile — datas, espaçamentos, zoom e nova seção
 
-Sim, exatamente. Na última rodada eu **não recriei os layouts em HTML/CSS** — eu usei as imagens JPEG que você enviou (dobra_01 a dobra_08) como o próprio conteúdo da versão mobile. Cada dobra mobile renderiza o JPEG correspondente em largura total, e por cima disso adicionei apenas:
+Todas as mudanças abaixo afetam **somente a versão mobile** (`MobilePage` em `src/routes/index.tsx`). Desktop continua congelado.
 
-- CTA funcional (link da Kiwify) abaixo do Hero
-- Bloco de Oferta com preço/CTA reais (Dobra 06)
-- CTA final no encerramento
-- FAQ interativo (mantido em HTML)
+## 1. Datas "08 e 09 de agosto" → "18 e 19 de julho"
 
-Ou seja: a fidelidade visual veio das próprias imagens, não de uma reconstrução estrutural.
+A data antiga está **gravada dentro das imagens de referência** (`ref-dobra_01`, `ref-dobra_05`, `ref-dobra_08` — possivelmente também na 02/03/04/07). Vou:
 
-## Ajuste pedido agora — Dobra 01
+1. Inspecionar cada uma das 7 imagens (`ref-dobra_01` a `ref-dobra_08`) para localizar a data.
+2. Em cada imagem que contiver "08 e 09 de agosto", usar `imagegen--edit_image` para substituir por "18 e 19 de julho", preservando tipografia, cor, hierarquia e fundo creme.
+3. Reenviar cada imagem editada via `lovable-assets create` e sobrescrever o `.asset.json` correspondente.
 
-A imagem `dobra_01.jpeg` tem o botão "GARANTIR INGRESSO LOTE 2 | R$ 29" embutido, e logo abaixo o nosso CTA real ("Garantir minha vaga no Lote 01 por R$ 29"). Ficam dois botões empilhados. Você quer deixar **apenas o nosso CTA funcional**.
+## 2. Remover faixas/espaços em branco entre seções
 
-### O que vou fazer
+Hoje o mobile usa `mt-12` / `mt-16` entre cada `<RefImg>`, criando faixas do fundo creme entre as imagens. Vou:
 
-1. Usar `imagegen--edit_image` para gerar uma versão limpa de `dobra_01.jpeg`:
-   - Remover o botão vinho "GARANTIR INGRESSO LOTE 2 | R$ 29"
-   - Remover o microtexto "🔒 ÚLTIMAS VAGAS DISPONÍVEIS"
-   - **Manter** tudo o resto idêntico: headline, subtítulo, bullets, foto da Liz, envelope/carta e o bloco de métricas no rodapé (120–200k/mês, 100+ alunas, sem sessão estratégica, funil perpétuo)
-2. Subir a imagem editada via `lovable-assets` e atualizar o `ref-dobra_01.asset.json` (ou criar `ref-dobra_01-clean.asset.json` e apontar o import para ele).
-3. Manter, abaixo da imagem, **apenas** o nosso CTA real + a linha de escassez "Somente 40 vagas disponíveis no Lote 01" (que substitui o "Últimas vagas disponíveis" removido).
-4. Não tocar em mais nada — desktop, demais dobras e FAQ permanecem como estão.
+- Trocar todos os `mt-12` / `mt-16` entre as dobras-imagem por `mt-0`, deixando as imagens encostadas (sem respiro visível).
+- Remover/zerar os gradientes superiores e inferiores do helper `RefImg` (que hoje criam uma transição clara). Como as imagens já têm o mesmo fundo creme, podem se conectar diretamente.
+- Manter espaçamento somente nas seções compostas por texto+CTA (Hero CTA, Oferta, Encerramento), com `mt-8` enxuto.
 
-### Resultado esperado no mobile da Dobra 01
+## 3. Dobra 03 ("O Caminho") — ampliar ~25% no mobile
+
+A imagem `ref-dobra_03` tem textos muito pequenos no mobile. Vou aplicar um `scale(1.25)` controlado:
+
+- Envolver a imagem da Dobra 03 em um wrapper com `overflow-x-auto` e aplicar `transform: scale(1.25); transform-origin: top center;` na imagem, com `width: 100%` e altura compensada (`mb` extra para acomodar o crescimento vertical).
+- Alternativa mais segura visualmente: aumentar a largura renderizada para `125%` e deslocar com `margin-left: -12.5%`, mantendo `max-width: none`. Vou usar essa abordagem (evita corte horizontal e mantém o layout fluido).
+
+## 4. Nova seção após o FAQ (mobile)
+
+Reproduzir, em HTML/CSS (não como imagem), a seção de encerramento do print enviado:
 
 ```
-[ imagem dobra_01 editada — sem o botão e sem "últimas vagas" ]
-        ↓
-[ Botão vinho real: Garantir minha vaga no Lote 01 por R$ 29 ]
-[ "Somente 40 vagas disponíveis no Lote 01" ]
-        ↓
-(segue para Dobra 02)
+WORKSHOP VENDA ENQUANTO DORME™      (eyebrow, tracking largo)
+18 e 19 de julho                    (display serif grande)
+Ao vivo e online                    (display itálico)
+— ◆ —                               (divisor ornamental)
+SOMENTE 40 VAGAS DISPONÍVEIS NO LOTE 01
+[ GARANTIR MINHA VAGA NO LOTE 01 POR R$ 29,00 ]   (btn-wine full-width)
 ```
 
-Se preferir uma rota alternativa (em vez de editar a imagem com IA), me avise. As opções seriam:
+- Implementar como nova `<section className="px-6 pt-10 pb-12 text-center">` dentro de `MobilePage`, logo após o FAQ, usando os tokens já existentes (`eyebrow`, `font-display`, `Diamond`, `CTA`, `btn-wine`).
+- O FAQ atual não tem `hidden md:block`, então renderiza no mobile — a nova seção entra depois dele.
 
-- **A.** Editar a imagem com IA (recomendado — mantém atmosfera premium da referência).
-- **B.** Cortar a imagem visualmente via CSS na altura logo após a foto (perde o bloco de métricas embutido).
-- **C.** Sobrepor um retângulo `var(--background)` em cima do botão e do "últimas vagas" (mais frágil, pode aparecer emenda).
+## Detalhes técnicos
 
-Por padrão sigo com a **opção A**.
+- Arquivos alterados:
+  - `src/routes/index.tsx` — ajustes em `MobilePage` e `RefImg` (espaçamentos, scale da dobra 03, nova seção de encerramento mobile).
+  - `src/assets/ref-dobra_0X.asset.json` — substituídos para os assets que contêm a data antiga.
+- Nenhuma alteração em: desktop, links, checkout, URLs, FAQ, preços, copy do Lote 01, valores R$ 29,00.
+- Verificação: após editar, abrir Playwright no viewport mobile (375×812) e tirar screenshots de cada dobra para confirmar (a) datas corretas, (b) ausência de faixas claras, (c) legibilidade da Dobra 03, (d) nova seção de encerramento idêntica ao print.
