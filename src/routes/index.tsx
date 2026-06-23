@@ -151,7 +151,7 @@ function Page() {
   return (
     <main className="min-h-screen overflow-hidden">
       {/* ===================== DOBRA 01 — HERO ===================== */}
-      <section className="relative">
+      <section className="hidden md:block relative">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10">
           <header className="flex flex-col items-center">
             <Logo />
@@ -276,7 +276,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 02 — QUEBRA DE OBJEÇÃO ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[880px] px-6 md:px-10 text-center">
           <div className="eyebrow">Quebra de Objeção</div>
           <h2 className="mt-4 font-display italic text-3xl md:text-[2.6rem] leading-[1.15] text-[var(--foreground)]">
@@ -299,7 +299,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 03 — O CAMINHO ===================== */}
-      <section className="py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
         <div className="mx-auto max-w-[920px] px-6 md:px-10 text-center">
           <Diamond />
           <div className="eyebrow mt-6">O Caminho</div>
@@ -325,7 +325,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 04 — O QUE VAMOS CONSTRUIR ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[1100px] px-6 md:px-10 text-center">
           <div className="eyebrow">O que vamos construir</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.6rem] leading-tight">
@@ -381,7 +381,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 05 — CRONOGRAMA ===================== */}
-      <section className="py-24 md:py-32 bg-[var(--foreground)] text-[var(--background)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[var(--foreground)] text-[var(--background)]">
         <div className="mx-auto max-w-[1000px] px-6 md:px-10 text-center">
           <div className="eyebrow text-[var(--gold)]">Cronograma</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.6rem]">Como vai funcionar</h2>
@@ -419,7 +419,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 06 — OFERTA ===================== */}
-      <section className="py-24 md:py-32">
+      <section className="hidden md:block py-24 md:py-32">
         <div className="mx-auto max-w-[860px] px-6 md:px-10 text-center">
           <div className="eyebrow">A Oferta</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.8rem] leading-[1.15]">
@@ -463,7 +463,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 07 — SOBRE A ESPECIALISTA ===================== */}
-      <section className="py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
+      <section className="hidden md:block py-24 md:py-32 bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 text-center">
           <div className="eyebrow">Sobre a especialista</div>
           <h2 className="mt-4 font-display text-3xl md:text-[2.4rem] leading-tight">
@@ -511,7 +511,7 @@ function Page() {
       </section>
 
       {/* ===================== DOBRA 08 — GARANTIA ===================== */}
-      <section className="py-24 md:py-28">
+      <section className="hidden md:block py-24 md:py-28">
         <div className="mx-auto max-w-[760px] px-6 md:px-10 text-center">
           <Crown className="w-10 h-10 mx-auto text-[var(--gold)]" />
           <div className="eyebrow mt-4">Garantia</div>
@@ -563,7 +563,7 @@ function Page() {
       </section>
 
       {/* ===================== ENCERRAMENTO ===================== */}
-      <section className="py-24 md:py-32 text-center">
+      <section className="hidden md:block py-24 md:py-32 text-center">
         <div className="mx-auto max-w-[860px] px-6 md:px-10">
           <Logo className="mx-auto" />
           <div className="mt-6 eyebrow">
