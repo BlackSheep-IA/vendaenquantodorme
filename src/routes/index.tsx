@@ -446,9 +446,9 @@ function Page() {
 
             <div className="mt-10 pt-8 border-t border-[var(--border)] text-center">
               <div className="eyebrow">Investimento — Lote 01</div>
-              <div className="mt-3 font-display text-6xl md:text-7xl text-[var(--wine)]">R$ 29,90</div>
+              <div className="mt-3 font-display text-6xl md:text-7xl text-[var(--wine)]">R$ 29,00</div>
               <div className="mt-3 text-sm tracking-wider uppercase text-[var(--muted-foreground)]">Somente 40 vagas disponíveis</div>
-              <CTA className="mt-8 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,90</CTA>
+              <CTA className="mt-8 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,00</CTA>
             </div>
           </div>
         </div>
@@ -570,7 +570,7 @@ function Page() {
           <p className="mt-6 text-[var(--muted-foreground)] tracking-[0.28em] uppercase text-xs">
             Somente 40 vagas disponíveis no Lote 01
           </p>
-          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,90</CTA>
+          <CTA className="mt-10 w-full sm:w-auto sm:min-w-[480px]">Garantir minha vaga no Lote 01 por R$ 29,00</CTA>
         </div>
         <footer className="mt-24 text-xs text-[var(--muted-foreground)]">
           © Liz Valz — Todos os direitos reservados.
