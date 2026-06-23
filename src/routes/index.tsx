@@ -150,7 +150,9 @@ function MetricsBlock() {
 function Page() {
   return (
     <main className="min-h-screen overflow-hidden">
+      <MobilePage />
       {/* ===================== DOBRA 01 — HERO ===================== */}
+
       <section className="hidden md:block relative">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 pt-8 md:pt-10">
           <header className="flex flex-col items-center">
