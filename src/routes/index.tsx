@@ -159,7 +159,7 @@ function MobilePage() {
     <div className="md:hidden bg-[var(--background)]">
       {/* DOBRA 01 — HERO */}
       <RefImg src={ref01.url} alt="Workshop Venda Enquanto Dorme — Liz Valz" />
-      <div className="px-6 pt-4 pb-6 text-center">
+      <div className="px-6 pt-4 pb-0 text-center">
         <CTA className="w-full">Garantir minha vaga no Lote 01 por R$ 29</CTA>
         <div className="mt-3 text-[10px] tracking-[0.28em] uppercase text-[var(--muted-foreground)]">
           Somente 40 vagas disponíveis no Lote 01
