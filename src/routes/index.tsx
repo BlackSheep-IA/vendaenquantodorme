@@ -8,6 +8,9 @@ import ref04 from "@/assets/ref-dobra_04.asset.json";
 import ref05 from "@/assets/ref-dobra_05.asset.json";
 import ref07 from "@/assets/ref-dobra_07.asset.json";
 import ref08 from "@/assets/ref-dobra_08.asset.json";
+import bgCaminho from "@/assets/bg-caminho.asset.json";
+import { Clock, CalendarX, Users, Moon } from "lucide-react";
+
 
 
 const CHECKOUT = "https://pay.kiwify.com.br/VxLqXfi";
