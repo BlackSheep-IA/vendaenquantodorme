@@ -1,50 +1,46 @@
-# Ajustes mobile — datas, espaçamentos, zoom e nova seção
+## Objetivo
 
-Todas as mudanças abaixo afetam **somente a versão mobile** (`MobilePage` em `src/routes/index.tsx`). Desktop continua congelado.
+Refazer apenas a **Dobra 03 — O Caminho** na versão mobile, substituindo a imagem de referência (atualmente escalada em 125%, pouco legível) por uma seção HTML nativa, totalmente alinhada ao restante da landing e com textos plenamente legíveis. Desktop permanece **intacto**.
 
-## 1. Datas "08 e 09 de agosto" → "18 e 19 de julho"
+## Escopo
 
-A data antiga está **gravada dentro das imagens de referência** (`ref-dobra_01`, `ref-dobra_05`, `ref-dobra_08` — possivelmente também na 02/03/04/07). Vou:
+- Arquivo: `src/routes/index.tsx`
+- Bloco afetado: linhas 169–178 (wrapper `overflow-hidden` + `<img src={ref03.url} />`)
+- Nada mais será tocado: hero, dobras 02/04/05, oferta, FAQ, encerramento, desktop, preços, links, checkout.
+- A asset `ref-dobra_03.asset.json` permanece no projeto (não será deletada), apenas deixa de ser usada no mobile.
 
-1. Inspecionar cada uma das 7 imagens (`ref-dobra_01` a `ref-dobra_08`) para localizar a data.
-2. Em cada imagem que contiver "08 e 09 de agosto", usar `imagegen--edit_image` para substituir por "18 e 19 de julho", preservando tipografia, cor, hierarquia e fundo creme.
-3. Reenviar cada imagem editada via `lovable-assets create` e sobrescrever o `.asset.json` correspondente.
+## Mudança
 
-## 2. Remover faixas/espaços em branco entre seções
+Substituir o bloco da imagem por uma `<section>` mobile-first que reproduz a mesma copy e atmosfera da versão desktop (linhas 383–407), usando os tokens já existentes (`eyebrow`, `font-display`, `Diamond`, `--wine`, `--background`, `--foreground`, `--border`, `--gold`).
 
-Hoje o mobile usa `mt-12` / `mt-16` entre cada `<RefImg>`, criando faixas do fundo creme entre as imagens. Vou:
+Estrutura proposta:
 
-- Trocar todos os `mt-12` / `mt-16` entre as dobras-imagem por `mt-0`, deixando as imagens encostadas (sem respiro visível).
-- Remover/zerar os gradientes superiores e inferiores do helper `RefImg` (que hoje criam uma transição clara). Como as imagens já têm o mesmo fundo creme, podem se conectar diretamente.
-- Manter espaçamento somente nas seções compostas por texto+CTA (Hero CTA, Oferta, Encerramento), com `mt-8` enxuto.
-
-## 3. Dobra 03 ("O Caminho") — ampliar ~25% no mobile
-
-A imagem `ref-dobra_03` tem textos muito pequenos no mobile. Vou aplicar um `scale(1.25)` controlado:
-
-- Envolver a imagem da Dobra 03 em um wrapper com `overflow-x-auto` e aplicar `transform: scale(1.25); transform-origin: top center;` na imagem, com `width: 100%` e altura compensada (`mb` extra para acomodar o crescimento vertical).
-- Alternativa mais segura visualmente: aumentar a largura renderizada para `125%` e deslocar com `margin-left: -12.5%`, mantendo `max-width: none`. Vou usar essa abordagem (evita corte horizontal e mantém o layout fluido).
-
-## 4. Nova seção após o FAQ (mobile)
-
-Reproduzir, em HTML/CSS (não como imagem), a seção de encerramento do print enviado:
-
-```
-WORKSHOP VENDA ENQUANTO DORME™      (eyebrow, tracking largo)
-18 e 19 de julho                    (display serif grande)
-Ao vivo e online                    (display itálico)
-— ◆ —                               (divisor ornamental)
-SOMENTE 40 VAGAS DISPONÍVEIS NO LOTE 01
-[ GARANTIR MINHA VAGA NO LOTE 01 POR R$ 29,00 ]   (btn-wine full-width)
+```text
+[fundo suave gold 5% + bordas superior/inferior]
+  Diamond (ornamento)
+  eyebrow: "O Caminho"
+  h2 display (≈ text-[1.75rem], leading-tight):
+     "Trabalhar mais não vai te tirar do lugar."
+     <em>Um produto que vende enquanto você dorme, sim.</em>
+  parágrafos (text-base, leading-relaxed, ~85% opacidade):
+     - "Enquanto cada venda depende da sua presença…"
+     - "Escalar não é trabalhar mais."
+     - "Escalar não é lotar a agenda."
+     - "Escalar não é fazer mais reuniões."
+     - destaque display itálico wine (text-xl):
+       "Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando."
+     - "É exatamente isso que vamos construir juntas."
 ```
 
-- Implementar como nova `<section className="px-6 pt-10 pb-12 text-center">` dentro de `MobilePage`, logo após o FAQ, usando os tokens já existentes (`eyebrow`, `font-display`, `Diamond`, `CTA`, `btn-wine`).
-- O FAQ atual não tem `hidden md:block`, então renderiza no mobile — a nova seção entra depois dele.
+Detalhes técnicos:
 
-## Detalhes técnicos
+- Classe da seção: `md:hidden px-6 py-14 text-center bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]`
+- Sem gaps brancos antes/depois (mantém o padrão atual de dobras coladas).
+- Tipografia escalada para mobile (h2 ~28px, parágrafos 16px, destaque 20px) garantindo legibilidade no viewport 390px.
+- Usa o mesmo componente `Diamond` e classe `eyebrow` já presentes no arquivo — consistência visual total com as demais dobras mobile (Oferta, Encerramento).
 
-- Arquivos alterados:
-  - `src/routes/index.tsx` — ajustes em `MobilePage` e `RefImg` (espaçamentos, scale da dobra 03, nova seção de encerramento mobile).
-  - `src/assets/ref-dobra_0X.asset.json` — substituídos para os assets que contêm a data antiga.
-- Nenhuma alteração em: desktop, links, checkout, URLs, FAQ, preços, copy do Lote 01, valores R$ 29,00.
-- Verificação: após editar, abrir Playwright no viewport mobile (375×812) e tirar screenshots de cada dobra para confirmar (a) datas corretas, (b) ausência de faixas claras, (c) legibilidade da Dobra 03, (d) nova seção de encerramento idêntica ao print.
+## Verificação
+
+1. Build automático.
+2. Screenshot mobile (390×1800) via Playwright para confirmar legibilidade e alinhamento com dobras vizinhas.
+3. Conferir que o desktop (`md:block` na seção original 384–407) continua renderizando inalterado.
