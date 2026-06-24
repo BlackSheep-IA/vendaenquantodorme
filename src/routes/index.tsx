@@ -3,7 +3,7 @@ import lizDesktop from "@/assets/liz-desktop.asset.json";
 import lizMobile from "@/assets/liz-mobile.asset.json";
 import ref01 from "@/assets/ref-dobra_01.asset.json";
 import ref02 from "@/assets/ref-dobra_02.asset.json";
-import ref03 from "@/assets/ref-dobra_03.asset.json";
+
 import ref04 from "@/assets/ref-dobra_04.asset.json";
 import ref05 from "@/assets/ref-dobra_05.asset.json";
 import ref07 from "@/assets/ref-dobra_07.asset.json";
@@ -166,16 +166,29 @@ function MobilePage() {
       {/* DOBRA 02 */}
       <RefImg src={ref02.url} alt="Quebra de objeção" />
 
-      {/* DOBRA 03 — ampliada ~25% para legibilidade */}
-      <div className="overflow-hidden">
-        <img
-          src={ref03.url}
-          alt="O caminho"
-          loading="lazy"
-          className="block h-auto"
-          style={{ width: "125%", marginLeft: "-12.5%", maxWidth: "none" }}
-        />
-      </div>
+      {/* DOBRA 03 — O CAMINHO (reconstruída em HTML para legibilidade) */}
+      <section className="px-6 py-14 text-center bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
+        <Diamond />
+        <div className="eyebrow mt-4">O Caminho</div>
+        <h2 className="mt-4 font-display text-[1.75rem] leading-[1.18]">
+          Trabalhar mais não vai te tirar do lugar.
+          <br />
+          <em className="italic">Um produto que vende enquanto você dorme, sim.</em>
+        </h2>
+        <div className="mt-8 space-y-4 text-base leading-relaxed text-[var(--foreground)]/85">
+          <p>
+            Enquanto cada venda depende da sua presença, do seu atendimento ou da sua agenda, sua renda
+            continua limitada.
+          </p>
+          <p>Escalar não é trabalhar mais.</p>
+          <p>Escalar não é lotar a agenda.</p>
+          <p>Escalar não é fazer mais reuniões.</p>
+          <p className="font-display italic text-xl text-[var(--wine)] leading-snug">
+            Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando.
+          </p>
+          <p>É exatamente isso que vamos construir juntas.</p>
+        </div>
+      </section>
 
       {/* DOBRA 04 */}
       <RefImg src={ref04.url} alt="O que vamos construir" />
