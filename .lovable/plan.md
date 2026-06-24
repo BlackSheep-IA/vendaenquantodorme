@@ -1,46 +1,42 @@
-## Objetivo
+# Dobra do Caminho — ícones + background opaco (mobile)
 
-Refazer apenas a **Dobra 03 — O Caminho** na versão mobile, substituindo a imagem de referência (atualmente escalada em 125%, pouco legível) por uma seção HTML nativa, totalmente alinhada ao restante da landing e com textos plenamente legíveis. Desktop permanece **intacto**.
+Sim, dá pra fazer as duas coisas. Mudanças apenas no mobile, na seção "O Caminho" em `src/routes/index.tsx` (linhas 169–191). Nada mais é alterado.
 
-## Escopo
+## 1. Imagem de fundo opaca
 
-- Arquivo: `src/routes/index.tsx`
-- Bloco afetado: linhas 169–178 (wrapper `overflow-hidden` + `<img src={ref03.url} />`)
-- Nada mais será tocado: hero, dobras 02/04/05, oferta, FAQ, encerramento, desktop, preços, links, checkout.
-- A asset `ref-dobra_03.asset.json` permanece no projeto (não será deletada), apenas deixa de ser usada no mobile.
+- Subir a foto `user-uploads://fot_liz_dobra_03.jpeg` como asset Lovable (`src/assets/bg-caminho.asset.json`).
+- Aplicar como `background-image` no `<section>`, com:
+  - `opacity` da imagem em torno de **8–12%** (bem suave, só pra dar movimento)
+  - `background-size: cover`, `background-position: center`
+  - sobreposição do tom creme atual (`--background` / gold 5%) por cima, garantindo que o texto continue 100% legível
+- Sem parallax, sem fixed (evita bug no iOS).
 
-## Mudança
+## 2. Ícones nos itens
 
-Substituir o bloco da imagem por uma `<section>` mobile-first que reproduz a mesma copy e atmosfera da versão desktop (linhas 383–407), usando os tokens já existentes (`eyebrow`, `font-display`, `Diamond`, `--wine`, `--background`, `--foreground`, `--border`, `--gold`).
+Três linhas "Escalar não é..." + a linha afirmativa em itálico ganham ícone à esquerda, alinhados verticalmente ao centro do texto. Uso ícones do `lucide-react` (já no projeto), traço fino, cor `--wine`, tamanho ~18px:
 
-Estrutura proposta:
+- "Escalar não é trabalhar mais." → `Clock`
+- "Escalar não é lotar a agenda." → `CalendarX`
+- "Escalar não é fazer mais reuniões." → `Users`
+- "Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando." (itálico, wine) → `Moon` (combina com "Venda Enquanto Dorme")
 
-```text
-[fundo suave gold 5% + bordas superior/inferior]
-  Diamond (ornamento)
-  eyebrow: "O Caminho"
-  h2 display (≈ text-[1.75rem], leading-tight):
-     "Trabalhar mais não vai te tirar do lugar."
-     <em>Um produto que vende enquanto você dorme, sim.</em>
-  parágrafos (text-base, leading-relaxed, ~85% opacidade):
-     - "Enquanto cada venda depende da sua presença…"
-     - "Escalar não é trabalhar mais."
-     - "Escalar não é lotar a agenda."
-     - "Escalar não é fazer mais reuniões."
-     - destaque display itálico wine (text-xl):
-       "Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando."
-     - "É exatamente isso que vamos construir juntas."
-```
+Layout: cada item vira um `flex items-center gap-3 justify-center`, ícone + texto na mesma linha. Em telas estreitas o texto quebra normalmente abaixo, ícone fica no topo via `items-start` se necessário.
 
-Detalhes técnicos:
+## Detalhes técnicos
 
-- Classe da seção: `md:hidden px-6 py-14 text-center bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]`
-- Sem gaps brancos antes/depois (mantém o padrão atual de dobras coladas).
-- Tipografia escalada para mobile (h2 ~28px, parágrafos 16px, destaque 20px) garantindo legibilidade no viewport 390px.
-- Usa o mesmo componente `Diamond` e classe `eyebrow` já presentes no arquivo — consistência visual total com as demais dobras mobile (Oferta, Encerramento).
+- Arquivos tocados: `src/routes/index.tsx` (1 seção), `src/assets/bg-caminho.asset.json` (novo).
+- Tokens existentes: `--wine`, `--gold`, `--background`, `--border`, `font-display`, `eyebrow`, `Diamond`.
+- Estrutura do `<section>`:
+  ```
+  <section class="relative ... border-y">
+    <div class="absolute inset-0 bg-[url(...)] bg-cover bg-center opacity-10" />
+    <div class="absolute inset-0 bg-[color-mix(in_oklab,var(--background)_70%,transparent)]" />
+    <div class="relative ..."> {/* conteúdo atual + ícones */} </div>
+  </section>
+  ```
+- Desktop e demais seções: intocados.
 
 ## Verificação
 
-1. Build automático.
-2. Screenshot mobile (390×1800) via Playwright para confirmar legibilidade e alinhamento com dobras vizinhas.
-3. Conferir que o desktop (`md:block` na seção original 384–407) continua renderizando inalterado.
+- Build.
+- Screenshot Playwright em 390×1800 confirmando: foto visível mas bem apagada, texto legível, ícones alinhados, sem overflow horizontal.
