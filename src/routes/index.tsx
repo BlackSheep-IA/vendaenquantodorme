@@ -8,6 +8,9 @@ import ref04 from "@/assets/ref-dobra_04.asset.json";
 import ref05 from "@/assets/ref-dobra_05.asset.json";
 import ref07 from "@/assets/ref-dobra_07.asset.json";
 import ref08 from "@/assets/ref-dobra_08.asset.json";
+import bgCaminho from "@/assets/bg-caminho.asset.json";
+import { Clock, CalendarX, Users, Moon } from "lucide-react";
+
 
 
 const CHECKOUT = "https://pay.kiwify.com.br/VxLqXfi";
@@ -167,28 +170,47 @@ function MobilePage() {
       <RefImg src={ref02.url} alt="Quebra de objeção" />
 
       {/* DOBRA 03 — O CAMINHO (reconstruída em HTML para legibilidade) */}
-      <section className="px-6 py-14 text-center bg-[color-mix(in_oklab,var(--gold)_5%,transparent)] border-y border-[var(--border)]">
-        <Diamond />
-        <div className="eyebrow mt-4">O Caminho</div>
-        <h2 className="mt-4 font-display text-[1.75rem] leading-[1.18]">
-          Trabalhar mais não vai te tirar do lugar.
-          <br />
-          <em className="italic">Um produto que vende enquanto você dorme, sim.</em>
-        </h2>
-        <div className="mt-8 space-y-4 text-base leading-relaxed text-[var(--foreground)]/85">
-          <p>
-            Enquanto cada venda depende da sua presença, do seu atendimento ou da sua agenda, sua renda
-            continua limitada.
-          </p>
-          <p>Escalar não é trabalhar mais.</p>
-          <p>Escalar não é lotar a agenda.</p>
-          <p>Escalar não é fazer mais reuniões.</p>
-          <p className="font-display italic text-xl text-[var(--wine)] leading-snug">
-            Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando.
-          </p>
-          <p>É exatamente isso que vamos construir juntas.</p>
+      <section className="relative overflow-hidden px-6 py-14 text-center border-y border-[var(--border)]">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-15"
+          style={{ backgroundImage: `url(${bgCaminho.url})` }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-[color-mix(in_oklab,var(--background)_82%,transparent)]" aria-hidden />
+        <div className="relative">
+          <Diamond />
+          <div className="eyebrow mt-4">O Caminho</div>
+          <h2 className="mt-4 font-display text-[1.75rem] leading-[1.18]">
+            Trabalhar mais não vai te tirar do lugar.
+            <br />
+            <em className="italic">Um produto que vende enquanto você dorme, sim.</em>
+          </h2>
+          <div className="mt-8 space-y-4 text-base leading-relaxed text-[var(--foreground)]/85">
+            <p>
+              Enquanto cada venda depende da sua presença, do seu atendimento ou da sua agenda, sua renda
+              continua limitada.
+            </p>
+            <p className="flex items-start gap-3 justify-center text-left">
+              <Clock size={20} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[var(--wine)]" />
+              <span>Escalar não é trabalhar mais.</span>
+            </p>
+            <p className="flex items-start gap-3 justify-center text-left">
+              <CalendarX size={20} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[var(--wine)]" />
+              <span>Escalar não é lotar a agenda.</span>
+            </p>
+            <p className="flex items-start gap-3 justify-center text-left">
+              <Users size={20} strokeWidth={1.5} className="mt-0.5 shrink-0 text-[var(--wine)]" />
+              <span>Escalar não é fazer mais reuniões.</span>
+            </p>
+            <p className="flex items-start gap-3 justify-center text-left font-display italic text-xl text-[var(--wine)] leading-snug">
+              <Moon size={22} strokeWidth={1.5} className="mt-1 shrink-0" />
+              <span>Escalar é construir algo que continua vendendo mesmo quando você não está trabalhando.</span>
+            </p>
+            <p>É exatamente isso que vamos construir juntas.</p>
+          </div>
         </div>
       </section>
+
 
       {/* DOBRA 04 */}
       <RefImg src={ref04.url} alt="O que vamos construir" />
