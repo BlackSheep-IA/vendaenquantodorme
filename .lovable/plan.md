@@ -1,18 +1,38 @@
-Objetivo: reduzir o espaço em branco entre a subhead da hero ("…e transforma seguidoras em clientes do seu High Ticket.") e o bloco "Você sai da imersão com:" + checklist + botão, na primeira dobra mobile.
+# Instalação do Google Tag Manager (GTM-5G3T4HXG)
 
-Escopo: ajuste somente no mobile hero da landing page. Desktop permanece inalterado.
+## Resultado da busca
+Executei `rg -n "GTM-5G3T4HXG"` em todo o projeto: **nenhum arquivo contém esse ID**.
 
-Passos:
-1. Capturar screenshot mobile da primeira dobra para confirmar onde está o vazio.
-2. Em `src/styles.css`, reduzir a altura da `.hero-media` mobile (atualmente `520px`) para aproximadamente `420-460px`, de modo que a imagem não empurre o conteúdo para baixo.
-3. Ajustar a máscara de fade inferior da `.hero-media` para terminar mais cima, permitindo que o texto da `.hero-content` suba e ocupe o espaço.
-4. Reduzir as margens de `.hero-sub`, `.hero-checklist-label` e `.hero .cta-wrap` no mobile para aproximar visualmente a subhead da lista de ofertas.
-5. Adicionar `margin-top` negativo ou reduzir o padding superior de `.hero-content` para que o bloco de ofertas suba suavemente sobre a área de fade da imagem, sem encostar no texto overlay.
-6. Verificar no preview mobile se o espaço em branco foi eliminado e o botão CTA permanece bem posicionado.
-7. Garantir que o layout desktop (`@media (min-width: 768px)`) não seja afetado.
+Consequentemente, ele **não está presente na versão publicada** em `vendaenquantodorme.lovable.app` — não há tag GTM carregando hoje em nenhuma rota.
 
-Arquivos envolvidos:
-- `src/styles.css` (ajustes de espaçamento mobile na seção HERO)
-- `src/routes/index.tsx` (apenas se for necessário reorganizar a estrutura do HeroContent, o que não é esperado)
+## O que vou fazer
 
-Não serão alterados: paleta, tipografia, botões, copy, ordem das dobras, imagens, comportamento do FAQ.
+Instalar o GTM no único arquivo raiz que envolve todas as rotas: `src/routes/__root.tsx`. Esse arquivo define o `shellComponent` (html/head/body) usado por toda a aplicação (TanStack Start), então a tag passa a carregar em `/` e em qualquer rota futura, tanto em SSR quanto no cliente.
+
+### Alterações em `src/routes/__root.tsx`
+
+1. **`head()`** — adicionar o script oficial do GTM via `scripts: [...]` para que seja injetado no `<head>` durante o SSR:
+   ```ts
+   scripts: [
+     {
+       children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G3T4HXG');`,
+     },
+   ],
+   ```
+
+2. **`RootShell`** — adicionar o `<noscript>` iframe logo após a abertura de `<body>`, conforme recomendação do Google:
+   ```tsx
+   <body>
+     <noscript>
+       <iframe
+         src="https://www.googletagmanager.com/ns.html?id=GTM-5G3T4HXG"
+         height="0" width="0"
+         style={{ display: "none", visibility: "hidden" }}
+       />
+     </noscript>
+     {children}
+     <Scripts />
+   </body>
+   ```
+
+Nada mais é alterado. Após aprovado e publicado, o GTM-5G3T4HXG passa a carregar em todas as páginas/rotas do site.
