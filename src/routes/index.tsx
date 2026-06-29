@@ -12,7 +12,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Em 2 dias, você, Liz Valz e uma IA colocam no ar um produto digital pronto para vender todos os dias. 18 e 19 de Julho, ao vivo e online.",
+          "Em 2 dias, você, Liz Valz e uma IA colocam no ar um produto digital pronto para vender todos os dias. 25 e 26 de Julho, ao vivo e online.",
       },
       { property: "og:title", content: "Workshop Venda Enquanto Dorme™ — Liz Valz" },
       {
@@ -109,7 +109,7 @@ function HeroHeader() {
         </div>
         <div className="event-bar">
           <span><Broadcast />Ao vivo e online</span>
-          <span><Cal />18 e 19 de Julho</span>
+          <span><Cal />25 e 26 de Julho</span>
         </div>
       </div>
     </div>
@@ -336,7 +336,7 @@ function Landing() {
               <div className="timeline">
                 <div className="tl-card">
                   <div className="tl-date">
-                    <div className="tl-date-d">18 de<br/>julho</div>
+                    <div className="tl-date-d">25 de<br/>julho</div>
                     <div className="tl-date-h">09h às 18h</div>
                   </div>
                   <ul className="tl-items">
@@ -347,7 +347,7 @@ function Landing() {
                 </div>
                 <div className="tl-card">
                   <div className="tl-date">
-                    <div className="tl-date-d">19 de<br/>julho</div>
+                    <div className="tl-date-d">26 de<br/>julho</div>
                     <div className="tl-date-h">09h às 18h</div>
                   </div>
                   <ul className="tl-items">
@@ -452,7 +452,7 @@ function Landing() {
         <div className="container closing">
           <Ornament />
           <h2>Dois dias. Um produto. Uma nova forma de vender.</h2>
-          <div className="eyebrow">18 e 19 de Julho — Ao Vivo e Online</div>
+          <div className="eyebrow">25 e 26 de Julho — Ao Vivo e Online</div>
           <div className="closing-badges">
             <span>2 Dias</span><span>Ao Vivo</span><span>R$37,00</span>
           </div>
