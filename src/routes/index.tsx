@@ -8,24 +8,32 @@ import envelope from "@/assets/images/envelope.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Workshop Venda Enquanto Dorme™ — Liz Valz" },
+      {
+        title: "Workshop Venda Enquanto Dorme™ — Liz Valz",
+      },
       {
         name: "description",
         content:
           "Em 2 dias, você, Liz Valz e uma IA colocam no ar um produto digital pronto para vender todos os dias. 25 e 26 de Julho, ao vivo e online.",
       },
-      { property: "og:title", content: "Workshop Venda Enquanto Dorme™ — Liz Valz" },
+      {
+        property: "og:title",
+        content: "Workshop Venda Enquanto Dorme™ — Liz Valz",
+      },
       {
         property: "og:description",
         content: "Crie e publique seu produto digital com IA em apenas 2 dias.",
       },
-      { property: "og:image", content: lizHero },
+      {
+        property: "og:image",
+        content: lizHero,
+      },
     ],
   }),
   component: Landing,
 });
 
-const CTA_URL = "https://pay.kiwify.com.br/VxLqXfi";
+const CTA_URL = "https://pay.kiwify.com.br/xbUjd1y";
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
