@@ -104,6 +104,39 @@ function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) 
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
+const heroVariants = {
+  1: {
+    h1: "Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.",
+    h2: (
+      <>
+        …e transformar seguidoras em clientes do seu <i>High Ticket</i>.
+      </>
+    ),
+  },
+
+  2: {
+    h1: "Em 2 dias, você, eu e uma IA pra gravar uma vez e colocar no ar o produto que vende no automático todo dia.",
+    h2: (
+      <>
+        E ainda ascende suas alunas pro seu <i>High Ticket</i> — o funil que me gera 120-200k previsíveis enquanto durmo.
+      </>
+    ),
+  },
+
+  3: {
+    h1: "Em 2 dias, eu e minhas IAs vamos criar com você um curso que vende no automático todo dia — e conduz naturalmente suas alunas para compra do seu High Ticket.",
+    h2: (
+      <>
+        Comigo do seu lado te mostrando passo por passo desse funil que me gera 120-200k previsíveis mensais enquanto durmo.
+      </>
+    ),
+  },
+};
+
+
+const HERO_H1 = heroVariants[2].h1;
+const HERO_SUBTITLE = heroVariants[2].h2;
+
 function HeroHeader() {
   return (
     <div className="hero-header">
@@ -127,8 +160,8 @@ function HeroHeader() {
 function HeroContent() {
   return (
     <>
-      <h1>Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.</h1>
-      <div className="hero-sub">…e transforma seguidoras em clientes do seu <i>High Ticket</i>.</div>
+      <h1>{HERO_H1}</h1>
+      <div className="hero-sub">{HERO_SUBTITLE}</div>
       <div className="hero-checklist-label">Você sai da imersão com:</div>
       <ul className="hero-check-list">
         {heroChecklist.map((t) => (
@@ -183,8 +216,8 @@ function Landing() {
             <div className="hero-media-fade-side" />
             <div className="hero-media-fade-bottom" />
             <div className="hero-overlay-text">
-              <h1>Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.</h1>
-              <p className="hero-sub">…e transformar seguidoras em clientes do seu <i>High Ticket</i>.</p>
+              <h1>{HERO_H1}</h1>
+              <p className="hero-sub">{HERO_SUBTITLE}</p>
             </div>
           </div>
           <div className="hero-content">
