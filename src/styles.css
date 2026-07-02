@@ -705,3 +705,16 @@ transform: translateY(-65px);
   text-align: left;
 }
 
+/* Hero desktop — hide checklist and raise CTA (1024px+) */
+@media (min-width: 1024px) {
+  .vd .hero-desktop .hero-checklist-label,
+  .vd .hero-desktop .hero-check-list {
+    display: none;
+  }
+
+  .vd .hero-desktop .cta-wrap {
+    margin-top: 8px;
+  }
+}
+
+
