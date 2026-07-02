@@ -1,38 +1,32 @@
-# Instalação do Google Tag Manager (GTM-5G3T4HXG)
+Plano de ajuste desktop-only na Hero
 
-## Resultado da busca
-Executei `rg -n "GTM-5G3T4HXG"` em todo o projeto: **nenhum arquivo contém esse ID**.
+Objetivo: remover a checklist ("Você sai da imersão com:" + 4 bullets) e subir o CTA para ocupar o espaço vazio, mantendo equilíbrio visual, apenas em larguras acima de 1024px.
 
-Consequentemente, ele **não está presente na versão publicada** em `vendaenquantodorme.lovable.app` — não há tag GTM carregando hoje em nenhuma rota.
+Arquivo alterado: src/styles.css
 
-## O que vou fazer
+Alterações:
+1. Adicionar um novo bloco de media query isolado no desktop, ao final do arquivo, sem tocar nas regras existentes de mobile/tablet:
 
-Instalar o GTM no único arquivo raiz que envolve todas as rotas: `src/routes/__root.tsx`. Esse arquivo define o `shellComponent` (html/head/body) usado por toda a aplicação (TanStack Start), então a tag passa a carregar em `/` e em qualquer rota futura, tanto em SSR quanto no cliente.
+```css
+@media (min-width: 1024px) {
+  .vd .hero-desktop .hero-checklist-label,
+  .vd .hero-desktop .hero-check-list {
+    display: none;
+  }
 
-### Alterações em `src/routes/__root.tsx`
+  .vd .hero-desktop .cta-wrap {
+    margin-top: 8px;
+  }
+}
+```
 
-1. **`head()`** — adicionar o script oficial do GTM via `scripts: [...]` para que seja injetado no `<head>` durante o SSR:
-   ```ts
-   scripts: [
-     {
-       children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G3T4HXG');`,
-     },
-   ],
-   ```
+2. Não modificar src/routes/index.tsx: o HeroContent continua renderizando a checklist, que será ocultada apenas no desktop via CSS. Assim o mobile (abaixo de 1024px) permanece inalterado.
 
-2. **`RootShell`** — adicionar o `<noscript>` iframe logo após a abertura de `<body>`, conforme recomendação do Google:
-   ```tsx
-   <body>
-     <noscript>
-       <iframe
-         src="https://www.googletagmanager.com/ns.html?id=GTM-5G3T4HXG"
-         height="0" width="0"
-         style={{ display: "none", visibility: "hidden" }}
-       />
-     </noscript>
-     {children}
-     <Scripts />
-   </body>
-   ```
+O que NÃO será alterado:
+- H1, subtítulo, foto, tipografia, larguras e alinhamentos da Hero.
+- Componentes, props e estrutura de arquivos.
+- Media queries existentes de mobile/tablet (max-width: 767px e min-width: 768px).
+- CSS compartilhado entre mobile e desktop (mantemos as regras gerais `.vd .cta-wrap`, `.vd .hero .cta-wrap`, etc.).
+- Qualquer outra seção da página.
 
-Nada mais é alterado. Após aprovado e publicado, o GTM-5G3T4HXG passa a carregar em todas as páginas/rotas do site.
+Verificação: inspecionar o preview em viewport de 1024px ou mais para confirmar que a checklist sumiu e o CTA subiu com o pequeno respiro de 8px acima do botão.
