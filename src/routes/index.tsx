@@ -124,9 +124,9 @@ const heroVariants = {
           <i>High Ticket!</i>
         </span>
     
-        <span className="hero-sub-bottom">
-          Copie o funil que me gera mais de 100 mil enquanto durmo.
-        </span>
+        <div className="hero-sub-bottom">
+  Copie o funil que me gera mais de 100 mil enquanto durmo.
+</div>
       </>
     ),
   },
