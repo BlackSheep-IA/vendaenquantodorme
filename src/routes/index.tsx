@@ -530,6 +530,17 @@ function Landing() {
 
   <strong>A conta é simples:</strong> a primeira venda já paga o ingresso. O resto é lucro entrando todo dia, no automático.
 </p>
+          <div className="offer-card">
+            <div className="offer-card__from">DE <s>R$497</s></div>
+            <div className="offer-card__label">HOJE POR APENAS</div>
+            <div className="offer-card__price">R$49</div>
+            <div className="offer-card__lot">Valor exclusivo do Lote 03</div>
+            <div className="offer-card__progress-head">
+              <span>Restam poucas vagas neste lote</span>
+              <span className="offer-card__pct">87%</span>
+            </div>
+            <div className="offer-card__bar"><div className="offer-card__fill" /></div>
+          </div>
           <div className="pricing">
             <div className="price-lbl">Você recebe</div>
             <div className="orn"><span className="orn-line" /><span className="orn-diamond" /><span className="orn-line" /></div>
