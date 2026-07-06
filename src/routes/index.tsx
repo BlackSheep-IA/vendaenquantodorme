@@ -508,7 +508,7 @@ function Landing() {
       </section>
 
       {/* DOBRA 6 — OFERTA */}
-      <section className="section bg-cream-dk">
+      <section id="oferta" className="section bg-cream-dk">
         <div className="container offer-head">
           <div className="eyebrow">Oferta</div>
           <Ornament />
