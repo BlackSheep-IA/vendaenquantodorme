@@ -631,7 +631,7 @@ E se você chegou até aqui, é porque também quer ganhar bem sem abrir mão do
             <span>2 Dias</span><span>Ao Vivo</span><span>R$49,00</span>
           </div>
           <p>As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
-          <CTA />
+          <CTA label="Garantir minha condição especial do Lote 03" />
           <div className="closing-note">Vagas do lote 03 se encerram em breve.</div>
         </div>
       </section>
