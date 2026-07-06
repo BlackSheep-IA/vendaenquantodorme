@@ -123,21 +123,16 @@ const heroVariants = {
   },
 
   2: {
-    h1: "Em 2 dias, eu e minhas IAs vamos criar com você um curso que vende no automático todo dia.",
+    h1: "Em apenas 2 dias, você vai criar seu Produto Vendedor, que vende todos os dias e prepara suas clientes para comprarem seu High Ticket.",
     h2: (
       <>
-        <span className="hero-sub-top">
-          E ainda leva suas alunas pro seu
-          <br />
-          <i>High Ticket!</i>
-        </span>
-    
-        <div className="hero-sub-bottom">
-  Copie o funil que me gera mais de 100 mil enquanto durmo.
-</div>
+        Pare de tentar vender uma mentoria cara no primeiro contato.
+        <br />
+        <i>Crie um produto que gera desejo, confiança e faz essa venda acontecer naturalmente.</i>
       </>
     ),
   },
+
 
   3: {
     h1: "Em 2 dias, eu e minhas IAs vamos criar com você um curso que vende no automático todo dia — e conduz naturalmente suas alunas para compra do seu High Ticket.",
