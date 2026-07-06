@@ -462,7 +462,6 @@ function Landing() {
     Low Ticket e High Ticket vendendo sozinhos num sistema previsível.
   </p>
 </div>
-          <CTA />
         </div>
       </section>
 
