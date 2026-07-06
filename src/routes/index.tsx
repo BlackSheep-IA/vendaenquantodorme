@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import lizHero from "@/assets/images/liz-hero.jpeg";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
 import lizCrono from "@/assets/images/liz-cronograma.jpeg";
