@@ -85,22 +85,30 @@ function Ornament() {
     </div>
   );
 }
-function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) {
+function CTA({ note = true, hero = false, label }: { note?: boolean; hero?: boolean; label?: string }) {
+  const handleClick = hero
+    ? (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    : undefined;
   return (
     <div className={`cta-wrap${hero ? " cta-wrap--hero" : ""}`}>
       <a
         className={`cta cta-btn${hero ? " cta-btn--hero" : ""}`}
-        href={CTA_URL}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={hero ? "#oferta" : CTA_URL}
+        target={hero ? undefined : "_blank"}
+        rel={hero ? undefined : "noopener noreferrer"}
+        onClick={handleClick}
       >
         <Lock />
-        <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+        <span>{label ?? "GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00"}</span>
       </a>
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
 }
+
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
