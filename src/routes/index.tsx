@@ -87,7 +87,7 @@ function Ornament() {
 }
 function CTA({ note = true, hero = false, label }: { note?: boolean; hero?: boolean; label?: string }) {
   const handleClick = hero
-    ? (e: React.MouseEvent<HTMLAnchorElement>) => {
+    ? (e: MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
       }
