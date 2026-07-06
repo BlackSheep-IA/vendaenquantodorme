@@ -95,7 +95,7 @@ function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) 
         rel="noopener noreferrer"
       >
         <Lock />
-        <span>Garantir minha vaga ao Workshop</span>
+        <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
       </a>
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
