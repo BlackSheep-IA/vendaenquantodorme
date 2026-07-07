@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode=10";
+const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode=10&bid=1782969540827";
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -95,7 +95,7 @@ function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) 
         rel="noopener noreferrer"
       >
         <Lock />
-        <span>Garantir minha vaga ao Workshop</span>
+        <span>Garantir minha vaga no lote 02 por R$37,00</span>
       </a>
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
@@ -124,9 +124,9 @@ const heroVariants = {
           <i>High Ticket!</i>
         </span>
     
-        <div className="hero-sub-bottom">
-  Copie o funil que me gera mais de 100 mil enquanto durmo.
-</div>
+        <span className="hero-sub-bottom">
+          Copie o funil que me gera mais de 100 mil enquanto durmo.
+        </span>
       </>
     ),
   },
@@ -276,8 +276,8 @@ function Landing() {
     </div>
 
     <div className="metric">
-      <div className="metric-val">R$49,00</div>
-      <div className="metric-lbl">Lote 03</div>
+      <div className="metric-val">R$37,00</div>
+      <div className="metric-lbl">Lote 02</div>
     </div>
 
     <div className="metric">
@@ -538,8 +538,8 @@ function Landing() {
             </ul>
             <hr className="divider-gold" />
             <div className="price-sep"><span className="orn-diamond" /></div>
-            <div className="price-lbl">Investimento — Lote 03</div>
-            <div className="price-amount">R$ 49,00</div>
+            <div className="price-lbl">Investimento — Lote 02</div>
+            <div className="price-amount">R$ 37,00</div>
             <CTA />
           </div>
         </div>
@@ -615,11 +615,11 @@ E se você chegou até aqui, é porque também quer ganhar bem sem abrir mão do
           <h2>Dois dias. Um produto. Uma nova forma de vender.</h2>
           <div className="eyebrow">25 e 26 de Julho — Ao Vivo e Online</div>
           <div className="closing-badges">
-            <span>2 Dias</span><span>Ao Vivo</span><span>R$49,00</span>
+            <span>2 Dias</span><span>Ao Vivo</span><span>R$37,00</span>
           </div>
-          <p>As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
+          <p>As vagas do lote 02 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
           <CTA />
-          <div className="closing-note">Vagas do lote 03 se encerram em breve.</div>
+          <div className="closing-note">Vagas do lote 02 se encerram em breve.</div>
         </div>
       </section>
 

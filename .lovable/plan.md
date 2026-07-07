@@ -1,40 +1,38 @@
-# Plano de atualização de checkout e oferta
+# Instalação do Google Tag Manager (GTM-5G3T4HXG)
 
-## Objetivo
+## Resultado da busca
+Executei `rg -n "GTM-5G3T4HXG"` em todo o projeto: **nenhum arquivo contém esse ID**.
 
-Atualizar todos os botões de checkout e os textos de preço/lote na landing page, refletindo a mudança para lote 03.
+Consequentemente, ele **não está presente na versão publicada** em `vendaenquantodorme.lovable.app` — não há tag GTM carregando hoje em nenhuma rota.
 
-## Arquivo alvo
+## O que vou fazer
 
-- `src/routes/index.tsx`
+Instalar o GTM no único arquivo raiz que envolve todas as rotas: `src/routes/__root.tsx`. Esse arquivo define o `shellComponent` (html/head/body) usado por toda a aplicação (TanStack Start), então a tag passa a carregar em `/` e em qualquer rota futura, tanto em SSR quanto no cliente.
 
-## Alterações
+### Alterações em `src/routes/__root.tsx`
 
-1. **Link de checkout único**
-  - Substituir `CTA_URL` atual por: `https://pay.hotmart.com/J106563190A?checkoutMode=10`
-  - Remover o parâmetro `bid` legado.
-    &nbsp;
-2. **CTA botão principal (seçao Hero)**
-  &nbsp;
-  Alterar de: `Garantir minha vaga no lote 02 por R$37,00`
-  Para: `Garantir minha vaga ao Workshop`
-  &nbsp;
-3. **Demais botões com texto longo**
-  - Alterar o link, o valor e o lote, mantendo o texto.
-    &nbsp;
-4. **Bloco de métricas da Hero**
-  - Alterar `R$37,00` para `R$49,00`
-  - Alterar `Lote 02` para `Lote 03`
-5. **Seção de preço (Investimento — Lote 02)**
-  - Alterar `Investimento — Lote 02` para `Investimento — Lote 03`
-  - Alterar `R$ 37,00` para `R$ 49,00`
-6. **Seção de fechamento**
-  - Alterar badge `R$37,00` para `R$49,00`
-  - Alterar texto `Vagas do lote 02` para `Vagas do lote 03` (apenas se mantiver sentido)
-  - Alterar `closing-note` de `Vagas do lote 02 se encerram em breve.` para `Vagas do lote 03 se encerram em breve.`
+1. **`head()`** — adicionar o script oficial do GTM via `scripts: [...]` para que seja injetado no `<head>` durante o SSR:
+   ```ts
+   scripts: [
+     {
+       children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G3T4HXG');`,
+     },
+   ],
+   ```
 
-## Regras
+2. **`RootShell`** — adicionar o `<noscript>` iframe logo após a abertura de `<body>`, conforme recomendação do Google:
+   ```tsx
+   <body>
+     <noscript>
+       <iframe
+         src="https://www.googletagmanager.com/ns.html?id=GTM-5G3T4HXG"
+         height="0" width="0"
+         style={{ display: "none", visibility: "hidden" }}
+       />
+     </noscript>
+     {children}
+     <Scripts />
+   </body>
+   ```
 
-- Não alterar componentes, estilos, layout, imagens ou texto fora dos locais listados.
-- Manter o CTA_URL como única constante, para que todos os botões apontem para o mesmo checkout.
-- Após a edição, verificar visualmente no preview desktop e mobile se os textos renderizam corretamente.
+Nada mais é alterado. Após aprovado e publicado, o GTM-5G3T4HXG passa a carregar em todas as páginas/rotas do site.
