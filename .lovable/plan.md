@@ -1,72 +1,38 @@
-# Ajustes na Hero e Oferta
+# Instalação do Google Tag Manager (GTM-5G3T4HXG)
 
-Arquivo alvo: `src/routes/index.tsx` (+ CSS em `src/styles.css` só para o novo card).
+## Resultado da busca
+Executei `rg -n "GTM-5G3T4HXG"` em todo o projeto: **nenhum arquivo contém esse ID**.
 
-## 1. Headline (H1)
+Consequentemente, ele **não está presente na versão publicada** em `vendaenquantodorme.lovable.app` — não há tag GTM carregando hoje em nenhuma rota.
 
-Substituir `heroVariants[2].h1` por:  
-`"Em apenas 2 dias, você vai criar seu Produto Vendedor que vende todos os dias e prepara suas clientes para comprarem seu High Ticket."`
+## O que vou fazer
 
-Mantém tipografia, peso, tamanho, line-height e alinhamento atuais (nenhuma classe/estilo alterado).
+Instalar o GTM no único arquivo raiz que envolve todas as rotas: `src/routes/__root.tsx`. Esse arquivo define o `shellComponent` (html/head/body) usado por toda a aplicação (TanStack Start), então a tag passa a carregar em `/` e em qualquer rota futura, tanto em SSR quanto no cliente.
 
-## 2. Subheadline
+### Alterações em `src/routes/__root.tsx`
 
-Substituir `heroVariants[2].h2` por:
+1. **`head()`** — adicionar o script oficial do GTM via `scripts: [...]` para que seja injetado no `<head>` durante o SSR:
+   ```ts
+   scripts: [
+     {
+       children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G3T4HXG');`,
+     },
+   ],
+   ```
 
-```
-Pare de tentar vender uma mentoria cara no primeiro contato.
-<i>Crie um produto que gera desejo, confiança e faz essa venda acontecer naturalmente.</i>
-```
+2. **`RootShell`** — adicionar o `<noscript>` iframe logo após a abertura de `<body>`, conforme recomendação do Google:
+   ```tsx
+   <body>
+     <noscript>
+       <iframe
+         src="https://www.googletagmanager.com/ns.html?id=GTM-5G3T4HXG"
+         height="0" width="0"
+         style={{ display: "none", visibility: "hidden" }}
+       />
+     </noscript>
+     {children}
+     <Scripts />
+   </body>
+   ```
 
-Primeira frase em estilo normal, segunda em itálico (só `<i>`, sem novas classes/efeitos).
-
-Ajuste técnico: hoje o mobile só renderiza checklist quando `HERO_H1 === heroVariants[1].h1`. Como estamos em `heroVariants[2]`, o checklist já não aparece no mobile — nada muda ali.
-
-## 3. CTA da Hero → scroll para oferta
-
-- ## 3. CTA da Hero → Scroll para a Oferta
-  Alterar apenas o comportamento do CTA da Hero.
-  Ao clicar no botão da Hero, ele deve fazer um scroll suave até a seção da oferta `id="oferta"`), em vez de abrir o checkout.
-  Adicionar apenas o `id="oferta"` na seção da Oferta.
-  Não alterar o componente CTA compartilhado, não criar novas props e não modificar o comportamento dos demais botões da Landing Page.
-
-## 4. Card de Oferta (dentro da DOBRA 6)
-
-Adicionar, acima do bloco `pricing` existente (mantendo o `<CTA />` atual dentro do pricing), um novo card `offer-card` com a estrutura:
-
-```
-DE R$497
-HOJE POR APENAS
-R$49,00
-Valor exclusivo do Lote 03
-Restam poucas vagas neste lote        87%
-[==== barra de progresso 87% ====]
-```
-
-Estilo: usa tokens já existentes (`--bordeaux`, `--gold`, `--ink`, `--cream`) para manter identidade — sem copiar o visual laranja/preto da referência. Preço grande em serif bordeaux, "DE R$497" riscado em cinza pequeno, barra com fill em bordeaux/gold sobre trilho `--cream-dk`. CSS novo isolado em `.offer-card`, `.offer-card__from`, `.offer-card__price`, `.offer-card__progress`, `.offer-card__bar`, `.offer-card__fill` no final de `src/styles.css` (não altera regras existentes).
-
-## 5. Botões
-
-- Remover `<CTA />` da DOBRA 4 ("O que vamos construir") — linha 462.
-- Manter CTA da Oferta (dentro do pricing) e do Fechamento.
-- Alterar SÓ o último botão (Fechamento): passar `label="Garantir minha condição especial do Lote 03"` via nova prop opcional em `CTA`; demais botões continuam com o texto atual.
-
-## Não altera
-
-Cores globais, tipografia global, imagens, layout do restante da página, breakpoints, responsividade mobile (além da mudança natural de texto do H1/subheadline). 
-
-IMPORTANTE
-
-Preservar toda a estrutura existente da Landing Page.
-
-Não reconstruir nenhuma seção.
-
-Não alterar HeroHeader.
-
-Não alterar heroVariants além dos textos solicitados.
-
-Não alterar componentes compartilhados.
-
-Não alterar o CSS existente.
-
-Adicionar apenas o código mínimo necessário para implementar os ajustes acima.
+Nada mais é alterado. Após aprovado e publicado, o GTM-5G3T4HXG passa a carregar em todas as páginas/rotas do site.

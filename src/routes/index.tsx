@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type MouseEvent } from "react";
+import { useState } from "react";
 import lizHero from "@/assets/images/liz-hero.jpeg";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
 import lizCrono from "@/assets/images/liz-cronograma.jpeg";
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode=10";
+const CTA_URL = "https://pay.kiwify.com.br/xbUjd1y";
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -85,30 +85,22 @@ function Ornament() {
     </div>
   );
 }
-function CTA({ note = true, hero = false, label }: { note?: boolean; hero?: boolean; label?: string }) {
-  const handleClick = hero
-    ? (e: MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    : undefined;
+function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) {
   return (
     <div className={`cta-wrap${hero ? " cta-wrap--hero" : ""}`}>
       <a
         className={`cta cta-btn${hero ? " cta-btn--hero" : ""}`}
-        href={hero ? "#oferta" : CTA_URL}
-        target={hero ? undefined : "_blank"}
-        rel={hero ? undefined : "noopener noreferrer"}
-        onClick={handleClick}
+        href={CTA_URL}
+        target="_blank"
+        rel="noopener noreferrer"
       >
         <Lock />
-        <span>{label ?? "GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00"}</span>
+        <span>Garantir minha vaga no lote 02 por R$37,00</span>
       </a>
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
 }
-
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
@@ -123,16 +115,21 @@ const heroVariants = {
   },
 
   2: {
-    h1: "Em apenas 2 dias, você vai criar seu Produto Vendedor, que vende todos os dias e prepara suas clientes para comprarem seu High Ticket.",
+    h1: "Em 2 dias, eu e minhas IAs vamos criar com você um curso que vende no automático todo dia.",
     h2: (
       <>
-        Pare de tentar vender uma mentoria cara no primeiro contato.
-        <br />
-        <i>Crie um produto que gera desejo, confiança e faz essa venda acontecer naturalmente.</i>
+        <span className="hero-sub-top">
+          E ainda leva suas alunas pro seu
+          <br />
+          <i>High Ticket!</i>
+        </span>
+    
+        <span className="hero-sub-bottom">
+          Copie o funil que me gera mais de 100 mil enquanto durmo.
+        </span>
       </>
     ),
   },
-
 
   3: {
     h1: "Em 2 dias, eu e minhas IAs vamos criar com você um curso que vende no automático todo dia — e conduz naturalmente suas alunas para compra do seu High Ticket.",
@@ -279,8 +276,8 @@ function Landing() {
     </div>
 
     <div className="metric">
-      <div className="metric-val">R$49,00</div>
-      <div className="metric-lbl">Lote 03</div>
+      <div className="metric-val">R$37,00</div>
+      <div className="metric-lbl">Lote 02</div>
     </div>
 
     <div className="metric">
@@ -462,6 +459,7 @@ function Landing() {
     Low Ticket e High Ticket vendendo sozinhos num sistema previsível.
   </p>
 </div>
+          <CTA />
         </div>
       </section>
 
@@ -508,7 +506,7 @@ function Landing() {
       </section>
 
       {/* DOBRA 6 — OFERTA */}
-      <section id="oferta" className="section bg-cream-dk">
+      <section className="section bg-cream-dk">
         <div className="container offer-head">
           <div className="eyebrow">Oferta</div>
           <Ornament />
@@ -530,17 +528,6 @@ function Landing() {
 
   <strong>A conta é simples:</strong> a primeira venda já paga o ingresso. O resto é lucro entrando todo dia, no automático.
 </p>
-          <div className="offer-card">
-            <div className="offer-card__from">DE <s>R$497</s></div>
-            <div className="offer-card__label">HOJE POR APENAS</div>
-            <div className="offer-card__price">R$49</div>
-            <div className="offer-card__lot">Valor exclusivo do Lote 03</div>
-            <div className="offer-card__progress-head">
-              <span>Restam poucas vagas neste lote</span>
-              <span className="offer-card__pct">87%</span>
-            </div>
-            <div className="offer-card__bar"><div className="offer-card__fill" /></div>
-          </div>
           <div className="pricing">
             <div className="price-lbl">Você recebe</div>
             <div className="orn"><span className="orn-line" /><span className="orn-diamond" /><span className="orn-line" /></div>
@@ -551,8 +538,8 @@ function Landing() {
             </ul>
             <hr className="divider-gold" />
             <div className="price-sep"><span className="orn-diamond" /></div>
-            <div className="price-lbl">Investimento — Lote 03</div>
-            <div className="price-amount">R$ 49,00</div>
+            <div className="price-lbl">Investimento — Lote 02</div>
+            <div className="price-amount">R$ 37,00</div>
             <CTA />
           </div>
         </div>
@@ -628,11 +615,11 @@ E se você chegou até aqui, é porque também quer ganhar bem sem abrir mão do
           <h2>Dois dias. Um produto. Uma nova forma de vender.</h2>
           <div className="eyebrow">25 e 26 de Julho — Ao Vivo e Online</div>
           <div className="closing-badges">
-            <span>2 Dias</span><span>Ao Vivo</span><span>R$49,00</span>
+            <span>2 Dias</span><span>Ao Vivo</span><span>R$37,00</span>
           </div>
-          <p>As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
-          <CTA label="Garantir minha condição especial do Lote 03" />
-          <div className="closing-note">Vagas do lote 03 se encerram em breve.</div>
+          <p>As vagas do lote 02 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
+          <CTA />
+          <div className="closing-note">Vagas do lote 02 se encerram em breve.</div>
         </div>
       </section>
 

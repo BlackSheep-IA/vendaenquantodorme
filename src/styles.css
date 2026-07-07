@@ -197,7 +197,7 @@
 .vd .cta:hover { background: #4E1020; }
 .vd .cta svg { flex-shrink: 0; }
 .vd .cta-note {
-  margin-top: 12px; font-size: 12px; color: var(--brown); opacity: 0.8 ;
+  margin-top: 12px; font-size: 12px; color: var(--brown); opacity: ;
   text-align: center;
 }
 
@@ -553,7 +553,7 @@ transform: translateY(-65px);
 .vd .hero-sub-top {
   display: block;
   font-size: 1.2em;
-  line-height: 1.1;
+  line-height: 1.1
   width: 120%;
   
 }
@@ -563,22 +563,12 @@ transform: translateY(-65px);
   width: 90vw;
   max-width: none;
   line-height: 1.15;
-  margin-top: 36px;
-  
-}
-
-
-@media (min-width: 768px) {
-  .vd .hero-sub-bottom {
-    width: auto;
-    max-width: 480px;
-    position: static;
-    left: auto;
-    transform: none;
-    text-align: left;
-    margin-top: 12px;
-    font-size: 1em;
-  }
+  margin-top: 32px;
+  position: relative;
+  left: 85%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 1.1em
 }
 .vd .hero-sub-bottom strong {
   font-weight: 800;
@@ -700,89 +690,5 @@ transform: translateY(-65px);
   .vd li {
     font-size: 16px;
   }
-}.vd .hero-sub-bottom {
-  max-width: 420px;
-  text-align: left;
 }
 
-/* Hero desktop — hide checklist and raise CTA (1024px+) */
-@media (min-width: 1024px) {
-  .vd .hero-desktop .hero-checklist-label,
-  .vd .hero-desktop .hero-check-list {
-    display: none;
-  }
-
-  .vd .hero-desktop .cta-wrap {
-    margin-top: 8px;
-  }
-}
-
-
-
-/* Offer card (Dobra 6) */
-.vd .offer-card {
-  max-width: 460px;
-  margin: 24px auto 20px;
-  padding: 28px 24px;
-  background: var(--cream);
-  border: 1px solid var(--gold);
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 6px 24px rgba(28, 16, 8, 0.08);
-}
-.vd .offer-card__from {
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.55;
-}
-.vd .offer-card__from s { text-decoration: line-through; }
-.vd .offer-card__label {
-  font-family: "DM Sans", sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 10px;
-  font-weight: 500;
-}
-.vd .offer-card__price {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  font-size: clamp(56px, 12vw, 84px);
-  line-height: 1;
-  color: var(--bordeaux);
-  margin: 6px 0 4px;
-}
-.vd .offer-card__lot {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink);
-  opacity: 0.75;
-  margin-bottom: 18px;
-}
-.vd .offer-card__progress-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-family: "DM Sans", sans-serif;
-  font-size: 12px;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.vd .offer-card__pct { color: var(--bordeaux); font-weight: 500; }
-.vd .offer-card__bar {
-  height: 8px;
-  background: var(--cream-dk);
-  border-radius: 999px;
-  overflow: hidden;
-}
-.vd .offer-card__fill {
-  width: 87%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--bordeaux), var(--gold));
-  border-radius: 999px;
-}
