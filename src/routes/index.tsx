@@ -25,11 +25,20 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const CTA_URL = "https://pay.kiwify.com.br/VxLqXfi";
+const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={s} strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={s}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <rect x="4" y="11" width="16" height="10" rx="2" />
       <path d="M8 11V7a4 4 0 0 1 8 0v4" />
     </svg>
@@ -37,15 +46,31 @@ function Lock({ s = 1.5 }: { s?: number }) {
 }
 function Cal() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M3 10h18M8 3v4M16 3v4" />
     </svg>
   );
 }
 function Broadcast() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="2" /><path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4M3.5 3.5a12 12 0 0 0 0 17M20.5 3.5a12 12 0 0 1 0 17" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="2" />
+      <path d="M6.3 6.3a8 8 0 0 0 0 11.4M17.7 6.3a8 8 0 0 1 0 11.4M3.5 3.5a12 12 0 0 0 0 17M20.5 3.5a12 12 0 0 1 0 17" />
     </svg>
   );
 }
@@ -59,13 +84,21 @@ function Check({ c = "#fff" }: { c?: string }) {
 function XIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="#9B7A6A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
   );
 }
 function CheckBordeaux() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="#7A1C2E" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#7A1C2E"
+      strokeWidth="2.4"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <polyline points="20 6 9 17 4 12" />
     </svg>
   );
@@ -73,7 +106,9 @@ function CheckBordeaux() {
 function Ornament() {
   return (
     <div className="orn">
-      <span className="orn-line" /><span className="orn-diamond" /><span className="orn-line" />
+      <span className="orn-line" />
+      <span className="orn-diamond" />
+      <span className="orn-line" />
     </div>
   );
 }
@@ -103,13 +138,27 @@ function HeroHeader() {
         <div className="hero-label">Workshop</div>
         <div className="hero-title serif">Venda Enquanto Dorme™</div>
         <div className="badge-row">
-          <div className="badge"><Cal />2 Dias Intensivos</div>
-          <div className="badge"><Broadcast />Ao Vivo e Online</div>
-          <div className="badge"><Lock s={1.7} />Vagas Limitadas</div>
+          <div className="badge">
+            <Cal />2 Dias Intensivos
+          </div>
+          <div className="badge">
+            <Broadcast />
+            Ao Vivo e Online
+          </div>
+          <div className="badge">
+            <Lock s={1.7} />
+            Vagas Limitadas
+          </div>
         </div>
         <div className="event-bar">
-          <span><Broadcast />Ao vivo e online</span>
-          <span><Cal />25 e 26 de Julho</span>
+          <span>
+            <Broadcast />
+            Ao vivo e online
+          </span>
+          <span>
+            <Cal />
+            25 e 26 de Julho
+          </span>
         </div>
       </div>
     </div>
@@ -120,12 +169,16 @@ function HeroContent() {
   return (
     <>
       <h1>Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.</h1>
-      <div className="hero-sub">…e transforma seguidoras em clientes do seu <i>High Ticket</i>.</div>
+      <div className="hero-sub">
+        …e transforma seguidoras em clientes do seu <i>High Ticket</i>.
+      </div>
       <div className="hero-checklist-label">Você sai da imersão com:</div>
       <ul className="hero-check-list">
         {heroChecklist.map((t) => (
           <li key={t}>
-            <span className="check-circle"><Check /></span>
+            <span className="check-circle">
+              <Check />
+            </span>
             {t}
           </li>
         ))}
@@ -149,15 +202,42 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 }
 
 const faqs = [
-  ["Vai ficar gravado?", "Sim. Todas as participantes têm acesso à gravação completa dos 2 dias por tempo determinado para revisar e implementar com calma."],
-  ["Eu já tenho produto, serve pra mim?", "Sim. Se você já vende, vamos reestruturar sua oferta e construir o sistema de vendas em IA por trás dela."],
-  ["E se eu não souber usar IA?", "Não precisa saber nada. Eu te entrego os comandos, os modelos e fazemos tudo juntas, ao vivo, passo a passo."],
-  ["Como eu acesso?", "Pelo Zoom, no link enviado por e-mail. Basta clicar e entrar — ao vivo, com todas as participantes."],
-  ["Funciona pra minha profissão?", "Funciona para qualquer especialista, mentora, coach, terapeuta, consultora ou criadora que quer vender um produto digital de alto valor."],
-  ["Preciso ter muitos seguidores?", "Não. O método foi desenhado para funcionar com audiências pequenas, qualificadas e engajadas — não com volume."],
-  ["Preciso investir em anúncios pra vender?", "Não. Construímos um funil orgânico que funciona independente de tráfego pago. Anúncios entram como aceleração, não dependência."],
-  ["Minha agenda é cheia, vou dar conta?", "Os 2 dias são intensivos justamente pra cabe em qualquer agenda: você bloqueia o fim de semana e sai com o produto pronto."],
-  ["E se eu achar que não era pra mim?", "Garantia de risco zero: participou dos 2 dias, não saiu com produto pronto pra vender, devolvo 100% do valor."],
+  [
+    "Vai ficar gravado?",
+    "Sim. Todas as participantes têm acesso à gravação completa dos 2 dias por tempo determinado para revisar e implementar com calma.",
+  ],
+  [
+    "Eu já tenho produto, serve pra mim?",
+    "Sim. Se você já vende, vamos reestruturar sua oferta e construir o sistema de vendas em IA por trás dela.",
+  ],
+  [
+    "E se eu não souber usar IA?",
+    "Não precisa saber nada. Eu te entrego os comandos, os modelos e fazemos tudo juntas, ao vivo, passo a passo.",
+  ],
+  [
+    "Como eu acesso?",
+    "Pelo Zoom, no link enviado por e-mail. Basta clicar e entrar — ao vivo, com todas as participantes.",
+  ],
+  [
+    "Funciona pra minha profissão?",
+    "Funciona para qualquer especialista, mentora, coach, terapeuta, consultora ou criadora que quer vender um produto digital de alto valor.",
+  ],
+  [
+    "Preciso ter muitos seguidores?",
+    "Não. O método foi desenhado para funcionar com audiências pequenas, qualificadas e engajadas — não com volume.",
+  ],
+  [
+    "Preciso investir em anúncios pra vender?",
+    "Não. Construímos um funil orgânico que funciona independente de tráfego pago. Anúncios entram como aceleração, não dependência.",
+  ],
+  [
+    "Minha agenda é cheia, vou dar conta?",
+    "Os 2 dias são intensivos justamente pra cabe em qualquer agenda: você bloqueia o fim de semana e sai com o produto pronto.",
+  ],
+  [
+    "E se eu achar que não era pra mim?",
+    "Garantia de risco zero: participou dos 2 dias, não saiu com produto pronto pra vender, devolvo 100% do valor.",
+  ],
 ] as const;
 
 function Landing() {
@@ -176,7 +256,9 @@ function Landing() {
             <div className="hero-media-fade-bottom" />
             <div className="hero-overlay-text">
               <h1>Em apenas 2 dias, você, eu e uma IA vamos colocar no ar um produto que vende todos os dias.</h1>
-              <p className="hero-sub">…e transformar seguidoras em clientes do seu <i>High Ticket</i>.</p>
+              <p className="hero-sub">
+                …e transformar seguidoras em clientes do seu <i>High Ticket</i>.
+              </p>
             </div>
           </div>
           <div className="hero-content">
@@ -184,7 +266,9 @@ function Landing() {
             <ul className="hero-check-list">
               {heroChecklist.map((t) => (
                 <li key={t}>
-                  <span className="check-circle"><Check /></span>
+                  <span className="check-circle">
+                    <Check />
+                  </span>
                   {t}
                 </li>
               ))}
@@ -208,10 +292,22 @@ function Landing() {
         </div>
         <div className="container">
           <div className="metrics">
-            <div className="metric"><div className="metric-val">5.200+</div><div className="metric-lbl">Alunas formadas</div></div>
-            <div className="metric"><div className="metric-val">97%</div><div className="metric-lbl">Aprovação</div></div>
-            <div className="metric"><div className="metric-val">R$49,00</div><div className="metric-lbl">Lote 03</div></div>
-            <div className="metric"><div className="metric-val">2 dias</div><div className="metric-lbl">Produto no ar</div></div>
+            <div className="metric">
+              <div className="metric-val">5.200+</div>
+              <div className="metric-lbl">Alunas formadas</div>
+            </div>
+            <div className="metric">
+              <div className="metric-val">97%</div>
+              <div className="metric-lbl">Aprovação</div>
+            </div>
+            <div className="metric">
+              <div className="metric-val">R$49,00</div>
+              <div className="metric-lbl">Lote 03</div>
+            </div>
+            <div className="metric">
+              <div className="metric-val">2 dias</div>
+              <div className="metric-lbl">Produto no ar</div>
+            </div>
           </div>
         </div>
       </section>
@@ -221,28 +317,50 @@ function Landing() {
         <div className="container">
           <div className="eyebrow">Talvez você esteja pensando</div>
           <Ornament />
-          <div style={{ textAlign: "center" }} className="quote-mark">"</div>
+          <div style={{ textAlign: "center" }} className="quote-mark">
+            "
+          </div>
           <div className="quote">
-            Eu já paguei caro em mentorias e continuei me virando sozinha, sem sair do lugar. Por que com você seria diferente?
+            Eu já paguei caro em mentorias e continuei me virando sozinha, sem sair do lugar. Por que com você seria
+            diferente?
           </div>
           <p className="answer-p">
-            Porque nas outras você recebeu informação. <strong>Aqui você constrói o ativo.</strong> Existe uma diferença enorme entre assistir alguém explicando uma estratégia e sair com ela funcionando.
+            Porque nas outras você recebeu informação. <strong>Aqui você constrói o ativo.</strong> Existe uma diferença
+            enorme entre assistir alguém explicando uma estratégia e sair com ela funcionando.
           </p>
           <img src={envelope} alt="Você sai com um produto pronto para vender" className="envelope" />
           <div className="compare">
             <div className="compare-card">
               <div className="compare-head left">O que normalmente acontece</div>
               <ul className="compare-list">
-                {["Você assiste às aulas", "Faz anotações", "Sai inspirada", "Volta para a rotina", "Adia a execução"].map((t) => (
-                  <li key={t}><XIcon />{t}</li>
+                {[
+                  "Você assiste às aulas",
+                  "Faz anotações",
+                  "Sai inspirada",
+                  "Volta para a rotina",
+                  "Adia a execução",
+                ].map((t) => (
+                  <li key={t}>
+                    <XIcon />
+                    {t}
+                  </li>
                 ))}
               </ul>
             </div>
             <div className="compare-card">
               <div className="compare-head right">O que acontece no Workshop</div>
               <ul className="compare-list">
-                {["Você cria sua oferta", "Estrutura seu funil", "Configura suas IAs", "Publica durante o evento", "Sai com produto pronto"].map((t) => (
-                  <li key={t}><CheckBordeaux />{t}</li>
+                {[
+                  "Você cria sua oferta",
+                  "Estrutura seu funil",
+                  "Configura suas IAs",
+                  "Publica durante o evento",
+                  "Sai com produto pronto",
+                ].map((t) => (
+                  <li key={t}>
+                    <CheckBordeaux />
+                    {t}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -255,14 +373,43 @@ function Landing() {
         <div className="container">
           <div className="eyebrow">O caminho</div>
           <Ornament />
-          <h2 className="serif" style={{ textAlign: "center", fontSize: "clamp(24px,5vw,34px)", fontWeight: 400, margin: 0, color: "var(--ink)" }}>
+          <h2
+            className="serif"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(24px,5vw,34px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+            }}
+          >
             Um sistema que vende <em style={{ color: "var(--bordeaux)" }}>enquanto você dorme</em>
           </h2>
           <ul className="solutions">
-            <li><span className="sol-icon">1</span><div className="sol-text">Você cria uma <strong>oferta High Ticket</strong> com posicionamento claro e mecanismo único.</div></li>
-            <li><span className="sol-icon">2</span><div className="sol-text">Estrutura um <strong>funil perpétuo</strong> que converte seguidoras em clientes sem call.</div></li>
-            <li><span className="sol-icon">3</span><div className="sol-text">Configura as <strong>IAs de vendas</strong> que respondem, qualificam e fecham por você.</div></li>
-            <li><span className="sol-icon">★</span><div className="sol-text">Ativa o <strong>mecanismo de ascensão</strong> que aumenta o ticket dentro do seu próprio ecossistema.</div></li>
+            <li>
+              <span className="sol-icon">1</span>
+              <div className="sol-text">
+                Você cria uma <strong>oferta High Ticket</strong> com posicionamento claro e mecanismo único.
+              </div>
+            </li>
+            <li>
+              <span className="sol-icon">2</span>
+              <div className="sol-text">
+                Estrutura um <strong>funil perpétuo</strong> que converte seguidoras em clientes sem call.
+              </div>
+            </li>
+            <li>
+              <span className="sol-icon">3</span>
+              <div className="sol-text">
+                Configura as <strong>IAs de vendas</strong> que respondem, qualificam e fecham por você.
+              </div>
+            </li>
+            <li>
+              <span className="sol-icon">★</span>
+              <div className="sol-text">
+                Ativa o <strong>mecanismo de ascensão</strong> que aumenta o ticket dentro do seu próprio ecossistema.
+              </div>
+            </li>
           </ul>
         </div>
       </section>
@@ -272,22 +419,44 @@ function Landing() {
         <div className="container">
           <div className="eyebrow">O que vamos construir</div>
           <Ornament />
-          <h2 className="serif" style={{ textAlign: "center", fontSize: "clamp(26px,5vw,36px)", fontWeight: 400, margin: 0, color: "var(--ink)", lineHeight: 1.2 }}>
+          <h2
+            className="serif"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,36px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+              lineHeight: 1.2,
+            }}
+          >
             O que vamos construir juntas <em style={{ fontStyle: "italic" }}>utilizando IA</em> nesses 2 dias
           </h2>
           <div className="day-cards">
             <div className="day-card">
               <div className="day-head">
-                <div className="day-icon"><Cal /></div>
+                <div className="day-icon">
+                  <Cal />
+                </div>
                 <div className="day-title">Dia 1 — Sábado</div>
                 <div className="day-hours">09h às 18h</div>
               </div>
               <ul className="day-list">
-                <li><span className="day-item-icon">◆</span>Criação do produto.</li>
-                <li><span className="day-item-icon">◆</span>Estruturação da oferta.</li>
-                <li><span className="day-item-icon">◆</span>Página pronta.</li>
-                <li><span className="day-item-icon">◆</span>Checkout pronto.</li>
-                <li><span className="day-item-icon">◆</span>Produto preparado para vender.</li>
+                <li>
+                  <span className="day-item-icon">◆</span>Criação do produto.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Estruturação da oferta.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Página pronta.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Checkout pronto.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Produto preparado para vender.
+                </li>
               </ul>
               <div className="day-result">
                 <div className="day-result-lbl">Ao final do Dia 1</div>
@@ -296,15 +465,25 @@ function Landing() {
             </div>
             <div className="day-card">
               <div className="day-head">
-                <div className="day-icon"><Broadcast /></div>
+                <div className="day-icon">
+                  <Broadcast />
+                </div>
                 <div className="day-title">Dia 2 — Domingo</div>
                 <div className="day-hours">09h às 18h</div>
               </div>
               <ul className="day-list">
-                <li><span className="day-item-icon">◆</span>Estruturação do funil.</li>
-                <li><span className="day-item-icon">◆</span>Automação.</li>
-                <li><span className="day-item-icon">◆</span>Mecanismo de ascensão.</li>
-                <li><span className="day-item-icon">◆</span>Posicionamento da oferta principal.</li>
+                <li>
+                  <span className="day-item-icon">◆</span>Estruturação do funil.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Automação.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Mecanismo de ascensão.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Posicionamento da oferta principal.
+                </li>
               </ul>
               <div className="day-result">
                 <div className="day-result-lbl">Ao final do Dia 2</div>
@@ -313,7 +492,9 @@ function Landing() {
             </div>
           </div>
           <div className="final-note">
-            <div className="final-note-icon"><Lock s={1.7} /></div>
+            <div className="final-note-icon">
+              <Lock s={1.7} />
+            </div>
             <p>É só o começo da sua nova vida. Vamos construir juntas.</p>
           </div>
           <CTA />
@@ -325,35 +506,66 @@ function Landing() {
         <div className="container">
           <div className="crono-layout">
             <div>
-              <div className="crono-photo"><img src={lizCrono} alt="Liz Valz" /></div>
+              <div className="crono-photo">
+                <img src={lizCrono} alt="Liz Valz" />
+              </div>
             </div>
             <div>
               <div className="eyebrow">Cronograma</div>
               <Ornament />
-              <h2 className="serif" style={{ textAlign: "center", fontSize: "clamp(28px,5vw,38px)", fontWeight: 400, margin: 0, color: "var(--ink)" }}>
+              <h2
+                className="serif"
+                style={{
+                  textAlign: "center",
+                  fontSize: "clamp(28px,5vw,38px)",
+                  fontWeight: 400,
+                  margin: 0,
+                  color: "var(--ink)",
+                }}
+              >
                 Como vai funcionar
               </h2>
               <div className="timeline">
                 <div className="tl-card">
                   <div className="tl-date">
-                    <div className="tl-date-d">25 de<br/>julho</div>
+                    <div className="tl-date-d">
+                      25 de
+                      <br />
+                      julho
+                    </div>
                     <div className="tl-date-h">09h às 18h</div>
                   </div>
                   <ul className="tl-items">
-                    <li><span className="day-item-icon">◆</span>Criação do produto utilizando IA.</li>
-                    <li><span className="day-item-icon">◆</span>Páginas e checkout publicados.</li>
-                    <li><span className="day-item-icon">◆</span>Produto preparado para vender.</li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Criação do produto utilizando IA.
+                    </li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Páginas e checkout publicados.
+                    </li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Produto preparado para vender.
+                    </li>
                   </ul>
                 </div>
                 <div className="tl-card">
                   <div className="tl-date">
-                    <div className="tl-date-d">26 de<br/>julho</div>
+                    <div className="tl-date-d">
+                      26 de
+                      <br />
+                      julho
+                    </div>
                     <div className="tl-date-h">09h às 18h</div>
                   </div>
                   <ul className="tl-items">
-                    <li><span className="day-item-icon">◆</span>Estruturação do sistema de vendas.</li>
-                    <li><span className="day-item-icon">◆</span>Mecanismo de ascensão.</li>
-                    <li><span className="day-item-icon">◆</span>Automações.</li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Estruturação do sistema de vendas.
+                    </li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Mecanismo de ascensão.
+                    </li>
+                    <li>
+                      <span className="day-item-icon">◆</span>Automações.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -368,17 +580,38 @@ function Landing() {
           <div className="eyebrow">Oferta</div>
           <Ornament />
           <h2>Você não precisa mais depender da própria agenda para vender.</h2>
-          <p>Enquanto outras pessoas continuam buscando clientes diariamente, você começa a construir um ativo que continua trabalhando depois que o evento termina.</p>
+          <p>
+            Enquanto outras pessoas continuam buscando clientes diariamente, você começa a construir um ativo que
+            continua trabalhando depois que o evento termina.
+          </p>
           <div className="pricing">
             <div className="price-lbl">Você recebe</div>
-            <div className="orn"><span className="orn-line" /><span className="orn-diamond" /><span className="orn-line" /></div>
+            <div className="orn">
+              <span className="orn-line" />
+              <span className="orn-diamond" />
+              <span className="orn-line" />
+            </div>
             <ul className="benefits">
-              {["Acesso aos 2 dias ao vivo", "Estrutura completa do produto", "Estrutura do funil", "Configuração com IA", "Modelos do workshop", "Sessões de dúvidas ao vivo"].map((b) => (
-                <li key={b}><span className="check-circle"><Check /></span>{b}</li>
+              {[
+                "Acesso aos 2 dias ao vivo",
+                "Estrutura completa do produto",
+                "Estrutura do funil",
+                "Configuração com IA",
+                "Modelos do workshop",
+                "Sessões de dúvidas ao vivo",
+              ].map((b) => (
+                <li key={b}>
+                  <span className="check-circle">
+                    <Check />
+                  </span>
+                  {b}
+                </li>
               ))}
             </ul>
             <hr className="divider-gold" />
-            <div className="price-sep"><span className="orn-diamond" /></div>
+            <div className="price-sep">
+              <span className="orn-diamond" />
+            </div>
             <div className="price-lbl">Investimento — Lote 03</div>
             <div className="price-amount">R$ 49,00</div>
             <CTA />
@@ -390,23 +623,62 @@ function Landing() {
       <section className="section bg-cream">
         <div className="container">
           <div className="esp-layout">
-            <div className="esp-photo"><img src={lizEsp} alt="Liz Valz" /></div>
+            <div className="esp-photo">
+              <img src={lizEsp} alt="Liz Valz" />
+            </div>
             <div>
               <div className="eyebrow">A especialista</div>
               <Ornament />
-              <h2 className="serif" style={{ textAlign: "center", fontSize: "clamp(28px,5vw,36px)", fontWeight: 400, margin: 0, color: "var(--ink)" }}>
+              <h2
+                className="serif"
+                style={{
+                  textAlign: "center",
+                  fontSize: "clamp(28px,5vw,36px)",
+                  fontWeight: 400,
+                  margin: 0,
+                  color: "var(--ink)",
+                }}
+              >
                 Quem é <em style={{ color: "var(--bordeaux)", fontStyle: "normal" }}>Liz Valz</em>?
               </h2>
               <div className="highlight-card">
                 <span className="sol-icon">✦</span>
-                <p>Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e manter uma rotina alinhada com a vida que escolhi viver.</p>
+                <p>
+                  Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e manter
+                  uma rotina alinhada com a vida que escolhi viver.
+                </p>
               </div>
               <ul className="creds">
-                <li><span className="cred-icon">▲</span><span>Mais de <strong>25 milhões</strong> faturados</span></li>
-                <li><span className="cred-icon">✦</span><span>Criadora do <strong>Sistema de Vendas Invisíveis™</strong></span></li>
-                <li><span className="cred-icon">↗</span><span>Criadora da <strong>Aceleradora High Ticket IA</strong></span></li>
-                <li><span className="cred-icon">♥</span><span>Milhares de <strong>mulheres impactadas</strong></span></li>
-                <li><span className="cred-icon">★</span><span>Dezenas de alunas com <strong>faturamentos expressivos</strong></span></li>
+                <li>
+                  <span className="cred-icon">▲</span>
+                  <span>
+                    Mais de <strong>25 milhões</strong> faturados
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">✦</span>
+                  <span>
+                    Criadora do <strong>Sistema de Vendas Invisíveis™</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">↗</span>
+                  <span>
+                    Criadora da <strong>Aceleradora High Ticket IA</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">♥</span>
+                  <span>
+                    Milhares de <strong>mulheres impactadas</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">★</span>
+                  <span>
+                    Dezenas de alunas com <strong>faturamentos expressivos</strong>
+                  </span>
+                </li>
               </ul>
               <div className="esp-quote">Eu ensino apenas aquilo que vivo diariamente.</div>
             </div>
@@ -419,12 +691,20 @@ function Landing() {
         <div className="container guarantee">
           <div className="eyebrow">Garantia</div>
           <Ornament />
-          <h2>Seu produto publicado ou seu <em>dinheiro de volta</em></h2>
+          <h2>
+            Seu produto publicado ou seu <em>dinheiro de volta</em>
+          </h2>
           <Ornament />
-          <p>Eu confio tanto no processo que, se você participar dos 2 dias ao vivo e não sair com o seu produto no ar, pronto pra vender, eu devolvo <strong style={{ color: "var(--bordeaux)" }}>100% do valor</strong>.</p>
+          <p>
+            Eu confio tanto no processo que, se você participar dos 2 dias ao vivo e não sair com o seu produto no ar,
+            pronto pra vender, eu devolvo <strong style={{ color: "var(--bordeaux)" }}>100% do valor</strong>.
+          </p>
           <div className="shield">
             <div className="shield-circle">
-              <svg viewBox="0 0 24 24"><path d="M12 2 4 5v7c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5l-8-3z" /><polyline points="9 12 11 14 15 10" /></svg>
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2 4 5v7c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V5l-8-3z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
             </div>
             <span className="orn-diamond" style={{ background: "var(--gold)", opacity: 0.5 }} />
             <div className="shield-label">Risco zero</div>
@@ -438,11 +718,22 @@ function Landing() {
         <div className="container">
           <div className="eyebrow">Perguntas frequentes</div>
           <Ornament />
-          <h2 className="serif" style={{ textAlign: "center", fontSize: "clamp(26px,5vw,34px)", fontWeight: 400, margin: 0, color: "var(--ink)" }}>
+          <h2
+            className="serif"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,34px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+            }}
+          >
             Ainda tem dúvidas?
           </h2>
           <div className="faq">
-            {faqs.map(([q, a]) => <FAQItem key={q} q={q} a={a} />)}
+            {faqs.map(([q, a]) => (
+              <FAQItem key={q} q={q} a={a} />
+            ))}
           </div>
         </div>
       </section>
@@ -454,16 +745,25 @@ function Landing() {
           <h2>Dois dias. Um produto. Uma nova forma de vender.</h2>
           <div className="eyebrow">25 e 26 de Julho — Ao Vivo e Online</div>
           <div className="closing-badges">
-            <span>2 Dias</span><span>Ao Vivo</span><span>R$49,00</span>
+            <span>2 Dias</span>
+            <span>Ao Vivo</span>
+            <span>R$49,00</span>
           </div>
-          <p>As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
+          <p>
+            As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim
+            de semana, o ativo digital que vai vender por você todos os dias.
+          </p>
           <CTA />
           <div className="closing-note">Vagas do lote 03 se encerram em breve.</div>
         </div>
       </section>
 
       <footer className="footer">
-        <p>© 2025 Liz Valz · Workshop Venda Enquanto Dorme™<br/>Todos os direitos reservados.</p>
+        <p>
+          © 2025 Liz Valz · Workshop Venda Enquanto Dorme™
+          <br />
+          Todos os direitos reservados.
+        </p>
       </footer>
     </div>
   );
