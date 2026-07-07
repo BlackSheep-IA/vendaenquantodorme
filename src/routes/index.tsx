@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const CTA_URL = "https://pay.kiwify.com.br/xbUjd1y";
+const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode=10&bid=1782969540827";
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -124,9 +124,9 @@ const heroVariants = {
           <i>High Ticket!</i>
         </span>
     
-        <span className="hero-sub-bottom">
-          Copie o funil que me gera mais de 100 mil enquanto durmo.
-        </span>
+        <div className="hero-sub-bottom">
+  Copie o funil que me gera mais de 100 mil enquanto durmo.
+</div>
       </>
     ),
   },
