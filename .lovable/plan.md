@@ -1,32 +1,40 @@
-Plano de ajuste desktop-only na Hero
+# Plano de atualização de checkout e oferta
 
-Objetivo: remover a checklist ("Você sai da imersão com:" + 4 bullets) e subir o CTA para ocupar o espaço vazio, mantendo equilíbrio visual, apenas em larguras acima de 1024px.
+## Objetivo
 
-Arquivo alterado: src/styles.css
+Atualizar todos os botões de checkout e os textos de preço/lote na landing page, refletindo a mudança para lote 03.
 
-Alterações:
-1. Adicionar um novo bloco de media query isolado no desktop, ao final do arquivo, sem tocar nas regras existentes de mobile/tablet:
+## Arquivo alvo
 
-```css
-@media (min-width: 1024px) {
-  .vd .hero-desktop .hero-checklist-label,
-  .vd .hero-desktop .hero-check-list {
-    display: none;
-  }
+- `src/routes/index.tsx`
 
-  .vd .hero-desktop .cta-wrap {
-    margin-top: 8px;
-  }
-}
-```
+## Alterações
 
-2. Não modificar src/routes/index.tsx: o HeroContent continua renderizando a checklist, que será ocultada apenas no desktop via CSS. Assim o mobile (abaixo de 1024px) permanece inalterado.
+1. **Link de checkout único**
+  - Substituir `CTA_URL` atual por: `https://pay.hotmart.com/J106563190A?checkoutMode=10`
+  - Remover o parâmetro `bid` legado.
+    &nbsp;
+2. **CTA botão principal (seçao Hero)**
+  &nbsp;
+  Alterar de: `Garantir minha vaga no lote 02 por R$37,00`
+  Para: `Garantir minha vaga ao Workshop`
+  &nbsp;
+3. **Demais botões com texto longo**
+  - Alterar o link, o valor e o lote, mantendo o texto.
+    &nbsp;
+4. **Bloco de métricas da Hero**
+  - Alterar `R$37,00` para `R$49,00`
+  - Alterar `Lote 02` para `Lote 03`
+5. **Seção de preço (Investimento — Lote 02)**
+  - Alterar `Investimento — Lote 02` para `Investimento — Lote 03`
+  - Alterar `R$ 37,00` para `R$ 49,00`
+6. **Seção de fechamento**
+  - Alterar badge `R$37,00` para `R$49,00`
+  - Alterar texto `Vagas do lote 02` para `Vagas do lote 03` (apenas se mantiver sentido)
+  - Alterar `closing-note` de `Vagas do lote 02 se encerram em breve.` para `Vagas do lote 03 se encerram em breve.`
 
-O que NÃO será alterado:
-- H1, subtítulo, foto, tipografia, larguras e alinhamentos da Hero.
-- Componentes, props e estrutura de arquivos.
-- Media queries existentes de mobile/tablet (max-width: 767px e min-width: 768px).
-- CSS compartilhado entre mobile e desktop (mantemos as regras gerais `.vd .cta-wrap`, `.vd .hero .cta-wrap`, etc.).
-- Qualquer outra seção da página.
+## Regras
 
-Verificação: inspecionar o preview em viewport de 1024px ou mais para confirmar que a checklist sumiu e o CTA subiu com o pequeno respiro de 8px acima do botão.
+- Não alterar componentes, estilos, layout, imagens ou texto fora dos locais listados.
+- Manter o CTA_URL como única constante, para que todos os botões apontem para o mesmo checkout.
+- Após a edição, verificar visualmente no preview desktop e mobile se os textos renderizam corretamente.
