@@ -454,11 +454,11 @@ function Landing() {
           <h2>Dois dias. Um produto. Uma nova forma de vender.</h2>
           <div className="eyebrow">25 e 26 de Julho — Ao Vivo e Online</div>
           <div className="closing-badges">
-            <span>2 Dias</span><span>Ao Vivo</span><span>R$37,00</span>
+            <span>2 Dias</span><span>Ao Vivo</span><span>R$49,00</span>
           </div>
-          <p>As vagas do lote 02 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
+          <p>As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim de semana, o ativo digital que vai vender por você todos os dias.</p>
           <CTA />
-          <div className="closing-note">Vagas do lote 02 se encerram em breve.</div>
+          <div className="closing-note">Vagas do lote 03 se encerram em breve.</div>
         </div>
       </section>
 
