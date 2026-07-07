@@ -87,7 +87,7 @@ function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) 
         rel="noopener noreferrer"
       >
         <Lock />
-        <span>Garantir minha vaga no lote 02 por R$37,00</span>
+        <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
       </a>
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
@@ -210,7 +210,7 @@ function Landing() {
           <div className="metrics">
             <div className="metric"><div className="metric-val">5.200+</div><div className="metric-lbl">Alunas formadas</div></div>
             <div className="metric"><div className="metric-val">97%</div><div className="metric-lbl">Aprovação</div></div>
-            <div className="metric"><div className="metric-val">R$37,00</div><div className="metric-lbl">Lote 02</div></div>
+            <div className="metric"><div className="metric-val">R$49,00</div><div className="metric-lbl">Lote 03</div></div>
             <div className="metric"><div className="metric-val">2 dias</div><div className="metric-lbl">Produto no ar</div></div>
           </div>
         </div>
@@ -379,8 +379,8 @@ function Landing() {
             </ul>
             <hr className="divider-gold" />
             <div className="price-sep"><span className="orn-diamond" /></div>
-            <div className="price-lbl">Investimento — Lote 02</div>
-            <div className="price-amount">R$ 37,00</div>
+            <div className="price-lbl">Investimento — Lote 03</div>
+            <div className="price-amount">R$ 49,00</div>
             <CTA />
           </div>
         </div>
