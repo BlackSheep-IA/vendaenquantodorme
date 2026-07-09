@@ -27,6 +27,10 @@ export const Route = createFileRoute("/")({
 
 const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
+// Barra de progresso do lote promocional (edição manual).
+// Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
+const OFFER_PROGRESS = 87;
+
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
     <svg
@@ -112,18 +116,33 @@ function Ornament() {
     </div>
   );
 }
-function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) {
+function CTA({
+  note = true,
+  hero = false,
+  checkout = false,
+}: {
+  note?: boolean;
+  hero?: boolean;
+  checkout?: boolean;
+}) {
+  const cls = `cta cta-btn${hero ? " cta-btn--hero" : ""}`;
+  const handleScroll = () => {
+    if (typeof document === "undefined") return;
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <div className={`cta-wrap${hero ? " cta-wrap--hero" : ""}`}>
-      <a
-        className={`cta cta-btn${hero ? " cta-btn--hero" : ""}`}
-        href={CTA_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Lock />
-        <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
-      </a>
+      {checkout ? (
+        <a className={cls} href={CTA_URL} target="_blank" rel="noopener noreferrer">
+          <Lock />
+          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+        </a>
+      ) : (
+        <button type="button" className={cls} onClick={handleScroll}>
+          <Lock />
+          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+        </button>
+      )}
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
