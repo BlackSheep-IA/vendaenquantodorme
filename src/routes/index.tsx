@@ -716,7 +716,7 @@ function Landing() {
                 <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
               </div>
             </div>
-            <div className="price-lbl">Investimento — Lote 03</div>
+            <div className="price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
             <CTA checkout />
           </div>
