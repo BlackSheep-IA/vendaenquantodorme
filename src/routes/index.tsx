@@ -729,7 +729,7 @@ function Landing() {
         <div className="container guarantee">
           <div className="eyebrow">Garantia</div>
           <Ornament />
-          <h2>
+          <h2 className="section-title">
             Seu produto publicado ou seu <em>dinheiro de volta</em>
           </h2>
           <Ornament />
@@ -757,7 +757,7 @@ function Landing() {
           <div className="eyebrow">Perguntas frequentes</div>
           <Ornament />
           <h2
-            className="serif"
+            className="serif section-title"
             style={{
               textAlign: "center",
               fontSize: "clamp(26px,5vw,34px)",
