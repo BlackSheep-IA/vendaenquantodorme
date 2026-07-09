@@ -27,6 +27,10 @@ export const Route = createFileRoute("/")({
 
 const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
+// Barra de progresso do lote promocional (edição manual).
+// Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
+const OFFER_PROGRESS = 87;
+
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
     <svg
@@ -112,18 +116,33 @@ function Ornament() {
     </div>
   );
 }
-function CTA({ note = true, hero = false }: { note?: boolean; hero?: boolean }) {
+function CTA({
+  note = true,
+  hero = false,
+  checkout = false,
+}: {
+  note?: boolean;
+  hero?: boolean;
+  checkout?: boolean;
+}) {
+  const cls = `cta cta-btn${hero ? " cta-btn--hero" : ""}`;
+  const handleScroll = () => {
+    if (typeof document === "undefined") return;
+    document.getElementById("oferta")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
   return (
     <div className={`cta-wrap${hero ? " cta-wrap--hero" : ""}`}>
-      <a
-        className={`cta cta-btn${hero ? " cta-btn--hero" : ""}`}
-        href={CTA_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <Lock />
-        <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
-      </a>
+      {checkout ? (
+        <a className={cls} href={CTA_URL} target="_blank" rel="noopener noreferrer">
+          <Lock />
+          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+        </a>
+      ) : (
+        <button type="button" className={cls} onClick={handleScroll}>
+          <Lock />
+          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+        </button>
+      )}
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
@@ -368,13 +387,80 @@ function Landing() {
         </div>
       </section>
 
-      {/* DOBRA 3 — O CAMINHO */}
+      {/* A ESPECIALISTA */}
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="esp-layout">
+            <div className="esp-photo">
+              <img src={lizEsp} alt="Liz Valz" />
+            </div>
+            <div>
+              <div className="eyebrow">A especialista</div>
+              <Ornament />
+              <h2
+                className="serif section-title"
+                style={{
+                  textAlign: "center",
+                  fontSize: "clamp(28px,5vw,36px)",
+                  fontWeight: 400,
+                  margin: 0,
+                  color: "var(--ink)",
+                }}
+              >
+                Quem é <em style={{ color: "var(--bordeaux)", fontStyle: "normal" }}>Liz Valz</em>?
+              </h2>
+              <div className="highlight-card">
+                <span className="sol-icon">✦</span>
+                <p>
+                  Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e manter
+                  uma rotina alinhada com a vida que escolhi viver.
+                </p>
+              </div>
+              <ul className="creds">
+                <li>
+                  <span className="cred-icon">▲</span>
+                  <span>
+                    Mais de <strong>25 milhões</strong> faturados
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">✦</span>
+                  <span>
+                    Criadora do <strong>Sistema de Vendas Invisíveis™</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">↗</span>
+                  <span>
+                    Criadora da <strong>Aceleradora High Ticket IA</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">♥</span>
+                  <span>
+                    Milhares de <strong>mulheres impactadas</strong>
+                  </span>
+                </li>
+                <li>
+                  <span className="cred-icon">★</span>
+                  <span>
+                    Dezenas de alunas com <strong>faturamentos expressivos</strong>
+                  </span>
+                </li>
+              </ul>
+              <div className="esp-quote">Eu ensino apenas aquilo que vivo diariamente.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O CAMINHO */}
       <section className="section bg-cream-dk">
         <div className="container">
           <div className="eyebrow">O caminho</div>
           <Ornament />
           <h2
-            className="serif"
+            className="serif section-title"
             style={{
               textAlign: "center",
               fontSize: "clamp(24px,5vw,34px)",
@@ -414,13 +500,13 @@ function Landing() {
         </div>
       </section>
 
-      {/* DOBRA 4 — O QUE VAMOS CONSTRUIR */}
+      {/* O QUE VAMOS CONSTRUIR */}
       <section className="section bg-cream">
         <div className="container">
           <div className="eyebrow">O que vamos construir</div>
           <Ornament />
           <h2
-            className="serif"
+            className="serif section-title"
             style={{
               textAlign: "center",
               fontSize: "clamp(26px,5vw,36px)",
@@ -501,7 +587,7 @@ function Landing() {
         </div>
       </section>
 
-      {/* DOBRA 5 — CRONOGRAMA */}
+      {/* CRONOGRAMA */}
       <section className="section bg-cream-dk">
         <div className="container">
           <div className="crono-layout">
@@ -514,7 +600,7 @@ function Landing() {
               <div className="eyebrow">Cronograma</div>
               <Ornament />
               <h2
-                className="serif"
+                className="serif section-title"
                 style={{
                   textAlign: "center",
                   fontSize: "clamp(28px,5vw,38px)",
@@ -574,12 +660,12 @@ function Landing() {
         </div>
       </section>
 
-      {/* DOBRA 6 — OFERTA */}
-      <section className="section bg-cream-dk">
+      {/* OFERTA */}
+      <section id="oferta" className="section bg-cream-dk">
         <div className="container offer-head">
           <div className="eyebrow">Oferta</div>
           <Ornament />
-          <h2>Você não precisa mais depender da própria agenda para vender.</h2>
+          <h2 className="section-title">Você não precisa mais depender da própria agenda para vender.</h2>
           <p>
             Enquanto outras pessoas continuam buscando clientes diariamente, você começa a construir um ativo que
             continua trabalhando depois que o evento termina.
@@ -612,86 +698,38 @@ function Landing() {
             <div className="price-sep">
               <span className="orn-diamond" />
             </div>
+            <div className="offer-promo">
+              <div className="offer-promo-from">
+                De <span className="offer-promo-from-value">R$ 497</span>
+              </div>
+              <div className="offer-promo-to">
+                Por apenas <strong>R$ 49</strong>
+              </div>
+              <div className="offer-promo-lbl">Preço do Lote Promocional</div>
+            </div>
+            <div className="offer-progress">
+              <div className="offer-progress-text">Restam poucas vagas neste lote promocional</div>
+              <div className="offer-progress-row">
+                <div className="offer-progress-track">
+                  <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
+                </div>
+                <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
+              </div>
+            </div>
             <div className="price-lbl">Investimento — Lote 03</div>
             <div className="price-amount">R$ 49,00</div>
-            <CTA />
+            <CTA checkout />
           </div>
         </div>
       </section>
 
-      {/* DOBRA 7 — LIZ VALZ */}
-      <section className="section bg-cream">
-        <div className="container">
-          <div className="esp-layout">
-            <div className="esp-photo">
-              <img src={lizEsp} alt="Liz Valz" />
-            </div>
-            <div>
-              <div className="eyebrow">A especialista</div>
-              <Ornament />
-              <h2
-                className="serif"
-                style={{
-                  textAlign: "center",
-                  fontSize: "clamp(28px,5vw,36px)",
-                  fontWeight: 400,
-                  margin: 0,
-                  color: "var(--ink)",
-                }}
-              >
-                Quem é <em style={{ color: "var(--bordeaux)", fontStyle: "normal" }}>Liz Valz</em>?
-              </h2>
-              <div className="highlight-card">
-                <span className="sol-icon">✦</span>
-                <p>
-                  Eu construí um negócio digital que me permite trabalhar com liberdade, ter previsibilidade e manter
-                  uma rotina alinhada com a vida que escolhi viver.
-                </p>
-              </div>
-              <ul className="creds">
-                <li>
-                  <span className="cred-icon">▲</span>
-                  <span>
-                    Mais de <strong>25 milhões</strong> faturados
-                  </span>
-                </li>
-                <li>
-                  <span className="cred-icon">✦</span>
-                  <span>
-                    Criadora do <strong>Sistema de Vendas Invisíveis™</strong>
-                  </span>
-                </li>
-                <li>
-                  <span className="cred-icon">↗</span>
-                  <span>
-                    Criadora da <strong>Aceleradora High Ticket IA</strong>
-                  </span>
-                </li>
-                <li>
-                  <span className="cred-icon">♥</span>
-                  <span>
-                    Milhares de <strong>mulheres impactadas</strong>
-                  </span>
-                </li>
-                <li>
-                  <span className="cred-icon">★</span>
-                  <span>
-                    Dezenas de alunas com <strong>faturamentos expressivos</strong>
-                  </span>
-                </li>
-              </ul>
-              <div className="esp-quote">Eu ensino apenas aquilo que vivo diariamente.</div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* DOBRA 8 — GARANTIA */}
       <section className="section bg-cream">
         <div className="container guarantee">
           <div className="eyebrow">Garantia</div>
           <Ornament />
-          <h2>
+          <h2 className="section-title">
             Seu produto publicado ou seu <em>dinheiro de volta</em>
           </h2>
           <Ornament />
@@ -719,7 +757,7 @@ function Landing() {
           <div className="eyebrow">Perguntas frequentes</div>
           <Ornament />
           <h2
-            className="serif"
+            className="serif section-title"
             style={{
               textAlign: "center",
               fontSize: "clamp(26px,5vw,34px)",
