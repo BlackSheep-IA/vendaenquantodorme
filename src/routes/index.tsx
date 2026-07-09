@@ -708,7 +708,7 @@ function Landing() {
               <div className="offer-promo-lbl">{"\n"}</div>
             </div>
             <div className="offer-progress">
-              <div className="offer-progress-text">Restam poucas vagas neste lote promocional</div>
+              <div className="offer-progress-text">GARANTA SUA VAGA NO LOTE PROMOCIONAL</div>
               <div className="offer-progress-row">
                 <div className="offer-progress-track">
                   <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
