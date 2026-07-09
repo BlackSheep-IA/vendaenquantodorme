@@ -703,7 +703,7 @@ function Landing() {
                 {"\n"} <span className="offer-promo-from-value"></span>
               </div>
               <div className="offer-promo-to">
-                De&nbsp;R$ 49 por <strong>R$ 499&nbsp;</strong>
+                De&nbsp;R$ 499&nbsp;
               </div>
               <div className="offer-promo-lbl">{"\n"}</div>
             </div>
