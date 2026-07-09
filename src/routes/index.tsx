@@ -700,12 +700,12 @@ function Landing() {
             </div>
             <div className="offer-promo">
               <div className="offer-promo-from">
-                De <span className="offer-promo-from-value">R$ 497</span>
+                {"\n"} <span className="offer-promo-from-value"></span>
               </div>
               <div className="offer-promo-to">
-                Por apenas <strong>R$ 49</strong>
+                De&nbsp;R$ 49 por <strong>R$ 499&nbsp;</strong>
               </div>
-              <div className="offer-promo-lbl">Preço do Lote Promocional</div>
+              <div className="offer-promo-lbl">{"\n"}</div>
             </div>
             <div className="offer-progress">
               <div className="offer-progress-text">Restam poucas vagas neste lote promocional</div>
