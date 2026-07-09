@@ -310,10 +310,10 @@
 
 /* ============ DOBRA 2 ============ */
 .vd .quote-mark { font-family: "Cormorant Garamond", serif; font-size: 56px; color: var(--bordeaux); opacity: 0.35; line-height: 0.6; margin-bottom: 10px; }
-.vd .quote { font-family: "Cormorant Garamond", serif; font-size: clamp(19px, 4.5vw, 26px); font-weight: 400; line-height: 1.25; color: var(--ink); text-align: center; }
-.vd .answer-p { font-family: "DM Sans"; font-weight: 300; font-size: 14px; line-height: 1.7; color: var(--brown); text-align: center; margin: 16px auto 22px; max-width: 540px; }
+.vd .quote { font-family: "Cormorant Garamond", serif; font-size: clamp(23px, 5.4vw, 31px); font-weight: 400; line-height: 1.25; color: var(--ink); text-align: center; }
+.vd .answer-p { font-family: "DM Sans"; font-weight: 300; font-size: 17px; line-height: 1.7; color: var(--brown); text-align: center; margin: 16px auto 22px; max-width: 540px; }
 .vd .answer-p strong { font-weight: 500; color: var(--ink); }
-.vd .envelope { display: block; margin: 0 auto 24px; max-width: 310px; filter: drop-shadow(0 8px 20px rgba(28,16,8,0.12)); }
+.vd .envelope { display: block; margin: 0 auto 24px; max-width: 372px; filter: drop-shadow(0 8px 20px rgba(28,16,8,0.12)); }
 .vd .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
 @media (min-width: 768px) { .vd .compare { max-width: 800px; margin: 0 auto 24px; gap: 20px; } }
 .vd .compare-card { background: var(--white); border-radius: 10px; overflow: hidden; }
@@ -623,3 +623,107 @@ transform: translateY(-65px);
 
 /* Full-width sections */
 .vd section { width: 100%; }
+
+/* ============ OFERTA — bloco De/Por + barra de progresso ============ */
+.vd .offer-promo {
+  text-align: center;
+  margin: 4px 0 14px;
+}
+.vd .offer-promo-from {
+  font-family: "DM Sans", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brown);
+  opacity: 0.75;
+}
+.vd .offer-promo-from-value {
+  text-decoration: line-through;
+  text-decoration-color: rgba(122, 28, 46, 0.65);
+  margin-left: 4px;
+}
+.vd .offer-promo-to {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 500;
+  color: var(--bordeaux);
+  line-height: 1.1;
+  margin-top: 4px;
+}
+.vd .offer-promo-to strong { font-weight: 600; }
+.vd .offer-promo-lbl {
+  margin-top: 6px;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.vd .offer-progress {
+  margin: 0 auto 14px;
+  max-width: 420px;
+}
+.vd .offer-progress-text {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brown);
+  text-align: center;
+  margin-bottom: 8px;
+}
+.vd .offer-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.vd .offer-progress-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(196,168,130,0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.vd .offer-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--bordeaux) 0%, var(--bordeaux-dk) 60%, var(--gold) 100%);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+.vd .offer-progress-pct {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bordeaux);
+  min-width: 42px;
+  text-align: right;
+}
+
+/* ============ DESKTOP — títulos e textos padronizados (+10–15% / +10%) ============ */
+@media (min-width: 900px) {
+  .vd .section-title {
+    font-family: "Cormorant Garamond", Georgia, serif !important;
+    font-weight: 400 !important;
+    color: var(--ink) !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+    font-size: clamp(36px, 3.9vw, 58px) !important;
+    margin: 0 !important;
+  }
+  .vd .offer-head p,
+  .vd .guarantee p,
+  .vd .closing p,
+  .vd .sol-text,
+  .vd .day-list li,
+  .vd .tl-items li,
+  .vd .highlight-card p,
+  .vd .esp-bio {
+    font-size: 1.1em;
+  }
+  .vd .answer-p {
+    font-size: 18.7px;
+  }
+}
+
