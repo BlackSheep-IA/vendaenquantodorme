@@ -154,7 +154,7 @@ function CTAMiniProgress() {
 }
 
 function CTA({
-  note = true,
+  note = false,
   hero = false,
   checkout = false,
   showProgress = true,
