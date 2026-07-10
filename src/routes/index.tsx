@@ -858,26 +858,24 @@ function Landing() {
               <span className="orn-diamond" />
             </div>
             <div className="offer-promo">
-              <div className="offer-promo-from">
-                {"\n"} <span className="offer-promo-from-value"></span>
-              </div>
               <div className="offer-promo-to">
-                De&nbsp;R$ 499&nbsp;
+                <span className="offer-promo-from-strike">De&nbsp;R$&nbsp;497</span>
               </div>
-              <div className="offer-promo-lbl">{"\n"}</div>
             </div>
             <div className="offer-progress">
               <div className="offer-progress-text">GARANTA SUA VAGA NO LOTE PROMOCIONAL</div>
               <div className="offer-progress-row">
-                <div className="offer-progress-track">
+                <div className="offer-progress-track offer-progress-track--tall">
                   <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
                 </div>
                 <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
               </div>
+              <div className="offer-progress-caption">Restam poucas vagas neste lote promocional.</div>
             </div>
             <div className="price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
-            <CTA checkout />
+            <CTA checkout showProgress={false} />
+
           </div>
         </div>
       </section>
