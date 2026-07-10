@@ -926,7 +926,9 @@ function Landing() {
             </div>
             <div className="price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
-            <CTA checkout showProgress={false} />
+            <div className="cta-offer-wrap">
+              <CTA checkout showProgress={false} note />
+            </div>
 
           </div>
         </div>
