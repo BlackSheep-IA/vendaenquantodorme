@@ -55,7 +55,8 @@ const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
 // Barra de progresso do lote promocional (edição manual).
 // Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
-const OFFER_PROGRESS = 87;
+const OFFER_PROGRESS = 89;
+
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
