@@ -223,17 +223,7 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 const faqs = [
   [
     "Vai ficar gravado?",
-    "Sim, mas o ingresso para o Workshop ao vivo não inclui acesso às gravações.
-
-Caso deseje, você poderá adquirir separadamente as gravações completas dos 2 dias do Workshop, organizadas em formato de aulas para assistir no seu ritmo.
-
-Essa opção estará disponível durante a compra do seu ingresso ou, no máximo, até o encerramento do período de vendas das gravações.
-
-O investimento nas gravações é de R$ 497 à vista ou em até 12x de R$ 51,40.
-
-Se você deseja participar ao vivo e ainda ter a possibilidade de revisar todo o conteúdo depois, recomendamos incluir as gravações no momento da inscrição para aproveitar a experiência completa.
-
-Caso tenha qualquer dúvida, nosso time de suporte estará à disposição para ajudar pelo WhatsApp.",
+    "Sim, mas o ingresso para o Workshop ao vivo não inclui acesso às gravações.\n\nCaso deseje, você poderá adquirir separadamente as gravações completas dos 2 dias do Workshop, organizadas em formato de aulas para assistir no seu ritmo.\n\nEssa opção estará disponível durante a compra do seu ingresso ou, no máximo, até o encerramento do período de vendas das gravações.\n\nO investimento nas gravações é de R$ 497 à vista ou em até 12x de R$ 51,40.\n\nSe você deseja participar ao vivo e ainda ter a possibilidade de revisar todo o conteúdo depois, recomendamos incluir as gravações no momento da inscrição para aproveitar a experiência completa.\n\nCaso tenha qualquer dúvida, nosso time de suporte estará à disposição para ajudar pelo WhatsApp.",
   ],
   [
     "Eu já tenho produto, serve pra mim?",
