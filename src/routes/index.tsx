@@ -143,14 +143,28 @@ function Ornament() {
     </div>
   );
 }
+function CTAMiniProgress() {
+  return (
+    <div className="cta-progress" aria-hidden="true">
+      <div className="cta-progress-top">{OFFER_PROGRESS}% das vagas preenchidas</div>
+      <div className="cta-progress-track">
+        <div className="cta-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
+      </div>
+      <div className="cta-progress-bottom">Restam poucas vagas neste lote promocional.</div>
+    </div>
+  );
+}
+
 function CTA({
   note = true,
   hero = false,
   checkout = false,
+  showProgress = true,
 }: {
   note?: boolean;
   hero?: boolean;
   checkout?: boolean;
+  showProgress?: boolean;
 }) {
   const cls = `cta cta-btn${hero ? " cta-btn--hero" : ""}`;
   const handleScroll = () => {
@@ -170,10 +184,128 @@ function CTA({
           <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
         </button>
       )}
+      {showProgress && <CTAMiniProgress />}
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
 }
+
+function ProofCarousel({
+  items,
+  variant,
+}: {
+  items: { src: string; alt: string }[];
+  variant: "grid4" | "peek3";
+}) {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const w = el.clientWidth;
+      const idx = Math.round(el.scrollLeft / w);
+      setActive(Math.max(0, Math.min(items.length - 1, idx)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [items.length]);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>(".proof-card");
+    const step = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  // Mouse drag (desktop) for peek3 variant
+  useEffect(() => {
+    if (variant !== "peek3") return;
+    const el = trackRef.current;
+    if (!el) return;
+    let down = false;
+    let startX = 0;
+    let startScroll = 0;
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      down = true;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+      el.setPointerCapture(e.pointerId);
+      el.classList.add("dragging");
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!down) return;
+      el.scrollLeft = startScroll - (e.clientX - startX);
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!down) return;
+      down = false;
+      el.releasePointerCapture(e.pointerId);
+      el.classList.remove("dragging");
+    };
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+    };
+  }, [variant]);
+
+  return (
+    <div className={`proof-carousel proof-${variant}`}>
+      {variant === "peek3" && (
+        <>
+          <button
+            type="button"
+            className="proof-arrow proof-arrow-left"
+            aria-label="Anterior"
+            onClick={() => scrollByCard(-1)}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="proof-arrow proof-arrow-right"
+            aria-label="Próximo"
+            onClick={() => scrollByCard(1)}
+          >
+            ›
+          </button>
+        </>
+      )}
+      <div className="proof-track" ref={trackRef}>
+        {items.map((it, i) => (
+          <div className="proof-card" key={i}>
+            <img src={it.src} alt={it.alt} loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+      <div className="proof-dots" role="tablist" aria-label="Slides">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`proof-dot${i === active ? " is-active" : ""}`}
+            aria-label={`Ir para slide ${i + 1}`}
+            onClick={() => {
+              const el = trackRef.current;
+              if (!el) return;
+              el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
