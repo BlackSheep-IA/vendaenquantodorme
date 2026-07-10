@@ -819,7 +819,34 @@ function Landing() {
         </div>
       </section>
 
+      {/* RESULTADOS — prova social pré-oferta */}
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="eyebrow">Resultados</div>
+          <Ornament />
+          <h2
+            className="serif section-title"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,36px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+              lineHeight: 1.2,
+            }}
+          >
+            Veja o que aconteceu quando elas decidiram <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
+          </h2>
+          <p className="answer-p" style={{ textAlign: "center" }}>
+            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades
+            para seus negócios.
+          </p>
+          <ProofCarousel items={RESULTADOS} variant="peek3" />
+        </div>
+      </section>
+
       {/* OFERTA */}
+
       <section id="oferta" className="section bg-cream-dk">
         <div className="container offer-head">
           <div className="eyebrow">Oferta</div>
