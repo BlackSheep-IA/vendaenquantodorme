@@ -1,79 +1,102 @@
 # Ajustes finais da Landing Page
 
-Escopo: reorganização, hierarquia visual e refinamentos. Sem novas seções, sem remover nada, sem mudar identidade visual, paleta, componentes ou animações. Ordem idêntica no Desktop e Mobile.
+Escopo restrito: adicionar duas novas seções de prova social, refinar barra/oferta, adicionar mini-barra sob todos os CTAs e centralizar o envelope no mobile. Nenhuma outra parte é modificada.
 
-## 1. Nova ordem das seções (Desktop + Mobile)
+## 1. Imagens
 
-Ordem atual → nova ordem em `src/routes/index.tsx` (função `Landing`):
+Serão adicionadas em `src/assets/images/` com estes nomes:
 
-```text
-Atual                                Nova
-1. Hero                              1. Hero
-2. Talvez você esteja pensando       2. Talvez você esteja pensando
-3. O Caminho                         3. A Especialista (Liz Valz)
-4. O que vamos construir             4. O Caminho
-5. Cronograma                        5. O que vamos construir
-6. Oferta                            6. Cronograma
-7. A Especialista (Liz Valz)         7. Oferta
-8. Garantia                          8. Garantia
-9. FAQ                               9. FAQ
-10. Dois dias… (fechamento)          10. Dois dias… (fechamento) — inalterado
+- `depoimento-liz-01.png` … `depoimento-liz-04.png` (4)
+- `resultado-01.png` … `resultado-06.png` (6) — 
+
+Cada seção lê um array central no topo do arquivo, então adicionar/remover prints no futuro = editar o array, sem tocar em layout.
+
+```ts
+const DEPOIMENTOS_LIZ = [depoimento01, depoimento02, depoimento03, depoimento04];
+const RESULTADOS = [resultado01, ..., resultado06];
 ```
 
-Feito reordenando os blocos `<section>` correspondentes — sem duplicar nada. "Dois dias. Um produto…" permanece exatamente como está, encerrando a página antes do rodapé (conforme resposta na pergunta de esclarecimento).
+Se algum arquivo não existir no momento do build, o import quebra — então só adiciono os imports que corresponderem aos arquivos efetivamente presentes na pasta.
 
-## 2. Seção "Talvez você esteja pensando…"
+## 2. Nova seção — Prova Social da Liz
 
-Apenas dois ajustes visuais nesta seção (afeta desktop e mobile):
+Inserida **logo após "A Especialista"**, antes de "O Caminho".
 
-- aumentar aproximadamente 20% apenas o ícone do envelope e o texto do card, mantendo a largura do card e toda a composição visual.
+- Título (`.section-title`): *Quem conhece a Liz sabe a diferença que ela faz.*
+- Subtítulo (`.answer-p`): *Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar seu conhecimento em um ativo digital.*
+- **Desktop (≥900px):** grid de 4 colunas, As quatro imagens devem possuir exatamente o mesmo tamanho visual e alinhamento, preservando uma composição equilibrada.`gap` consistente com o resto da página, cards com `border-radius`, `box-shadow` muito discreta, `object-fit: contain` para preservar proporção original, largura da imagem limitada (sem ampliar excessivamente). Os prints devem permanecer proporcionais ao layout e não devem ocupar excesso de espaço vertical. O objetivo é funcionar como prova social mantendo uma aparência elegante e leve.
+- **Mobile:** carrossel horizontal via CSS scroll-snap (`overflow-x:auto; scroll-snap-type: x mandatory`) — 1 print por vez, swipe nativo, sem JS de autoplay, indicadores discretos (dots) atualizados via `IntersectionObserver`.
 
-Alinhamentos, proporções e espaçamentos preservados.
+## 3. Nova seção — Resultados
 
-## 3. Seção "Oferta" — acréscimos dentro do card existente
+Utilizar as 6 imagens de resultados fornecidas.
 
-Não criar novo card. Manter benefícios, CTA, selo de acesso imediato e o preço atual. Adicionar, imediatamente acima do preço "R$ 49,00":
+Inserida **logo após o Cronograma e antes da Oferta**.
 
-- Linha "De R$ 497" (riscada, discreta).
-- Linha "Por apenas R$ 49" (destaque bordô/serif, hierarquia forte).
-- Legenda "Preço do Lote Promocional".
+- Título: *Veja o que aconteceu quando elas decidiram dar o primeiro passo.*
+- Subtítulo: *Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades para seus negócios.*
+- **Desktop:** carrossel horizontal premium mostrando ~3 imagens completas + ~20% da 4ª (usando `flex-basis: calc((100% - gaps) / 3.2)` + scroll-snap).  Manter o mesmo tamanho visual utilizado nos prints da primeira seção, evitando ampliar excessivamente as imagens. Setas discretas (◀ ▶) que fazem `scrollBy` da largura de um card, drag com mouse (pointer events → `scrollLeft`), loop infinito por clonagem dos primeiros/últimos itens no efeito de wrap, sem autoplay, transição suave (`scroll-behavior: smooth`).
+- **Mobile:** mesmo container, `flex-basis: 100%`, 1 imagem por vez, swipe nativo, dots.
 
-Logo abaixo dessa área, uma barra premium de progresso:
+Componente reutilizável `Carousel` que aceita `imagens`, `perView` (desktop) e `peek` (0.2). Assim, futuras seções reaproveitam.
 
-- Texto acima: "Restam poucas vagas neste lote promocional".
-- Barra com preenchimento controlado por **uma única variável** editável manualmente no topo do arquivo: `const OFFER_PROGRESS = 87;` (usada como `width: ${OFFER_PROGRESS}%`).
-- Ao lado direito da barra, apenas o rótulo `87%` (derivado da mesma variável). Sem contagem de vagas, sem API, sem integração.
-- O valor de `OFFER_PROGRESS` deve ser utilizado simultaneamente para:
-  - largura da barra;
-  - percentual exibido ao lado da barra.
+## 4. Ajustes da Oferta
 
-Estilos da barra em `src/styles.css` reutilizando tokens existentes (bordô + dourado) para manter a identidade premium.
+- `const OFFER_PROGRESS = 89% das vagas preenchidas;` (era 87). Uma única fonte de verdade — controla largura + rótulo.
+- Barra principal: altura +~40% (`--offer-bar-h: 14px` → `20px`), mantendo largura, gradiente, glow e animação existentes.
+- Texto **acima** da barra permanece; **abaixo** da barra adicionar linha: *Restam poucas vagas neste lote promocional.* (nova classe `.offer-progress-caption`).
+- Preço anterior "De R$ 497": aumentar `font-size` ~25% e aplicar um risco elegante (`text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in oklab, var(--ink) 55%, transparent);`), mantendo cor/família atuais.
 
-## 4. Ajustes tipográficos — SOMENTE Desktop
+## 5. Mini barra de progresso sob todos os CTAs
 
-Padronizar todos os `h2` de seção (Talvez você esteja pensando, A Especialista, O Caminho, O que vamos construir, Cronograma, Oferta, Garantia, FAQ) para:
+Novo subcomponente `<CTAProgress />` renderizado **imediatamente abaixo** de cada `<CTA />` (tanto os que fazem scroll até a oferta quanto o de checkout).
 
-- Mesma família (serif já usada), mesmo peso (400), mesma cor (`--ink`), mesma hierarquia.
-- Tamanho +10 a 15% em relação ao atual, aplicado via media query `@media (min-width: 900px)` em `src/styles.css` usando uma classe utilitária unificada `.section-title` (aplicada aos títulos que hoje usam estilos inline divergentes).
-- Textos descritivos (parágrafos de apoio `.answer-p`, `.section p`, etc.) +~10% no desktop, mantendo a mesma largura de leitura (`max-width` inalterado).
+- Usa a mesma `OFFER_PROGRESS`.
+- Layout: barra compacta mantendo a mesma identidade visual da barra principal, mesmo gradiente/glow/animação da barra principal, largura = A barra deverá possuir a mesma largura visual do botão imediatamente acima.
+- Texto acima (pequeno): *89% das vagas preenchidas* • Texto abaixo (menor ainda): *Restam poucas vagas neste lote promocional.*
+- Puramente visual; não altera comportamento dos botões.
 
-Mobile: nenhuma alteração de tipografia — media query garante que só o breakpoint desktop recebe os aumentos.
+Para evitar duplicação, a mini-barra fica dentro do próprio componente `CTA` controlada por prop `showProgress` (default `true`). O CTA principal da Oferta usa `showProgress={false}` (já há a barra grande logo acima).
 
-## 5. CTAs — smooth scroll até a Oferta
+## 6. Envelope — centralização no mobile
 
-- Adicionar `id="oferta"` na `<section>` da Oferta.
-- No componente `CTA`, distinguir dois modos:
-  - Todos os botões de compra distribuídos pela Landing Page devem realizar rolagem suave até a seção **Oferta**. Apenas o botão principal localizado dentro da Oferta deve abrir o checkout da Hotmart.
-  - `CTA` dentro do card da Oferta: continua sendo `<a href={CTA_URL} target="_blank">` para o checkout Hotmart.
-- Implementado via prop nova `checkout?: boolean` no componente `CTA`. Todas as chamadas atuais viram scroll; apenas a chamada dentro do bloco `.pricing` recebe `checkout`. 
-- Não aumentar a altura do card desnecessariamente.
-  Os novos elementos ("De R$497", barra de progresso etc.) devem ser integrados ao layout existente preservando a elegância e a proporção visual.
+Na seção "Talvez você esteja pensando...", adicionar em `@media (max-width: 899px)`:
 
-## 6. O que NÃO muda
+```css
+.envelope { display: block; margin-left: auto; margin-right: auto; }
+```
 
-Identidade visual, paleta, animações, componentes, responsividade, espaçamentos gerais, textos (exceto os acréscimos da Oferta), imagens, hero, badges e footer permanecem intactos.
+Desktop inalterado.
+
+## 7. O que NÃO muda
+
+Hero, paleta, tipografia, animações, CTAs (comportamento), espaçamentos das seções existentes, textos originais, ordem das demais seções, responsividade geral.
+
+## Qualidade visual
+
+Os dois novos blocos de prova social deverão parecer elementos nativos da Landing Page.
+
+Manter exatamente a mesma identidade visual existente:
+
+- tipografia;
+- espaçamentos;
+- bordas;
+- sombras;
+- animações;
+- ritmo visual.
+
+O objetivo é que os novos componentes pareçam ter feito parte do projeto desde o início.
 
 ## Arquivos alterados
 
-- `src/routes/index.tsx` — reordenação das seções, `CTA` com smooth-scroll, bloco De/Por + barra de progresso dentro do `.pricing`, `id="oferta"`, classe `.section-title` nos h2, constante `OFFER_PROGRESS`.
-- `src/styles.css` — classe `.section-title` (desktop-only bump), aumento desktop dos parágrafos, tamanho +20% de `.envelope` e texto do card na dobra 2, estilos da barra de progresso premium, estilos do bloco De/Por.
+- `src/routes/index.tsx` — 2 novas `<section>`s posicionadas, imports das imagens, arrays `DEPOIMENTOS_LIZ` / `RESULTADOS`, componente `Carousel`, `OFFER_PROGRESS = 89`, caption abaixo da barra, `CTAProgress` dentro do `CTA`.
+- `src/styles.css` — grid de depoimentos, carrossel (scroll-snap + peek + dots + setas), altura da barra principal +40%, estilo do preço "De R$ 497" (tamanho +25% + line-through), mini-barra sob CTAs, centralização mobile do `.envelope`.
+- `src/assets/images/` — recebe os 4 + 6 prints (fornecidos pelo usuário).
+
+## Detalhes técnicos
+
+- Carrossel implementado sem dependências novas (CSS scroll-snap + pequeno hook para dots/drag/loop). Evita bibliotecas pesadas e mantém o bundle.
+- Loop infinito no desktop feito por "virtualização simples": ao chegar no fim, salta silenciosamente para o clone equivalente no início (padrão `scrollLeft` swap dentro de `onScroll` com debounce).
+- Drag: `pointerdown` grava `startX`/`scrollLeft`, `pointermove` aplica delta, `pointerup` libera — respeita `touch-action: pan-y` no mobile para não conflitar com swipe nativo.
+- Imagens usam `loading="lazy"` e `decoding="async"`; `width`/`height` intrínsecos preservados para evitar CLS.
+- Os títulos e subtítulos das duas novas seções devem utilizar exatamente a mesma tipografia e hierarquia visual dos demais títulos da Landing Page, preservando a consistência do design.

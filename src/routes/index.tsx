@@ -1,9 +1,35 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import lizHero from "@/assets/images/liz-hero.jpeg";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
 import lizCrono from "@/assets/images/liz-cronograma.jpeg";
 import envelope from "@/assets/images/envelope.png";
+import dep01 from "@/assets/images/depoimento-liz-01.svg";
+import dep02 from "@/assets/images/depoimento-liz-02.svg";
+import dep03 from "@/assets/images/depoimento-liz-03.svg";
+import dep04 from "@/assets/images/depoimento-liz-04.svg";
+import res01 from "@/assets/images/resultado-01.svg";
+import res02 from "@/assets/images/resultado-02.svg";
+import res03 from "@/assets/images/resultado-03.svg";
+import res04 from "@/assets/images/resultado-04.svg";
+import res05 from "@/assets/images/resultado-05.svg";
+import res06 from "@/assets/images/resultado-06.svg";
+
+const DEPOIMENTOS_LIZ: { src: string; alt: string }[] = [
+  { src: dep01, alt: "Depoimento sobre Liz Valz — 1" },
+  { src: dep02, alt: "Depoimento sobre Liz Valz — 2" },
+  { src: dep03, alt: "Depoimento sobre Liz Valz — 3" },
+  { src: dep04, alt: "Depoimento sobre Liz Valz — 4" },
+];
+const RESULTADOS: { src: string; alt: string }[] = [
+  { src: res01, alt: "Resultado de aluna — 1" },
+  { src: res02, alt: "Resultado de aluna — 2" },
+  { src: res03, alt: "Resultado de aluna — 3" },
+  { src: res04, alt: "Resultado de aluna — 4" },
+  { src: res05, alt: "Resultado de aluna — 5" },
+  { src: res06, alt: "Resultado de aluna — 6" },
+];
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -29,7 +55,8 @@ const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
 // Barra de progresso do lote promocional (edição manual).
 // Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
-const OFFER_PROGRESS = 87;
+const OFFER_PROGRESS = 89;
+
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -116,14 +143,28 @@ function Ornament() {
     </div>
   );
 }
+function CTAMiniProgress() {
+  return (
+    <div className="cta-progress" aria-hidden="true">
+      <div className="cta-progress-top">{OFFER_PROGRESS}% das vagas preenchidas</div>
+      <div className="cta-progress-track">
+        <div className="cta-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
+      </div>
+      <div className="cta-progress-bottom">Restam poucas vagas neste lote promocional.</div>
+    </div>
+  );
+}
+
 function CTA({
   note = true,
   hero = false,
   checkout = false,
+  showProgress = true,
 }: {
   note?: boolean;
   hero?: boolean;
   checkout?: boolean;
+  showProgress?: boolean;
 }) {
   const cls = `cta cta-btn${hero ? " cta-btn--hero" : ""}`;
   const handleScroll = () => {
@@ -143,10 +184,128 @@ function CTA({
           <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
         </button>
       )}
+      {showProgress && <CTAMiniProgress />}
       {note && <div className="cta-note">🔒 Vaga garantida e acesso imediato</div>}
     </div>
   );
 }
+
+function ProofCarousel({
+  items,
+  variant,
+}: {
+  items: { src: string; alt: string }[];
+  variant: "grid4" | "peek3";
+}) {
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const w = el.clientWidth;
+      const idx = Math.round(el.scrollLeft / w);
+      setActive(Math.max(0, Math.min(items.length - 1, idx)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [items.length]);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>(".proof-card");
+    const step = card ? card.offsetWidth + 20 : el.clientWidth * 0.8;
+    el.scrollBy({ left: dir * step, behavior: "smooth" });
+  };
+
+  // Mouse drag (desktop) for peek3 variant
+  useEffect(() => {
+    if (variant !== "peek3") return;
+    const el = trackRef.current;
+    if (!el) return;
+    let down = false;
+    let startX = 0;
+    let startScroll = 0;
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") return;
+      down = true;
+      startX = e.clientX;
+      startScroll = el.scrollLeft;
+      el.setPointerCapture(e.pointerId);
+      el.classList.add("dragging");
+    };
+    const onMove = (e: PointerEvent) => {
+      if (!down) return;
+      el.scrollLeft = startScroll - (e.clientX - startX);
+    };
+    const onUp = (e: PointerEvent) => {
+      if (!down) return;
+      down = false;
+      el.releasePointerCapture(e.pointerId);
+      el.classList.remove("dragging");
+    };
+    el.addEventListener("pointerdown", onDown);
+    el.addEventListener("pointermove", onMove);
+    el.addEventListener("pointerup", onUp);
+    el.addEventListener("pointercancel", onUp);
+    return () => {
+      el.removeEventListener("pointerdown", onDown);
+      el.removeEventListener("pointermove", onMove);
+      el.removeEventListener("pointerup", onUp);
+      el.removeEventListener("pointercancel", onUp);
+    };
+  }, [variant]);
+
+  return (
+    <div className={`proof-carousel proof-${variant}`}>
+      {variant === "peek3" && (
+        <>
+          <button
+            type="button"
+            className="proof-arrow proof-arrow-left"
+            aria-label="Anterior"
+            onClick={() => scrollByCard(-1)}
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className="proof-arrow proof-arrow-right"
+            aria-label="Próximo"
+            onClick={() => scrollByCard(1)}
+          >
+            ›
+          </button>
+        </>
+      )}
+      <div className="proof-track" ref={trackRef}>
+        {items.map((it, i) => (
+          <div className="proof-card" key={i}>
+            <img src={it.src} alt={it.alt} loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+      <div className="proof-dots" role="tablist" aria-label="Slides">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            className={`proof-dot${i === active ? " is-active" : ""}`}
+            aria-label={`Ir para slide ${i + 1}`}
+            onClick={() => {
+              const el = trackRef.current;
+              if (!el) return;
+              el.scrollTo({ left: i * el.clientWidth, behavior: "smooth" });
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
@@ -454,7 +613,34 @@ function Landing() {
         </div>
       </section>
 
+      {/* PROVA SOCIAL DA LIZ */}
+      <section className="section bg-cream-dk">
+        <div className="container">
+          <div className="eyebrow">Prova social</div>
+          <Ornament />
+          <h2
+            className="serif section-title"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,36px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+              lineHeight: 1.2,
+            }}
+          >
+            Quem conhece a Liz sabe a <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
+          </h2>
+          <p className="answer-p" style={{ textAlign: "center" }}>
+            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para
+            transformar seu conhecimento em um ativo digital.
+          </p>
+          <ProofCarousel items={DEPOIMENTOS_LIZ} variant="grid4" />
+        </div>
+      </section>
+
       {/* O CAMINHO */}
+
       <section className="section bg-cream-dk">
         <div className="container">
           <div className="eyebrow">O caminho</div>
@@ -660,7 +846,34 @@ function Landing() {
         </div>
       </section>
 
+      {/* RESULTADOS — prova social pré-oferta */}
+      <section className="section bg-cream">
+        <div className="container">
+          <div className="eyebrow">Resultados</div>
+          <Ornament />
+          <h2
+            className="serif section-title"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,36px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+              lineHeight: 1.2,
+            }}
+          >
+            Veja o que aconteceu quando elas decidiram <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
+          </h2>
+          <p className="answer-p" style={{ textAlign: "center" }}>
+            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades
+            para seus negócios.
+          </p>
+          <ProofCarousel items={RESULTADOS} variant="peek3" />
+        </div>
+      </section>
+
       {/* OFERTA */}
+
       <section id="oferta" className="section bg-cream-dk">
         <div className="container offer-head">
           <div className="eyebrow">Oferta</div>
@@ -699,26 +912,24 @@ function Landing() {
               <span className="orn-diamond" />
             </div>
             <div className="offer-promo">
-              <div className="offer-promo-from">
-                {"\n"} <span className="offer-promo-from-value"></span>
-              </div>
               <div className="offer-promo-to">
-                De&nbsp;R$ 499&nbsp;
+                <span className="offer-promo-from-strike">De&nbsp;R$&nbsp;497</span>
               </div>
-              <div className="offer-promo-lbl">{"\n"}</div>
             </div>
             <div className="offer-progress">
               <div className="offer-progress-text">GARANTA SUA VAGA NO LOTE PROMOCIONAL</div>
               <div className="offer-progress-row">
-                <div className="offer-progress-track">
+                <div className="offer-progress-track offer-progress-track--tall">
                   <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
                 </div>
                 <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
               </div>
+              <div className="offer-progress-caption">Restam poucas vagas neste lote promocional.</div>
             </div>
             <div className="price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
-            <CTA checkout />
+            <CTA checkout showProgress={false} />
+
           </div>
         </div>
       </section>
