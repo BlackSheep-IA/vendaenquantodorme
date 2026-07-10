@@ -4,16 +4,15 @@ import lizHero from "@/assets/images/liz-hero.jpeg";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
 import lizCrono from "@/assets/images/liz-cronograma.jpeg";
 import envelope from "@/assets/images/envelope.png";
-import dep01 from "@/assets/images/depoimento-liz-01.svg";
-import dep02 from "@/assets/images/depoimento-liz-02.svg";
-import dep03 from "@/assets/images/depoimento-liz-03.svg";
-import dep04 from "@/assets/images/depoimento-liz-04.svg";
-import res01 from "@/assets/images/resultado-01.svg";
-import res02 from "@/assets/images/resultado-02.svg";
-import res03 from "@/assets/images/resultado-03.svg";
-import res04 from "@/assets/images/resultado-04.svg";
-import res05 from "@/assets/images/resultado-05.svg";
-import res06 from "@/assets/images/resultado-06.svg";
+import dep01 from "@/assets/images/depoimento-liz-01.jpeg";
+import dep02 from "@/assets/images/depoimento-liz-02.jpeg";
+import dep03 from "@/assets/images/depoimento-liz-03.jpeg";
+import dep04 from "@/assets/images/depoimento-liz-04.jpeg";
+import res02 from "@/assets/images/resultado-02.jpeg";
+import res03 from "@/assets/images/resultado-03.jpeg";
+import res04 from "@/assets/images/resultado-04.jpeg";
+import res05 from "@/assets/images/resultado-05.jpeg";
+import res06 from "@/assets/images/resultado-06.jpeg";
 
 const DEPOIMENTOS_LIZ: { src: string; alt: string }[] = [
   { src: dep01, alt: "Depoimento sobre Liz Valz — 1" },
@@ -22,12 +21,11 @@ const DEPOIMENTOS_LIZ: { src: string; alt: string }[] = [
   { src: dep04, alt: "Depoimento sobre Liz Valz — 4" },
 ];
 const RESULTADOS: { src: string; alt: string }[] = [
-  { src: res01, alt: "Resultado de aluna — 1" },
-  { src: res02, alt: "Resultado de aluna — 2" },
-  { src: res03, alt: "Resultado de aluna — 3" },
-  { src: res04, alt: "Resultado de aluna — 4" },
-  { src: res05, alt: "Resultado de aluna — 5" },
-  { src: res06, alt: "Resultado de aluna — 6" },
+  { src: res02, alt: "Resultado de aluna — 1" },
+  { src: res03, alt: "Resultado de aluna — 2" },
+  { src: res04, alt: "Resultado de aluna — 3" },
+  { src: res05, alt: "Resultado de aluna — 4" },
+  { src: res06, alt: "Resultado de aluna — 5" },
 ];
 
 
@@ -156,7 +154,7 @@ function CTAMiniProgress() {
 }
 
 function CTA({
-  note = true,
+  note = false,
   hero = false,
   checkout = false,
   showProgress = true,
@@ -928,7 +926,9 @@ function Landing() {
             </div>
             <div className="price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
-            <CTA checkout showProgress={false} />
+            <div className="cta-offer-wrap">
+              <CTA checkout showProgress={false} note />
+            </div>
 
           </div>
         </div>
