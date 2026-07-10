@@ -28,7 +28,6 @@ const RESULTADOS: { src: string; alt: string }[] = [
   { src: res06, alt: "Resultado de aluna — 5" },
 ];
 
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -54,7 +53,6 @@ const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 // Barra de progresso do lote promocional (edição manual).
 // Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
 const OFFER_PROGRESS = 89;
-
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -188,13 +186,7 @@ function CTA({
   );
 }
 
-function ProofCarousel({
-  items,
-  variant,
-}: {
-  items: { src: string; alt: string }[];
-  variant: "grid4" | "peek3";
-}) {
+function ProofCarousel({ items, variant }: { items: { src: string; alt: string }[]; variant: "grid4" | "peek3" }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [active, setActive] = useState(0);
 
@@ -303,7 +295,6 @@ function ProofCarousel({
     </div>
   );
 }
-
 
 const heroChecklist = ["Oferta criada", "Funil estruturado", "IA configurada", "Mecanismo de ascensão pronto"];
 
@@ -627,11 +618,12 @@ function Landing() {
               lineHeight: 1.2,
             }}
           >
-            Quem conhece a Liz sabe a <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
+            Quem conhece a Liz sabe a{" "}
+            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
           </h2>
           <p className="answer-p" style={{ textAlign: "center" }}>
-            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para
-            transformar seu conhecimento em um ativo digital.
+            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar
+            seu conhecimento em um ativo digital.
           </p>
           <ProofCarousel items={DEPOIMENTOS_LIZ} variant="grid4" />
         </div>
@@ -860,11 +852,12 @@ function Landing() {
               lineHeight: 1.2,
             }}
           >
-            Veja o que aconteceu quando elas decidiram <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
+            Veja o que aconteceu quando elas decidiram{" "}
+            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
           </h2>
           <p className="answer-p" style={{ textAlign: "center" }}>
-            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades
-            para seus negócios.
+            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades para
+            seus negócios.
           </p>
           <ProofCarousel items={RESULTADOS} variant="peek3" />
         </div>
@@ -924,16 +917,14 @@ function Landing() {
               </div>
               <div className="offer-progress-caption">Restam poucas vagas neste lote promocional.</div>
             </div>
-            <div className="price-lbl">POR APENAS</div>
+            <div className="offer-price-lbl">POR APENAS</div>
             <div className="price-amount">R$ 49,00</div>
             <div className="cta-offer-wrap">
               <CTA checkout showProgress={false} note />
             </div>
-
           </div>
         </div>
       </section>
-
 
       {/* DOBRA 8 — GARANTIA */}
       <section className="section bg-cream">
