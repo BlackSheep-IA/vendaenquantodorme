@@ -1793,7 +1793,7 @@
 /* Mobile/tablet — 1 por vez, mais largo, imagem inteira visível */
 @media (max-width: 899px) {
   .vd .proof-card {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 4.3;
     max-width: 92vw;
     margin: 0 auto;
   }
