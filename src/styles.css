@@ -1696,7 +1696,7 @@
   box-shadow:
     0 6px 20px rgba(28, 16, 8, 0.08),
     0 1px 3px rgba(28, 16, 8, 0.05);
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 4 / 3;
 }
 .vd .proof-card img {
   display: block;
@@ -1723,7 +1723,7 @@
   .vd .proof-peek3 .proof-card {
     flex: 0 0 calc((100% - 120px - 44px) / 3);
     scroll-snap-align: start;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 4 / 3;
   }
   .vd .proof-grid4 .proof-dots,
   .vd .proof-peek3 .proof-dots {
@@ -1793,7 +1793,7 @@
 /* Mobile/tablet — 1 por vez, mais largo, imagem inteira visível */
 @media (max-width: 899px) {
   .vd .proof-card {
-    aspect-ratio: 4 / 4.1;
+    aspect-ratio: 4 / 3;
     max-width: 92vw;
     margin: 0 auto;
   }
