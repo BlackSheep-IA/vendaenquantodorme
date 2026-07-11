@@ -1843,8 +1843,8 @@
 }
 @media (max-width: 599px) {
   .vd .proof-card {
-    max-height: 380px;
-    height: 380px;
+    max-height: 320px;
+    height: 320px;
   }
 }
 
