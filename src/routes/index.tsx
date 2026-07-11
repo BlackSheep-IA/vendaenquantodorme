@@ -381,7 +381,7 @@ const faqs = [
   ],
   [
     "Como eu acesso?",
-    "Pelo Zoom, no link enviado por e-mail. Basta clicar e entrar — ao vivo, com todas as participantes.",
+    "O acesso será enviado pelo grupo oficial da comunidade no WhatsApp e também ficará disponível na área de membros da plataforma para que você possa assistir quando desejar.",
   ],
   [
     "Funciona pra minha profissão?",
