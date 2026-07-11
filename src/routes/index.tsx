@@ -250,26 +250,24 @@ function ProofCarousel({ items, variant }: { items: { src: string; alt: string }
 
   return (
     <div className={`proof-carousel proof-${variant}`}>
-      {variant === "peek3" && (
-        <>
-          <button
-            type="button"
-            className="proof-arrow proof-arrow-left"
-            aria-label="Anterior"
-            onClick={() => scrollByCard(-1)}
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            className="proof-arrow proof-arrow-right"
-            aria-label="Próximo"
-            onClick={() => scrollByCard(1)}
-          >
-            ›
-          </button>
-        </>
-      )}
+      <>
+        <button
+          type="button"
+          className="proof-arrow proof-arrow-left"
+          aria-label="Anterior"
+          onClick={() => scrollByCard(-1)}
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          className="proof-arrow proof-arrow-right"
+          aria-label="Próximo"
+          onClick={() => scrollByCard(1)}
+        >
+          ›
+        </button>
+      </>
       <div className="proof-track" ref={trackRef}>
         {items.map((it, i) => (
           <div className="proof-card" key={i}>
