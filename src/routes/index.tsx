@@ -765,8 +765,7 @@ function Landing() {
             <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
           </h2>
           <p className="answer-p" style={{ textAlign: "center" }}>
-            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar
-            seu conhecimento em um ativo digital.
+            {"\n"}
           </p>
           <ProofCarousel items={DEPOIMENTOS_LIZ} variant="grid4" />
         </div>
