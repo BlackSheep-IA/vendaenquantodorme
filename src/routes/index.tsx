@@ -455,85 +455,34 @@ function Landing() {
             </div>
           </div>
         </div>
-        <div className="container">
-          <div className="metrics">
-            <div className="metric">
-              <div className="metric-val">5.200+</div>
-              <div className="metric-lbl">Alunas formadas</div>
-            </div>
-            <div className="metric">
-              <div className="metric-val">97%</div>
-              <div className="metric-lbl">Aprovação</div>
-            </div>
-            <div className="metric">
-              <div className="metric-val">R$49,00</div>
-              <div className="metric-lbl">Lote 03</div>
-            </div>
-            <div className="metric">
-              <div className="metric-val">2 dias</div>
-              <div className="metric-lbl">Produto no ar</div>
-            </div>
-          </div>
-        </div>
       </section>
 
-      {/* DOBRA 2 — OBJEÇÃO */}
+      {/* DEPOIMENTOS (antiga seção RESULTADOS) */}
       <section className="section bg-cream">
         <div className="container">
-          <div className="eyebrow">Talvez você esteja pensando</div>
-          <Ornament />
-          <div style={{ textAlign: "center" }} className="quote-mark">
-            "
-          </div>
-          <div className="quote">
-            Eu já paguei caro em mentorias e continuei me virando sozinha, sem sair do lugar. Por que com você seria
-            diferente?
-          </div>
-          <p className="answer-p">
-            Porque nas outras você recebeu informação. <strong>Aqui você constrói o ativo.</strong> Existe uma diferença
-            enorme entre assistir alguém explicando uma estratégia e sair com ela funcionando.
+          <h2
+            className="serif section-title"
+            style={{
+              textAlign: "center",
+              fontSize: "clamp(26px,5vw,36px)",
+              fontWeight: 400,
+              margin: 0,
+              color: "var(--ink)",
+              lineHeight: 1.2,
+            }}
+          >
+            Veja o que aconteceu quando elas decidiram{" "}
+            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
+          </h2>
+          <p className="answer-p" style={{ textAlign: "center" }}>
+            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades para
+            seus negócios.
           </p>
-          <img src={envelope} alt="Você sai com um produto pronto para vender" className="envelope" />
-          <div className="compare">
-            <div className="compare-card">
-              <div className="compare-head left">O que normalmente acontece</div>
-              <ul className="compare-list">
-                {[
-                  "Você assiste às aulas",
-                  "Faz anotações",
-                  "Sai inspirada",
-                  "Volta para a rotina",
-                  "Adia a execução",
-                ].map((t) => (
-                  <li key={t}>
-                    <XIcon />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="compare-card">
-              <div className="compare-head right">O que acontece no Workshop</div>
-              <ul className="compare-list">
-                {[
-                  "Você cria sua oferta",
-                  "Estrutura seu funil",
-                  "Configura suas IAs",
-                  "Publica durante o evento",
-                  "Sai com produto pronto",
-                ].map((t) => (
-                  <li key={t}>
-                    <CheckBordeaux />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <ProofCarousel items={RESULTADOS} variant="peek3" />
         </div>
       </section>
 
-      {/* A ESPECIALISTA */}
+      {/* QUEM É LIZ VALZ (antiga A ESPECIALISTA) */}
       <section className="section bg-cream">
         <div className="container">
           <div className="esp-layout">
@@ -541,8 +490,6 @@ function Landing() {
               <img src={lizEsp} alt="Liz Valz" />
             </div>
             <div>
-              <div className="eyebrow">A especialista</div>
-              <Ornament />
               <h2
                 className="serif section-title"
                 style={{
@@ -600,39 +547,9 @@ function Landing() {
         </div>
       </section>
 
-      {/* PROVA SOCIAL DA LIZ */}
+      {/* MÉTODO (antiga O CAMINHO) */}
       <section className="section bg-cream-dk">
         <div className="container">
-          <div className="eyebrow">Prova social</div>
-          <Ornament />
-          <h2
-            className="serif section-title"
-            style={{
-              textAlign: "center",
-              fontSize: "clamp(26px,5vw,36px)",
-              fontWeight: 400,
-              margin: 0,
-              color: "var(--ink)",
-              lineHeight: 1.2,
-            }}
-          >
-            Quem conhece a Liz sabe a{" "}
-            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
-          </h2>
-          <p className="answer-p" style={{ textAlign: "center" }}>
-            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar
-            seu conhecimento em um ativo digital.
-          </p>
-          <ProofCarousel items={DEPOIMENTOS_LIZ} variant="grid4" />
-        </div>
-      </section>
-
-      {/* O CAMINHO */}
-
-      <section className="section bg-cream-dk">
-        <div className="container">
-          <div className="eyebrow">O caminho</div>
-          <Ornament />
           <h2
             className="serif section-title"
             style={{
@@ -643,7 +560,7 @@ function Landing() {
               color: "var(--ink)",
             }}
           >
-            Um sistema que vende <em style={{ color: "var(--bordeaux)" }}>enquanto você dorme</em>
+            O sistema que vende <em style={{ color: "var(--bordeaux)" }}>enquanto você dorme</em>
           </h2>
           <ul className="solutions">
             <li>
@@ -677,8 +594,6 @@ function Landing() {
       {/* O QUE VAMOS CONSTRUIR */}
       <section className="section bg-cream">
         <div className="container">
-          <div className="eyebrow">O que vamos construir</div>
-          <Ornament />
           <h2
             className="serif section-title"
             style={{
@@ -771,8 +686,6 @@ function Landing() {
               </div>
             </div>
             <div>
-              <div className="eyebrow">Cronograma</div>
-              <Ornament />
               <h2
                 className="serif section-title"
                 style={{
@@ -834,11 +747,9 @@ function Landing() {
         </div>
       </section>
 
-      {/* RESULTADOS — prova social pré-oferta */}
-      <section className="section bg-cream">
+      {/* PROVA SOCIAL DA LIZ */}
+      <section className="section bg-cream-dk">
         <div className="container">
-          <div className="eyebrow">Resultados</div>
-          <Ornament />
           <h2
             className="serif section-title"
             style={{
@@ -850,23 +761,20 @@ function Landing() {
               lineHeight: 1.2,
             }}
           >
-            Veja o que aconteceu quando elas decidiram{" "}
-            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>dar o primeiro passo</em>.
+            Quem conhece a Liz sabe a{" "}
+            <em style={{ color: "var(--bordeaux)", fontStyle: "italic" }}>diferença que ela faz</em>.
           </h2>
           <p className="answer-p" style={{ textAlign: "center" }}>
-            Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades para
-            seus negócios.
+            Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar
+            seu conhecimento em um ativo digital.
           </p>
-          <ProofCarousel items={RESULTADOS} variant="peek3" />
+          <ProofCarousel items={DEPOIMENTOS_LIZ} variant="grid4" />
         </div>
       </section>
 
       {/* OFERTA */}
-
       <section id="oferta" className="section bg-cream-dk">
         <div className="container offer-head">
-          <div className="eyebrow">Oferta</div>
-          <Ornament />
           <h2 className="section-title">Você não precisa mais depender da própria agenda para vender.</h2>
           <p>
             Enquanto outras pessoas continuam buscando clientes diariamente, você começa a construir um ativo que
@@ -902,27 +810,30 @@ function Landing() {
             </div>
             <div className="offer-promo">
               <div className="offer-promo-to">
-                <span className="offer-promo-from-strike">De&nbsp;R$&nbsp;497</span>
+                <span className="offer-promo-from-strike">De&nbsp;R$&nbsp;997</span>
               </div>
-            </div>
-            <div className="offer-progress">
-              <div className="offer-progress-text">GARANTA SUA VAGA NO LOTE PROMOCIONAL</div>
-              <div className="offer-progress-row">
-                <div className="offer-progress-track offer-progress-track--tall">
-                  <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
-                </div>
-                <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
+              <div className="offer-promo-highlight" style={{ fontWeight: 700, marginTop: 8, textAlign: "center" }}>
+                Garanta sua vaga no lote promocional
               </div>
-              <div className="offer-progress-caption">Restam poucas vagas neste lote promocional.</div>
             </div>
             <div className="offer-price-lbl">POR APENAS</div>
-            <div className="price-amount">R$ 49,00</div>
+            <div className="price-amount">R$ 49</div>
             <div className="cta-offer-wrap">
-              <CTA checkout showProgress={false} note />
+              <CTA checkout showProgress={false} />
+              <div className="offer-progress" style={{ marginTop: 16 }}>
+                <div className="offer-progress-row">
+                  <div className="offer-progress-track offer-progress-track--tall">
+                    <div className="offer-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
+                  </div>
+                  <div className="offer-progress-pct">{OFFER_PROGRESS}%</div>
+                </div>
+                <div className="offer-progress-caption">Restam poucas vagas neste lote promocional.</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
 
       {/* DOBRA 8 — GARANTIA */}
       <section className="section bg-cream">
