@@ -614,7 +614,7 @@ function Landing() {
                   <Cal />
                 </div>
                 <div className="day-title">Dia 1 — Sábado</div>
-                <div className="day-hours">09h às 18h</div>
+                <div className="day-hours">09H ÀS 17H</div>
               </div>
               <ul className="day-list">
                 <li>
@@ -644,7 +644,7 @@ function Landing() {
                   <Broadcast />
                 </div>
                 <div className="day-title">Dia 2 — Domingo</div>
-                <div className="day-hours">09h às 18h</div>
+                <div className="day-hours">09H ÀS 17H</div>
               </div>
               <ul className="day-list">
                 <li>
@@ -670,7 +670,7 @@ function Landing() {
             <div className="final-note-icon">
               <Lock s={1.7} />
             </div>
-            <p>É só o começo da sua nova vida. Vamos construir juntas.</p>
+            <p>&nbsp;É só o comemço da sua nova vida. Vamos construir juntas.</p>
           </div>
           <CTA />
         </div>
