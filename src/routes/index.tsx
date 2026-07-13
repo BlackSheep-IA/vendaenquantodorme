@@ -615,9 +615,61 @@ function Landing() {
                 </div>
                 <div className="day-title">Dia 1 — Sábado</div>
                 <div className="day-hours">09H ÀS 17H</div>
-...
+              </div>
+              <ul className="day-list">
+                <li>
+                  <span className="day-item-icon">◆</span>Criação do produto.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Estruturação da oferta.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Página pronta.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Checkout pronto.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Produto preparado para vender.
+                </li>
+              </ul>
+              <div className="day-result">
+                <div className="day-result-lbl">Ao final do Dia 1</div>
+                <div className="day-result-text">Produto publicado e pronto para receber vendas.</div>
+              </div>
+            </div>
+            <div className="day-card">
+              <div className="day-head">
+                <div className="day-icon">
+                  <Broadcast />
+                </div>
+                <div className="day-title">Dia 2 — Domingo</div>
                 <div className="day-hours">09H ÀS 17H</div>
-...
+              </div>
+              <ul className="day-list">
+                <li>
+                  <span className="day-item-icon">◆</span>Estruturação do funil.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Automação.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Mecanismo de ascensão.
+                </li>
+                <li>
+                  <span className="day-item-icon">◆</span>Posicionamento da oferta principal.
+                </li>
+              </ul>
+              <div className="day-result">
+                <div className="day-result-lbl">Ao final do Dia 2</div>
+                <div className="day-result-text">Sistema completo funcionando.</div>
+              </div>
+            </div>
+          </div>
+          <div className="final-note">
+            <div className="final-note-icon">
+              <Lock s={1.7} />
+            </div>
             <p>&nbsp;É só o comemço da sua nova vida. Vamos construir juntas.</p>
           </div>
           <CTA />
