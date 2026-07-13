@@ -809,7 +809,7 @@ function Landing() {
             </div>
             <div className="offer-promo">
               <div className="offer-promo-to">
-                <span className="offer-promo-from-strike">De&nbsp;R$&nbsp;997</span>
+                <span className="offer-promo-from-strike">De&nbsp;R$ 497</span>
               </div>
               <div className="offer-promo-highlight" style={{ fontWeight: 700, marginTop: 8, textAlign: "center" }}>
                 Garanta sua vaga no lote promocional
