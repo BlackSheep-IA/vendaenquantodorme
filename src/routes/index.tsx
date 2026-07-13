@@ -666,12 +666,6 @@ function Landing() {
               </div>
             </div>
           </div>
-          <div className="final-note">
-            <div className="final-note-icon">
-              <Lock s={1.7} />
-            </div>
-            <p>&nbsp;É só o comemço da sua nova vida. Vamos construir juntas.</p>
-          </div>
           <CTA />
         </div>
       </section>
@@ -832,7 +826,6 @@ function Landing() {
           </div>
         </div>
       </section>
-
 
       {/* DOBRA 8 — GARANTIA */}
       <section className="section bg-cream">
