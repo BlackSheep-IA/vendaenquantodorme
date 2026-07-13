@@ -172,12 +172,12 @@ function CTA({
       {checkout ? (
         <a className={cls} href={CTA_URL} target="_blank" rel="noopener noreferrer">
           <Lock />
-          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+          <span>GARANTIR MINHA VAGA NO PROMOCIONAL 3 POR R$49</span>
         </a>
       ) : (
         <button type="button" className={cls} onClick={handleScroll}>
           <Lock />
-          <span>GARANTIR MINHA VAGA NO LOTE 03 POR R$49,00</span>
+          <span>GARANTIR MINHA VAGA NO PROMOCIONAL 3 POR R$49</span>
         </button>
       )}
       {showProgress && <CTAMiniProgress />}
