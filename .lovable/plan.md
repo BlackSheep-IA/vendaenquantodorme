@@ -1,102 +1,76 @@
-# Ajustes finais da Landing Page
+# Ajustes na Landing Page — Venda Enquanto Dorme
 
-Escopo restrito: adicionar duas novas seções de prova social, refinar barra/oferta, adicionar mini-barra sob todos os CTAs e centralizar o envelope no mobile. Nenhuma outra parte é modificada.
+Edições apenas de conteúdo/ordem em `src/routes/index.tsx` (e ajustes mínimos em `src/styles.css` só se necessário). Sem alterar identidade visual, tipografia, cores, animações ou responsividade.
 
-## 1. Imagens
+## 1. CTAs — texto e valor
 
-Serão adicionadas em `src/assets/images/` com estes nomes:
+Nos dois locais do componente `CTA` (link e button, ~linhas 175 e 180) substituir o texto por:
 
-- `depoimento-liz-01.png` … `depoimento-liz-04.png` (4)
-- `resultado-01.png` … `resultado-06.png` (6) — 
+**"GARANTIR INGRESSO NO LOTE 3 COM DESCONTO"**
 
-Cada seção lê um array central no topo do arquivo, então adicionar/remover prints no futuro = editar o array, sem tocar em layout.
+Remover ",00" de todas as exibições do valor R$ 49 na página.
 
-```ts
-const DEPOIMENTOS_LIZ = [depoimento01, depoimento02, depoimento03, depoimento04];
-const RESULTADOS = [resultado01, ..., resultado06];
-```
+## 2. Remover dobra de indicadores
 
-Se algum arquivo não existir no momento do build, o import quebra — então só adiciono os imports que corresponderem aos arquivos efetivamente presentes na pasta.
+Excluir o bloco `<div className="metrics">` (5.200+, 97%, R$49,00, 2 dias) — linhas 458–477 dentro da Hero.  - Excluir completamente essa seção do JSX. Não substituir por outro bloco nem manter espaçamento reservado.
 
-## 2. Nova seção — Prova Social da Liz
+## 3. Remover dobra "Talvez você esteja pensando…"
 
-Inserida **logo após "A Especialista"**, antes de "O Caminho".
+Excluir a `<section>` inteira (linhas 481–534) que contém eyebrow, quote, envelope e o bloco `.compare`.
 
-- Título (`.section-title`): *Quem conhece a Liz sabe a diferença que ela faz.*
-- Subtítulo (`.answer-p`): *Estas são mensagens reais de mulheres que encontraram na Liz clareza, direção e confiança para transformar seu conhecimento em um ativo digital.*
-- **Desktop (≥900px):** grid de 4 colunas, As quatro imagens devem possuir exatamente o mesmo tamanho visual e alinhamento, preservando uma composição equilibrada.`gap` consistente com o resto da página, cards com `border-radius`, `box-shadow` muito discreta, `object-fit: contain` para preservar proporção original, largura da imagem limitada (sem ampliar excessivamente). Os prints devem permanecer proporcionais ao layout e não devem ocupar excesso de espaço vertical. O objetivo é funcionar como prova social mantendo uma aparência elegante e leve.
-- **Mobile:** carrossel horizontal via CSS scroll-snap (`overflow-x:auto; scroll-snap-type: x mandatory`) — 1 print por vez, swipe nativo, sem JS de autoplay, indicadores discretos (dots) atualizados via `IntersectionObserver`.
+## 4. Nova ordem das seções após a Hero
 
-## 3. Nova seção — Resultados
+Reordenar os blocos JSX existentes sem alterar seus conteúdos internos além do especificado:
 
-Utilizar as 6 imagens de resultados fornecidas.
+1. **Hero** (mantida)
+2. **Depoimentos** — mover para cá a atual seção RESULTADOS (linhas 838–862).
+  - Remover o eyebrow `"Resultados"` + `<Ornament />` acima da headline.
+  - Manter a headline existente ("Veja o que aconteceu quando elas decidiram dar o primeiro passo.") e o parágrafo/carrossel.
+3. **Quem é Liz Valz** — mover a seção A ESPECIALISTA (linhas 537–601).
+  - Remover eyebrow `"A especialista"` + `<Ornament />`.
+  - Manter o título "Quem é Liz Valz?" e todo o restante.
+4. **Método** — mover a seção O CAMINHO (linhas 632–675).
+  - Remover eyebrow `"O caminho"` + `<Ornament />`.
+  - Substituir a headline atual por: **"O sistema que vende enquanto você dorme"** (mesma classe/tipografia; ênfase em bordeaux em "enquanto você dorme").
+5. **O que vamos construir juntas** — seção O QUE VAMOS CONSTRUIR (linhas 678–762).
+  - Remover eyebrow `"O que vamos construir"` + `<Ornament />`.
+  - Manter headline principal e todo o restante (inclusive o CTA no final).
+6. **Cronograma** — seção CRONOGRAMA (linhas 765–835).
+  - Remover eyebrow `"Cronograma"` + `<Ornament />`. Manter todo o restante, inclusive o título "Como vai funcionar".
+7. **Prova Social — "Quem conhece a Liz…"** — mover para cá a seção PROVA SOCIAL DA LIZ (linhas 604–628).
+  - Remover eyebrow `"Prova social"` + `<Ornament />`.
+8. **Oferta** (ajustes no item 5)
+9. **Garantia** (mantida)
+10. **FAQ** (ajuste no item 6)
 
-Inserida **logo após o Cronograma e antes da Oferta**.
+## 5. Dobra da Oferta
 
-- Título: *Veja o que aconteceu quando elas decidiram dar o primeiro passo.*
-- Subtítulo: *Resultados reais de mulheres que decidiram aplicar o método e começaram a enxergar novas possibilidades para seus negócios.*
-- **Desktop:** carrossel horizontal premium mostrando ~3 imagens completas + ~20% da 4ª (usando `flex-basis: calc((100% - gaps) / 3.2)` + scroll-snap).  Manter o mesmo tamanho visual utilizado nos prints da primeira seção, evitando ampliar excessivamente as imagens. Setas discretas (◀ ▶) que fazem `scrollBy` da largura de um card, drag com mouse (pointer events → `scrollLeft`), loop infinito por clonagem dos primeiros/últimos itens no efeito de wrap, sem autoplay, transição suave (`scroll-behavior: smooth`).
-- **Mobile:** mesmo container, `flex-basis: 100%`, 1 imagem por vez, swipe nativo, dots.
+Em `<section id="oferta">` (linhas 866–925):
 
-Componente reutilizável `Carousel` que aceita `imagens`, `perView` (desktop) e `peek` (0.2). Assim, futuras seções reaproveitam.
+- Remover eyebrow `"Oferta"` + `<Ornament />` (linhas 868–869).
+- Trocar o preço riscado: `"De R$ 497"` → **"De R$ 997"** (linha 905).
+- Logo abaixo do preço riscado, adicionar linha em destaque (negrito, reaproveitando classes existentes): **"Garanta sua vaga no lote promocional"**.
+- Preço principal: manter "POR APENAS" e trocar `R$ 49,00` → `**R$ 49**` (linha 919).
+- **Mover** o bloco `<div className="offer-progress">…</div>` (linhas 908–917) para **imediatamente abaixo** do botão principal (dentro de `.cta-offer-wrap`, após `<CTA …/>`). Reutilizar o mesmo bloco — sem duplicar. Remover de dentro dele o texto "GARANTA SUA VAGA NO LOTE PROMOCIONAL" (esse rótulo agora vive acima do preço, conforme item anterior).
+- Remover o `note` do CTA da oferta (`<CTA checkout showProgress={false} note />` → `<CTA checkout showProgress={false} />`) para eliminar "🔒 Vaga garantida e acesso imediato".
 
-## 4. Ajustes da Oferta
+## 6. FAQ
 
-- `const OFFER_PROGRESS = 89% das vagas preenchidas;` (era 87). Uma única fonte de verdade — controla largura + rótulo.
-- Barra principal: altura +~40% (`--offer-bar-h: 14px` → `20px`), mantendo largura, gradiente, glow e animação existentes.
-- Texto **acima** da barra permanece; **abaixo** da barra adicionar linha: *Restam poucas vagas neste lote promocional.* (nova classe `.offer-progress-caption`).
-- Preço anterior "De R$ 497": aumentar `font-size` ~25% e aplicar um risco elegante (`text-decoration: line-through; text-decoration-thickness: 1.5px; text-decoration-color: color-mix(in oklab, var(--ink) 55%, transparent);`), mantendo cor/família atuais.
+Substituir a resposta da pergunta **"E se eu achar que não era pra mim?"** (linhas 402–405) pelos 3 parágrafos:
 
-## 5. Mini barra de progresso sob todos os CTAs
+> Caso o programa não atenda às suas expectativas, você poderá solicitar o reembolso dentro do prazo da garantia, desde que comprove que assistiu às aulas e aplicou integralmente o método, executando as atividades e estratégias propostas.
+>
+> Se necessário, poderemos solicitar evidências da implementação, como exercícios, materiais produzidos, prints ou outros registros compatíveis.
+>
+> Pedidos de reembolso sem a comprovação da aplicação do método não serão aprovados, pois não é possível avaliar a eficácia do programa sem que seu conteúdo tenha sido efetivamente colocado em prática.
 
-Novo subcomponente `<CTAProgress />` renderizado **imediatamente abaixo** de cada `<CTA />` (tanto os que fazem scroll até a oferta quanto o de checkout).
+Ajustar também a pergunta para **"E se eu achar que não é para mim?"** (conforme redação solicitada).
 
-- Usa a mesma `OFFER_PROGRESS`.
-- Layout: barra compacta mantendo a mesma identidade visual da barra principal, mesmo gradiente/glow/animação da barra principal, largura = A barra deverá possuir a mesma largura visual do botão imediatamente acima.
-- Texto acima (pequeno): *89% das vagas preenchidas* • Texto abaixo (menor ainda): *Restam poucas vagas neste lote promocional.*
-- Puramente visual; não altera comportamento dos botões.
+## 7. Fora do escopo
 
-Para evitar duplicação, a mini-barra fica dentro do próprio componente `CTA` controlada por prop `showProgress` (default `true`). O CTA principal da Oferta usa `showProgress={false}` (já há a barra grande logo acima).
-
-## 6. Envelope — centralização no mobile
-
-Na seção "Talvez você esteja pensando...", adicionar em `@media (max-width: 899px)`:
-
-```css
-.envelope { display: block; margin-left: auto; margin-right: auto; }
-```
-
-Desktop inalterado.
-
-## 7. O que NÃO muda
-
-Hero, paleta, tipografia, animações, CTAs (comportamento), espaçamentos das seções existentes, textos originais, ordem das demais seções, responsividade geral.
-
-## Qualidade visual
-
-Os dois novos blocos de prova social deverão parecer elementos nativos da Landing Page.
-
-Manter exatamente a mesma identidade visual existente:
-
-- tipografia;
-- espaçamentos;
-- bordas;
-- sombras;
-- animações;
-- ritmo visual.
-
-O objetivo é que os novos componentes pareçam ter feito parte do projeto desde o início.
+Nenhuma alteração em cores, fontes, animações, layout, responsividade, componentes (`CTA`, `ProofCarousel`, `HeroHeader`, `HeroContent`), tokens CSS ou demais seções não citadas.
 
 ## Arquivos alterados
 
-- `src/routes/index.tsx` — 2 novas `<section>`s posicionadas, imports das imagens, arrays `DEPOIMENTOS_LIZ` / `RESULTADOS`, componente `Carousel`, `OFFER_PROGRESS = 89`, caption abaixo da barra, `CTAProgress` dentro do `CTA`.
-- `src/styles.css` — grid de depoimentos, carrossel (scroll-snap + peek + dots + setas), altura da barra principal +40%, estilo do preço "De R$ 497" (tamanho +25% + line-through), mini-barra sob CTAs, centralização mobile do `.envelope`.
-- `src/assets/images/` — recebe os 4 + 6 prints (fornecidos pelo usuário).
-
-## Detalhes técnicos
-
-- Carrossel implementado sem dependências novas (CSS scroll-snap + pequeno hook para dots/drag/loop). Evita bibliotecas pesadas e mantém o bundle.
-- Loop infinito no desktop feito por "virtualização simples": ao chegar no fim, salta silenciosamente para o clone equivalente no início (padrão `scrollLeft` swap dentro de `onScroll` com debounce).
-- Drag: `pointerdown` grava `startX`/`scrollLeft`, `pointermove` aplica delta, `pointerup` libera — respeita `touch-action: pan-y` no mobile para não conflitar com swipe nativo.
-- Imagens usam `loading="lazy"` e `decoding="async"`; `width`/`height` intrínsecos preservados para evitar CLS.
-- Os títulos e subtítulos das duas novas seções devem utilizar exatamente a mesma tipografia e hierarquia visual dos demais títulos da Landing Page, preservando a consistência do design.
+- `src/routes/index.tsx` — reordenar seções, remover eyebrows/ornaments indicados, remover métricas, remover dobra de objeção, ajustar textos de Hero/CTAs/Oferta/FAQ, mover barra de progresso para abaixo do botão da oferta, remover `note` no CTA da oferta.
+- `src/styles.css` — apenas se algum espaçamento visualmente quebrar após remover eyebrows; ajuste mínimo reaproveitando tokens existentes.
