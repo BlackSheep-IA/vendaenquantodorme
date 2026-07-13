@@ -706,7 +706,7 @@ function Landing() {
                       <br />
                       julho
                     </div>
-                    <div className="tl-date-h">09h às 18h</div>
+                    <div className="tl-date-h">09H ÀS 17H</div>
                   </div>
                   <ul className="tl-items">
                     <li>
@@ -727,7 +727,7 @@ function Landing() {
                       <br />
                       julho
                     </div>
-                    <div className="tl-date-h">09h às 18h</div>
+                    <div className="tl-date-h">09H ÀS 17H</div>
                   </div>
                   <ul className="tl-items">
                     <li>
