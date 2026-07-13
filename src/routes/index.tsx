@@ -172,12 +172,12 @@ function CTA({
       {checkout ? (
         <a className={cls} href={CTA_URL} target="_blank" rel="noopener noreferrer">
           <Lock />
-          <span>GARANTIR MINHA VAGA NO LOTE PROMOCIONAL 3 POR R$49</span>
+          <span>GARANTIR INGRESSO NO LOTE 3 COM DESCONTO</span>
         </a>
       ) : (
         <button type="button" className={cls} onClick={handleScroll}>
           <Lock />
-          <span>GARANTIR MINHA VAGA NO LOTE PROMOCIONAL 3 POR R$49</span>
+          <span>GARANTIR INGRESSO NO LOTE 3 COM DESCONTO</span>
         </button>
       )}
       {showProgress && <CTAMiniProgress />}
@@ -400,8 +400,8 @@ const faqs = [
     "Os 2 dias são intensivos justamente pra cabe em qualquer agenda: você bloqueia o fim de semana e sai com o produto pronto.",
   ],
   [
-    "E se eu achar que não era pra mim?",
-    "Garantia de risco zero: participou dos 2 dias, não saiu com produto pronto pra vender, devolvo 100% do valor.",
+    "E se eu achar que não é para mim?",
+    "Caso o programa não atenda às suas expectativas, você poderá solicitar o reembolso dentro do prazo da garantia, desde que comprove que assistiu às aulas e aplicou integralmente o método, executando as atividades e estratégias propostas.\n\nSe necessário, poderemos solicitar evidências da implementação, como exercícios, materiais produzidos, prints ou outros registros compatíveis.\n\nPedidos de reembolso sem a comprovação da aplicação do método não serão aprovados, pois não é possível avaliar a eficácia do programa sem que seu conteúdo tenha sido efetivamente colocado em prática.",
   ],
 ] as const;
 
@@ -985,7 +985,7 @@ function Landing() {
           <div className="closing-badges">
             <span>2 Dias</span>
             <span>Ao Vivo</span>
-            <span>R$49,00</span>
+            <span>R$ 49</span>
           </div>
           <p>
             As vagas do lote 03 são limitadas e se encerram em breve. Garanta a sua agora e construa, em apenas um fim
