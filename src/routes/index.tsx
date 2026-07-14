@@ -52,7 +52,7 @@ const CTA_URL = "https://pay.hotmart.com/J106563190A?checkoutMode";
 
 // Barra de progresso do lote promocional (edição manual).
 // Este valor é usado tanto para a largura da barra quanto para o rótulo "%" ao lado.
-const OFFER_PROGRESS = 89;
+const OFFER_PROGRESS = 92;
 
 function Lock({ s = 1.5 }: { s?: number }) {
   return (
@@ -142,7 +142,7 @@ function Ornament() {
 function CTAMiniProgress() {
   return (
     <div className="cta-progress" aria-hidden="true">
-      <div className="cta-progress-top">{OFFER_PROGRESS}% das vagas preenchidas</div>
+      <div className="cta-progress-top">{OFFER_PROGRESS}% DAS VAGAS PREENCHIDAS</div>
       <div className="cta-progress-track">
         <div className="cta-progress-fill" style={{ width: `${OFFER_PROGRESS}%` }} />
       </div>
