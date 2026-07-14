@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import lizHero from "@/assets/images/liz-hero.jpeg";
+import StickyCountdown from "@/components/StickyCountdown";
+import PurchaseNotification from "@/components/PurchaseNotification";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
 import lizCrono from "@/assets/images/liz-cronograma.jpeg";
 import envelope from "@/assets/images/envelope.png";
@@ -408,6 +410,8 @@ const faqs = [
 function Landing() {
   return (
     <div className="vd">
+      <StickyCountdown />
+      <PurchaseNotification />
       {/* HERO */}
       <section className="hero">
         <div className="container hero-mobile">
@@ -452,6 +456,8 @@ function Landing() {
             </div>
             <div className="hero-right">
               <img src={lizHero} alt="Liz Valz" />
+              <div className="hero-right-fade-side" />
+              <div className="hero-right-fade-bottom" />
             </div>
           </div>
         </div>
