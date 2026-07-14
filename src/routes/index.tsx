@@ -901,7 +901,7 @@ function Landing() {
 
       <footer className="footer">
         <p>
-          © 2025 Liz Valz · Workshop Venda Enquanto Dorme™
+          © 2026 Liz Valz · Workshop Venda Enquanto Dorme™
           <br />
           Todos os direitos reservados.
         </p>
