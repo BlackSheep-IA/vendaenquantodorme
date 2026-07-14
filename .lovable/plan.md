@@ -1,76 +1,118 @@
-# Ajustes na Landing Page — Venda Enquanto Dorme
+## Escopo
 
-Edições apenas de conteúdo/ordem em `src/routes/index.tsx` (e ajustes mínimos em `src/styles.css` só se necessário). Sem alterar identidade visual, tipografia, cores, animações ou responsividade.
+Três frentes na Landing Page V2, sem tocar em layout, tipografia, paleta, animações existentes ou responsividade:
 
-## 1. CTAs — texto e valor
+1. Hero — nova foto + glow no Desktop
+2. Barra sticky com contador
+3. Notificações de compra
 
-Nos dois locais do componente `CTA` (link e button, ~linhas 175 e 180) substituir o texto por:
+Arquivos alterados / criados:
 
-**"GARANTIR INGRESSO NO LOTE 3 COM DESCONTO"**
+- `src/assets/images/liz-hero.jpeg` (substituição binária pela foto anexada)
+- `src/routes/index.tsx` (montar `StickyCountdown` e `PurchaseNotification` no root do layout `.vd`)
+- `src/styles.css` (glow desktop + estilos sticky + notification)
+- `src/components/StickyCountdown.tsx` (novo)
+- `src/components/PurchaseNotification.tsx` (novo)
+- `src/data/purchaseNotifications.ts` (novo)
 
-Remover ",00" de todas as exibições do valor R$ 49 na página.
+---
 
-## 2. Remover dobra de indicadores
+## 1. Hero
 
-Excluir o bloco `<div className="metrics">` (5.200+, 97%, R$49,00, 2 dias) — linhas 458–477 dentro da Hero.  - Excluir completamente essa seção do JSX. Não substituir por outro bloco nem manter espaçamento reservado.
+- Substituir `src/assets/images/liz-hero.jpeg` pela imagem enviada (`user-uploads://Foto_Liz.jpg`) via `code--copy`. Import atual (`@/assets/images/liz-hero.jpeg`) permanece inalterado.
+- Ajustar apenas `object-position` se necessário nos blocos `.vd .hero-media img` (linhas ~365, ~829, ~990, ~1271, ~1411 do `src/styles.css`) para manter rosto/ombros/mãos enquadrados — nenhum outro atributo tocado.
+- Não alterar nenhuma regra existente da Hero além das estritamente necessárias para substituir a imagem e aplicar o glow no Desktop.
 
-## 3. Remover dobra "Talvez você esteja pensando…"
+### Glow Desktop (reaproveitar o efeito Mobile)
 
-Excluir a `<section>` inteira (linhas 481–534) que contém eyebrow, quote, envelope e o bloco `.compare`.
+Hoje o Mobile aplica um fade lateral esquerdo via `mask-image: linear-gradient(to right, transparent 0%, black 15%)` (linhas 478–480) e camadas `.hero-media-fade-side` / `.hero-media-fade-bottom`. Trazer o mesmo tratamento ao Desktop, dentro da media query desktop, garantindo:
 
-## 4. Nova ordem das seções após a Hero
+- máscara/fade suave nas bordas da foto contra o background (mesma cor de fundo da Hero);
+- `object-fit`, `object-position`, altura da Hero, tamanho e posição da imagem permanecem intocados;
+- adaptação apenas de direção/intensidade do gradiente para o enquadramento desktop.
 
-Reordenar os blocos JSX existentes sem alterar seus conteúdos internos além do especificado:
+---
 
-1. **Hero** (mantida)
-2. **Depoimentos** — mover para cá a atual seção RESULTADOS (linhas 838–862).
-  - Remover o eyebrow `"Resultados"` + `<Ornament />` acima da headline.
-  - Manter a headline existente ("Veja o que aconteceu quando elas decidiram dar o primeiro passo.") e o parágrafo/carrossel.
-3. **Quem é Liz Valz** — mover a seção A ESPECIALISTA (linhas 537–601).
-  - Remover eyebrow `"A especialista"` + `<Ornament />`.
-  - Manter o título "Quem é Liz Valz?" e todo o restante.
-4. **Método** — mover a seção O CAMINHO (linhas 632–675).
-  - Remover eyebrow `"O caminho"` + `<Ornament />`.
-  - Substituir a headline atual por: **"O sistema que vende enquanto você dorme"** (mesma classe/tipografia; ênfase em bordeaux em "enquanto você dorme").
-5. **O que vamos construir juntas** — seção O QUE VAMOS CONSTRUIR (linhas 678–762).
-  - Remover eyebrow `"O que vamos construir"` + `<Ornament />`.
-  - Manter headline principal e todo o restante (inclusive o CTA no final).
-6. **Cronograma** — seção CRONOGRAMA (linhas 765–835).
-  - Remover eyebrow `"Cronograma"` + `<Ornament />`. Manter todo o restante, inclusive o título "Como vai funcionar".
-7. **Prova Social — "Quem conhece a Liz…"** — mover para cá a seção PROVA SOCIAL DA LIZ (linhas 604–628).
-  - Remover eyebrow `"Prova social"` + `<Ornament />`.
-8. **Oferta** (ajustes no item 5)
-9. **Garantia** (mantida)
-10. **FAQ** (ajuste no item 6)
+## 2. Barra Sticky — `StickyCountdown`
 
-## 5. Dobra da Oferta
+Componente cliente montado no topo do layout `.vd` em `src/routes/index.tsx`.
 
-Em `<section id="oferta">` (linhas 866–925):
+### Comportamento
 
-- Remover eyebrow `"Oferta"` + `<Ornament />` (linhas 868–869).
-- Trocar o preço riscado: `"De R$ 497"` → **"De R$ 997"** (linha 905).
-- Logo abaixo do preço riscado, adicionar linha em destaque (negrito, reaproveitando classes existentes): **"Garanta sua vaga no lote promocional"**.
-- Preço principal: manter "POR APENAS" e trocar `R$ 49,00` → `**R$ 49**` (linha 919).
-- **Mover** o bloco `<div className="offer-progress">…</div>` (linhas 908–917) para **imediatamente abaixo** do botão principal (dentro de `.cta-offer-wrap`, após `<CTA …/>`). Reutilizar o mesmo bloco — sem duplicar. Remover de dentro dele o texto "GARANTA SUA VAGA NO LOTE PROMOCIONAL" (esse rótulo agora vive acima do preço, conforme item anterior).
-- Remover o `note` do CTA da oferta (`<CTA checkout showProgress={false} note />` → `<CTA checkout showProgress={false} />`) para eliminar "🔒 Vaga garantida e acesso imediato".
+- Escuta `scroll`; exibe quando `window.scrollY > 250`, oculta ao retornar.
+- Animação: fade + slide-down discretos (CSS transition `transform`/`opacity`, 200ms).
+- Botão "GARANTIR INGRESSO": faz `document.getElementById('oferta').scrollIntoView({behavior:'smooth'})`. Se `IntersectionObserver` indicar que `#oferta` já está visível no viewport, não executa scroll.
 
-## 6. FAQ
+### Contador (timezone `America/Sao_Paulo`)
 
-Substituir a resposta da pergunta **"E se eu achar que não era pra mim?"** (linhas 402–405) pelos 3 parágrafos:
+- Constantes configuráveis no topo do arquivo:
+  ```ts
+  export const CAMPAIGN_START = '2026-07-15T00:00:00-03:00';
+  export const CAMPAIGN_END   = '2026-07-25T09:00:00-03:00';
 
-> Caso o programa não atenda às suas expectativas, você poderá solicitar o reembolso dentro do prazo da garantia, desde que comprove que assistiu às aulas e aplicou integralmente o método, executando as atividades e estratégias propostas.
->
-> Se necessário, poderemos solicitar evidências da implementação, como exercícios, materiais produzidos, prints ou outros registros compatíveis.
->
-> Pedidos de reembolso sem a comprovação da aplicação do método não serão aprovados, pois não é possível avaliar a eficácia do programa sem que seu conteúdo tenha sido efetivamente colocado em prática.
+  ```
+  (Usar offset `-03:00` fixo em BRT — não há DST no fuso de São Paulo em 2026.)
+- `setInterval(1s)` calcula `end - Date.now()`.
+- Estados:
+  - `remaining > 24h` → `🔥 LOTE PROMOCIONAL • ENCERRA EM  DD Dias | HH Horas | MM Min | SS Seg`
+  - `0 < remaining ≤ 24h` → `🔥 ÚLTIMO DIA` (esconde contador granular)
+  - `remaining ≤ 0` → `AO VIVO AGORA`
+- Baseado no relógio do navegador; não persiste — atualizar página recalcula.
 
-Ajustar também a pergunta para **"E se eu achar que não é para mim?"** (conforme redação solicitada).
+### Layout
 
-## 7. Fora do escopo
+- Desktop: fundo bordeaux (token existente `--color-bordeaux` / `.bg-bordeaux` da paleta), texto branco, botão dourado (token `--color-gold`), altura ~54px, largura 100%, `position: fixed; top: 0; z-index` acima do conteúdo mas abaixo de modais.
+- Mobile: versão compacta — reduz padding, encurta rótulo (`ENCERRA EM` some, mantém contador + botão), altura ~44px.
+- Novos estilos em `src/styles.css` prefixados com `.vd .sticky-countdown` reutilizando tokens de cor/tipografia da LP.
 
-Nenhuma alteração em cores, fontes, animações, layout, responsividade, componentes (`CTA`, `ProofCarousel`, `HeroHeader`, `HeroContent`), tokens CSS ou demais seções não citadas.
+---
 
-## Arquivos alterados
+## 3. Notificações — `PurchaseNotification` + `purchaseNotifications.ts`
 
-- `src/routes/index.tsx` — reordenar seções, remover eyebrows/ornaments indicados, remover métricas, remover dobra de objeção, ajustar textos de Hero/CTAs/Oferta/FAQ, mover barra de progresso para abaixo do botão da oferta, remover `note` no CTA da oferta.
-- `src/styles.css` — apenas se algum espaçamento visualmente quebrar após remover eyebrows; ajuste mínimo reaproveitando tokens existentes.
+### `src/data/purchaseNotifications.ts`
+
+Exporta arrays:
+
+- `BUYERS: string[]` — Utilizar exatamente a lista de compradores fornecida nesta solicitação (já validada). Não remover, adicionar, alterar, reordenar ou deduplicar nomes. Apenas exportar exatamente a lista fornecida.
+- `MESSAGES: string[]` — 7 frases conforme spec.
+- `TIMES: string[]` — 9 opções ("agora mesmo", "há 1 minuto", …, "há 18 minutos").
+
+### `PurchaseNotification.tsx`
+
+- No mount: embaralha uma cópia de `BUYERS` (Fisher–Yates) e mantém índice cíclico; garante nunca repetir o mesmo comprador em sequência (ao dar wrap, re-embaralha evitando que o primeiro seja igual ao último exibido).
+- Seleção aleatória de `MESSAGES` e `TIMES` evitando repetir a última usada em cada lista.
+- Avatar: `<div>` circular com a inicial do primeiro nome, cor de fundo derivada de hash simples do nome (paleta discreta em tokens existentes) — sem libs.
+- Timing:
+  - primeira notificação: `setTimeout` 6s após mount;
+  - visível 5s (fade+slide);
+  - após ocultar, próximo `setTimeout` com delay aleatório 12–20s;
+  - nunca duas simultâneas (estado único `current | null`).
+- Limpeza total de timers no unmount.
+- Posicionamento (fixed):
+  - Desktop: `bottom: 24px; left: 24px`.
+  - Mobile: `bottom: 88px; left: 12px; right: 12px` (acima da área de CTA fixa/rodapé, sem sobrepor botões).
+- Visual: cartão claro, borda suave, sombra leve, tipografia da LP; classes `.vd .purchase-notification*` em `src/styles.css`. Animação apenas fade + slide via CSS.
+
+### Montagem
+
+Em `src/routes/index.tsx`, dentro do wrapper `.vd`, adicionar no topo:
+
+```tsx
+<StickyCountdown />
+<PurchaseNotification />
+```
+
+Adicionar ambos os componentes dentro do wrapper principal `.vd`, sem alterar a hierarquia existente do JSX e sem mover componentes atuais.
+
+Sem outras alterações no JSX existente.
+
+---
+
+## Validação
+
+- `tsgo` para tipos.
+- - Verificar Desktop e Mobile. - Garantir ausência de regressões visuais. - Garantir que nenhum componente existente foi alterado além do solicitado.
+  - Hero com nova foto + glow;
+  - sticky aparecendo após scroll >250px, contador renderizando, clique rolando para `#oferta`;
+  - notificação surgindo após ~6s e não sobrepondo CTAs;
+  - seções remanescentes sem regressão visual.
