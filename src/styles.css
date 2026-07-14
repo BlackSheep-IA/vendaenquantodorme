@@ -1622,7 +1622,8 @@
 /* ============ MINI BARRA sob todos os CTAs ============ */
 .vd .cta-progress {
   margin: 10px auto 0;
-  max-width: 360px;
+  width: 100%;
+  max-width: 430px;
   text-align: center;
   font-family: "DM Sans", sans-serif;
 }
@@ -1635,7 +1636,7 @@
   margin-bottom: 5px;
 }
 .vd .cta-progress-track {
-  height: 8px;
+  height: 16px;
   background: rgba(196, 168, 130, 0.28);
   border-radius: 999px;
   overflow: hidden;
