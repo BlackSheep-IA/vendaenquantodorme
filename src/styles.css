@@ -1873,3 +1873,232 @@
     font-size: clamp(43px, 4.7vw, 70px) !important;
   }
 }
+
+/* ===== Hero desktop glow (reaproveita o efeito Mobile) ===== */
+.vd .hero-right-fade-side,
+.vd .hero-right-fade-bottom {
+  display: none;
+}
+@media (min-width: 768px) {
+  .vd .hero-right {
+    isolation: isolate;
+  }
+  .vd .hero-right-fade-side {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(
+      to right,
+      rgba(245, 237, 227, 0.85) 0%,
+      rgba(245, 237, 227, 0.35) 12%,
+      rgba(245, 237, 227, 0) 30%
+    );
+  }
+  .vd .hero-right-fade-bottom {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      #f5ede3 0%,
+      rgba(245, 237, 227, 0.9) 8%,
+      rgba(245, 237, 227, 0.5) 18%,
+      rgba(245, 237, 227, 0) 32%
+    );
+  }
+}
+
+/* ===== Sticky countdown bar ===== */
+.vd .sticky-countdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: #5c1a24;
+  color: #fff;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  font-family: "DM Sans", sans-serif;
+}
+.vd .sticky-countdown.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+.vd .sticky-countdown-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 54px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.vd .sticky-countdown-text {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.vd .sticky-countdown-label {
+  color: #fff;
+}
+.vd .sticky-countdown-label .sep {
+  opacity: 0.55;
+  margin: 0 6px;
+}
+.vd .sticky-countdown-timer {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+  color: #f0d8a8;
+  font-weight: 700;
+}
+.vd .sticky-countdown-timer .sep {
+  opacity: 0.5;
+}
+.vd .sticky-countdown-btn {
+  background: #d4a24a;
+  color: #1c1008;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+.vd .sticky-countdown-btn:hover {
+  background: #e0b25c;
+  transform: translateY(-1px);
+}
+@media (max-width: 767px) {
+  .vd .sticky-countdown-inner {
+    min-height: 44px;
+    padding: 6px 12px;
+    gap: 10px;
+  }
+  .vd .sticky-countdown-text {
+    font-size: 11px;
+    gap: 8px;
+  }
+  .vd .sticky-countdown-label {
+    display: none;
+  }
+  .vd .sticky-countdown-label:only-child {
+    display: inline;
+  }
+  .vd .sticky-countdown-timer {
+    font-size: 12px;
+    gap: 5px;
+  }
+  .vd .sticky-countdown-btn {
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* ===== Purchase notification ===== */
+.vd .purchase-notification-slot {
+  position: fixed;
+  z-index: 80;
+  bottom: 24px;
+  left: 24px;
+  pointer-events: none;
+}
+.vd .purchase-notification {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(60, 30, 20, 0.08);
+  border-radius: 14px;
+  padding: 12px 16px 12px 12px;
+  box-shadow: 0 10px 28px rgba(28, 16, 8, 0.14);
+  min-width: 260px;
+  max-width: 340px;
+  font-family: "DM Sans", sans-serif;
+  color: #1c1008;
+  animation: vd-pn-in 260ms ease-out both;
+  pointer-events: auto;
+}
+@keyframes vd-pn-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.vd .purchase-notification-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.02em;
+}
+.vd .purchase-notification-body {
+  min-width: 0;
+}
+.vd .purchase-notification-name {
+  font-weight: 700;
+  font-size: 13.5px;
+  line-height: 1.2;
+  color: #1c1008;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vd .purchase-notification-message {
+  font-size: 12.5px;
+  color: #3d2b1f;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+.vd .purchase-notification-time {
+  font-size: 11px;
+  color: #8a6f5f;
+  margin-top: 4px;
+  letter-spacing: 0.02em;
+}
+@media (max-width: 767px) {
+  .vd .purchase-notification-slot {
+    bottom: 88px;
+    left: 12px;
+    right: 12px;
+  }
+  .vd .purchase-notification {
+    min-width: 0;
+    max-width: none;
+  }
+}
