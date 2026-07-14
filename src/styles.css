@@ -1516,8 +1516,9 @@
 }
 
 .vd .offer-progress {
-  margin: 8 auto 18px;
-  max-width: 420px;
+  width: 100%;
+  margin: 8px auto 18px;
+  max-width: 405px;
 }
 .vd .offer-progress-text {
   font-size: 11px;
@@ -1535,7 +1536,7 @@
 }
 .vd .offer-progress-track {
   flex: 1;
-  height: 12px;
+  height: 16px;
   background: rgba(196, 168, 130, 0.25);
   border-radius: 999px;
   overflow: hidden;
