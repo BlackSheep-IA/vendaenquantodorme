@@ -1269,7 +1269,7 @@
   height: 100%;
   object-fit: cover;
   object-position: right top;
-  transform: translateY(-70px);
+  transform: translateY(-78px);
   z-index: 1;
 }
 .vd .hero-media-fade-side {
