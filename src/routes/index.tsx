@@ -421,7 +421,7 @@ function Landing() {
         {/* mobile */}
         <div className="hero-mobile">
           <div className="hero-media">
-            <img src={lizHero} alt="Liz Valz" />
+            <img src={lizHeroMobile} alt="Liz Valz" />
             <div className="hero-media-fade-side" />
             <div className="hero-media-fade-bottom" />
             <div className="hero-overlay-text">
