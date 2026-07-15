@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import lizHero from "@/assets/images/liz-hero.jpeg";
+import lizHeroMobile from "@/assets/images/liz-hero-mobile.jpeg";
 import StickyCountdown from "@/components/StickyCountdown";
 import PurchaseNotification from "@/components/PurchaseNotification";
 import lizEsp from "@/assets/images/liz-especialista.jpeg";
