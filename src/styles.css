@@ -362,7 +362,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 95% top !important;
+  object-position: right top !important;
 }
 .vd .hero-tint {
   position: absolute;
