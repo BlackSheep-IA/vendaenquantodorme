@@ -1268,8 +1268,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 95% top;
-  transform: translateY(-65px);
+  object-position: right top;
+  transform: translateY(-45px);
   z-index: 1;
 }
 .vd .hero-media-fade-side {
